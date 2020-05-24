@@ -10,7 +10,7 @@ import com.gkgio.borsch_cooker.ext.createViewModel
 class MealsFragment : BaseFragment<MealsViewModel>() {
 
 
-    override fun getLayoutId(): Int = R.layout.fragment_empty1
+    override fun getLayoutId(): Int = R.layout.fragment_meals
 
     override fun provideViewModel() = createViewModel {
         AppInjector.appComponent.mealsViewModel

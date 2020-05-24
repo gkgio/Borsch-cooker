@@ -1,15 +1,18 @@
 <resources>
     <string name="app_name">Гороскопиус</string>
 
-    <string name="settings_fragment_title">Настройки</string>
-
-    <string name="tab_name_empty1">Empty1</string>
-    <string name="tab_name_emty2">Empty1</string>
-    <string name="tab_name_settings">Настройки</string>
+    <string name="tab_name_own">Главная</string>
+    <string name="tab_name_meals">Блюда</string>
+    <string name="tab_name_orders">Заказы</string>
+    <string name="tab_name_support">Поддержка</string>
 
     <string name="theme_dark">Тёмная тема</string>
     <string name="theme_light">Светаля тема</string>
     <string name="theme_system">Системная тема</string>
+
+    <string name="support_fragment_title">Помощь</string>
+    <string name="orders_fragment_title">Заказы</string>
+    <string name="meals_fragment_title">Мои блюда</string>
 
     <string name="default_search_hint">Введите текст для поиска</string>
 

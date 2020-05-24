@@ -1,16 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#1b1b1d</color>
-    <color name="accent">#0CBABA</color>
+    <color name="accent">#333333</color>
     <color name="primary_dark">#000000</color>
+    <color name="window_background">#F2F2F6</color>
 
-    <color name="toolbar">#19000000</color>
+    <color name="toolbar">#FFFFFF</color>
     <color name="search_hint_color">#a0a0a7</color>
-    <color name="snack_bar">#4c000000</color>
-    <color name="search_view_background">#14767680</color>
+    <color name="snack_bar">#F8F8F8</color>
+    <color name="search_view_background">#FCFCFF</color>
+
+    <color name="blue">#0a84ff</color>
+    <color name="btn_color">#ff5a5f</color>
+    <color name="btn_color_40">#66ff5a5f</color>
+    <color name="recycle_divider">#1A000000</color>
+
+    <color name="grey_text5">#8f8e92</color>
+    <color name="grey_text4">#afafaf</color>
+    <color name="grey_text3">#939393</color>
+    <color name="grey_text2">#6d7278</color>
+    <color name="grey_text">#a3aaae</color>
+    <color name="grey_btn">#DCDCDC</color>
+    <color name="grey_bg">#f8f8f8</color>
+    <color name="grey_bg2">#f7f7f7</color>
+    <color name="bg_map_items">#80F2E5E5</color>
+    <color name="sum_container">#80686868</color>
+
+    <color name="green">#04AA11</color>
+    <color name="red">#e83131</color>
+    <color name="red2">#e02020</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="white_2">#05ffffff</color>
+    <color name="white_4">#0affffff</color>
+    <color name="white_8">#14000000</color>
+    <color name="white_10">#1AFFFFFF</color>
+    <color name="white_40">#66FFFFFF</color>
     <color name="white_60">#99FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="white_85">#d9ffffff</color>
     <color name="white_100">#00FFFFFF</color>
 
+    <color name="black">#000000</color>
+    <color name="black_4">#0a000000</color>
+    <color name="black_8">#14000000</color>
+    <color name="black_25">#40000000</color>
+    <color name="black_35">#59000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="black_70">#B3000000</color>
+    <color name="black_80">#CB000000</color>
+    <color name="black_90">#E6000000</color>
+    <color name="black_100">#FF000000</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

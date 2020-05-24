@@ -3,21 +3,21 @@
 
     <item
         android:id="@+id/tab_own"
-        android:icon="@drawable/ic_tab_dream_book"
-        android:title="@string/tab_name_empty1" />
+        android:icon="@drawable/ic_tab_own"
+        android:title="@string/tab_name_own" />
 
     <item
         android:id="@+id/tab_meals"
-        android:icon="@drawable/ic_tab_horoscope"
-        android:title="@string/tab_name_emty2" />
+        android:icon="@drawable/ic_tab_dishes"
+        android:title="@string/tab_name_meals" />
 
     <item
         android:id="@+id/tab_orders"
-        android:icon="@drawable/ic_tab_settings"
-        android:title="@string/tab_name_settings" />
+        android:icon="@drawable/ic_tab_orders"
+        android:title="@string/tab_name_orders" />
 
     <item
         android:id="@+id/tab_support"
-        android:icon="@drawable/ic_tab_settings"
-        android:title="@string/tab_name_settings" />
+        android:icon="@drawable/ic_tab_support"
+        android:title="@string/tab_name_support" />
 </menu>
