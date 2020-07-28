@@ -9,6 +9,7 @@ import android.view.animation.TranslateAnimation
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import com.gkgio.borsch_cooker.R
+import com.gkgio.borsch_cooker.orders.OrdersConstants
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
@@ -118,6 +119,28 @@ fun getMonthNameByMonthNumber(context: Context, monthNumber: String): String {
         "11" -> months[10].toUpperCase(Locale.getDefault())
         "12" -> months[11].toUpperCase(Locale.getDefault())
         else -> ""
+    }
+}
+
+fun getOrdersTypeNameByOrdersType(context: Context, ordersType: String): String {
+    return when (ordersType) {
+        OrdersConstants.ORDERS_TYPE_ALL -> context.resources.getString(R.string.orders_type_all)
+        OrdersConstants.ORDERS_TYPE_ACTIVE -> context.resources.getString(R.string.orders_type_active)
+        else -> context.resources.getString(R.string.orders_type_active)
+    }
+}
+
+fun getOrdersStatusNameByOrdersStatus(context: Context, ordersStatus: String): String {
+    return when (ordersStatus) {
+        OrdersConstants.ORDERS_STATUS_CREATED -> context.resources.getString(R.string.orders_status_created)
+        OrdersConstants.ORDERS_STATUS_COMPLETED -> context.resources.getString(R.string.orders_status_completed)
+        OrdersConstants.ORDERS_STATUS_REJECTED -> context.resources.getString(R.string.orders_status_rejected)
+        OrdersConstants.ORDERS_STATUS_CANCELED -> context.resources.getString(R.string.orders_status_canceled)
+        OrdersConstants.ORDERS_STATUS_ACCEPTED -> context.resources.getString(R.string.orders_status_accepted)
+        OrdersConstants.ORDERS_STATUS_COOKING -> context.resources.getString(R.string.orders_status_cooking)
+        OrdersConstants.ORDERS_STATUS_CAN_PICKUP -> context.resources.getString(R.string.orders_status_can_pickup)
+        OrdersConstants.ORDERS_STATUS_DELIVERING -> context.resources.getString(R.string.orders_status_delivering)
+        else -> context.resources.getString(R.string.orders_status_created)
     }
 }
 

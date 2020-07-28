@@ -11,6 +11,7 @@ import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.createViewModel
 import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.meals.MealsFragment
+import com.gkgio.borsch_cooker.orders.OrdersFragment
 import com.gkgio.borsch_cooker.support.SupportFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -72,7 +73,7 @@ class MainFragment : BaseFragment<MainViewModel>(), BottomBarTabsSwitcher {
     private fun getFragment(itemId: Int) = when (itemId) {
         R.id.tab_own -> Fragment()
         R.id.tab_meals -> MealsFragment()
-        R.id.tab_orders -> MealsFragment()
+        R.id.tab_orders -> OrdersFragment()
         R.id.tab_support -> SupportFragment()
         else -> throw IllegalArgumentException("Unsupported tab")
     }
