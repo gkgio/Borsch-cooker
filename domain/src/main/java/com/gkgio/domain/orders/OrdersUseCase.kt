@@ -4,12 +4,16 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 interface OrdersUseCase {
-    fun loadOrdersData(ordersType: String): Single<OrdersData>
+    fun loadAllOrdersData(): Single<List<OrdersData>>
+    fun loadActiveOrdersData(): Single<List<OrdersData>>
 }
 
 class OrdersUseCaseImpl @Inject constructor(
     private val ordersService: OrdersService
 ) : OrdersUseCase {
-    override fun loadOrdersData(ordersType: String): Single<OrdersData> =
-        ordersService.loadOrdersData(ordersType)
+    override fun loadAllOrdersData(): Single<List<OrdersData>> =
+        ordersService.loadAllOrdersData()
+
+    override fun loadActiveOrdersData(): Single<List<OrdersData>> =
+        ordersService.loadActiveOrdersData()
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Гороскопиус</string>
+    <string name="app_name">Борщ.Повар</string>
 
     <string name="tab_name_own">Главная</string>
     <string name="tab_name_meals">Блюда</string>
@@ -28,10 +28,6 @@
     <string name="orders_sum">%d ₽</string>
 
     <string name="default_search_hint">Введите текст для поиска</string>
-
-    <string name="settings_about_us_title">О нас</string>
-
-    <string name="about_us_text">Привет! Мы - команда приложения гороскопиус. В этом приложении ты каждый день можешь найти гороскопы для всех знаков зодиака, а также узнать, что значит сон и узнать, ждет ли тебя успех в финансах и любви!</string>
 
     <string-array name="months_s">
         <item>января</item>

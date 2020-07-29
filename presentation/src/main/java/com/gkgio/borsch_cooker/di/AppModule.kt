@@ -5,7 +5,9 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import com.gkgio.borsch_cooker.BuildConfig
 import com.gkgio.data.DeviceInterceptor
+import com.gkgio.data.HostInterceptor
 import com.gkgio.data.errorreporter.ErrorReporterImpl
 import com.gkgio.domain.errorreporter.ErrorReporter
 import com.squareup.moshi.Moshi
@@ -44,12 +46,15 @@ class AppModule(private val app: Application) {
     @Singleton
     @Provides
     fun provideOkHttpClient(
-        deviceInterceptor: DeviceInterceptor
+        deviceInterceptor: DeviceInterceptor,
+        hostInterceptor: HostInterceptor
     ): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        loggingInterceptor.level =
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
 
         val okHttpBuilder = OkHttpClient.Builder()
+            .addInterceptor(hostInterceptor)
             .addInterceptor(deviceInterceptor)
             .addInterceptor(loggingInterceptor)
             .connectTimeout(HTTP_TIMEOUT, TimeUnit.SECONDS)

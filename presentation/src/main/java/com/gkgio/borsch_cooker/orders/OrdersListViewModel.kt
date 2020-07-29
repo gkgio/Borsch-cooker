@@ -11,8 +11,7 @@ class OrdersListViewModel @Inject constructor(
     private val loadOrdersUseCase: OrdersUseCase,
     private val ordersListItemUiTransformer: OrdersListItemUiTransformer,
     baseScreensNavigator: BaseScreensNavigator
-) :
-    BaseViewModel(baseScreensNavigator) {
+) : BaseViewModel(baseScreensNavigator) {
 
     val state = MutableLiveData<State>()
     private lateinit var ordersType: String

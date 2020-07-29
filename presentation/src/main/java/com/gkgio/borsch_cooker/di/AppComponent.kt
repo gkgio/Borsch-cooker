@@ -18,7 +18,6 @@ import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
 import com.gkgio.borsch_cooker.orders.OrdersListViewModel
 import com.gkgio.borsch_cooker.orders.OrdersViewModel
 import com.gkgio.borsch_cooker.support.SupportViewModel
-import com.gkgio.borsch_cooker.support.about.AboutUsViewModel
 import com.gkgio.borsch_cooker.support.chat.SupportChatViewModel
 import com.gkgio.domain.errorreporter.ErrorReporter
 import com.squareup.moshi.Moshi
@@ -54,7 +53,6 @@ interface AppComponent {
     val ownViewModel: OwnViewModel
     val supportViewModel: SupportViewModel
     val onboardingViewModel: OnboardingViewModel
-    val aboutUsViewModel: AboutUsViewModel
     val supportChatViewModel: SupportChatViewModel
     val ordersViewModel: OrdersViewModel
     val ordersListViewModel: OrdersListViewModel
