@@ -144,6 +144,16 @@ fun getOrdersStatusNameByOrdersStatus(context: Context, ordersStatus: String): S
     }
 }
 
+fun getPortionsTitleByPortionsCount(context: Context, portionsCount: Int): String {
+    return when (portionsCount % 10) {
+        1 -> context.getString(R.string.order_details_portions_1, portionsCount)
+        2 -> context.getString(R.string.order_details_portions_2, portionsCount)
+        3 -> context.getString(R.string.order_details_portions_2, portionsCount)
+        4 -> context.getString(R.string.order_details_portions_2, portionsCount)
+        else -> context.getString(R.string.order_details_portions_3, portionsCount)
+    }
+}
+
 fun endlessJumpingViewAnimation(view: View) {
     val animation = TranslateAnimation(
         TranslateAnimation.ABSOLUTE, 0f,

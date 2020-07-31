@@ -15,6 +15,7 @@ import com.gkgio.borsch_cooker.main.LaunchActivity
 import com.gkgio.borsch_cooker.main.LaunchViewModel
 import com.gkgio.borsch_cooker.main.MainViewModel
 import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
+import com.gkgio.borsch_cooker.orderdetails.OrderDetailsViewModel
 import com.gkgio.borsch_cooker.orders.OrdersListViewModel
 import com.gkgio.borsch_cooker.orders.OrdersViewModel
 import com.gkgio.borsch_cooker.support.SupportViewModel
@@ -37,7 +38,8 @@ import javax.inject.Singleton
         AnalyticsModule::class,
         ThemeModule::class,
         SupportModule::class,
-        OrdersModule::class
+        OrdersModule::class,
+        OrderDetailsModule::class
     ]
 )
 interface AppComponent {
@@ -56,6 +58,7 @@ interface AppComponent {
     val supportChatViewModel: SupportChatViewModel
     val ordersViewModel: OrdersViewModel
     val ordersListViewModel: OrdersListViewModel
+    val orderDetailsViewModel: OrderDetailsViewModel
 
     val context: Context
     val moshi: Moshi
