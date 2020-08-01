@@ -48,7 +48,7 @@ class OrdersListFragment : BaseFragment<OrdersListViewModel>() {
 
     private fun initOrdersAdapter() {
         ordersAdapter = OrdersListAdapter {
-            println("CLICKED AT $it")
+            viewModel.clickOrder(it)
         }
         ordersListRv.adapter = ordersAdapter
         ordersListRv.layoutManager = LinearLayoutManager(context)
