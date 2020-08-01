@@ -6,22 +6,12 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.TranslateAnimation
-import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.Fragment
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.orders.OrdersConstants
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun Fragment?.closeKeyboard() {
-    val view = this?.activity?.currentFocus
-    if (view != null) {
-        val imm =
-            this?.activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-    }
-}
 
 /**
  * @return dd month yyyy / dd month / СЕГОДНЯ

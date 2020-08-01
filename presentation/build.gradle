@@ -113,6 +113,9 @@ dependencies {
     //chatview
     implementation deps.chatView
 
+    //phoneMask
+    implementation deps.phoneMask
+
     //test
     androidTestImplementation deps.mockito
     androidTestImplementation deps.espresso
