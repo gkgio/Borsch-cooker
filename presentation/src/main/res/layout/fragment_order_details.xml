@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:iconLeft="@drawable/ic_back"
-            app:titleText="Заказ №345345435" />
+            tools:titleText="Заказ №345345435" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

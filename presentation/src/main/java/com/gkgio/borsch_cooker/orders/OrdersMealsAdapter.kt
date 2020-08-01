@@ -5,9 +5,9 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gkgio.borsch_cooker.R
+import com.gkgio.borsch_cooker.ext.getQuantityText
 import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
 import com.gkgio.borsch_cooker.ext.withCenterCropRoundedCorners
-import com.gkgio.borsch_cooker.utils.getPortionsTitleByPortionsCount
 import com.gkgio.borsch_cooker.view.SyntheticViewHolder
 import kotlinx.android.synthetic.main.layout_orders_meal_view_holder.view.*
 
@@ -43,7 +43,7 @@ class OrdersMealsAdapter(
             ordersMealName.text = mealsList[position].name
             ordersPortionsCount.isVisible = showPortions
             ordersPortionsCount.text =
-                getPortionsTitleByPortionsCount(context, mealsList[position].portions)
+                context.getQuantityText(R.plurals.portion_counter, mealsList[position].portions)
         }
 
     fun setMealsList(mealsList: List<OrdersMealsItemUi>) {
