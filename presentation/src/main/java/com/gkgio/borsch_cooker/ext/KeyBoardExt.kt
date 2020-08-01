@@ -17,6 +17,25 @@ fun Fragment?.closeKeyboard() {
     }
 }
 
+fun Fragment?.closeKeyboard(view: View) {
+    this?.activity?.let {
+        val imm =
+            it.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.hideSoftInputFromWindow(
+            view.windowToken,
+            0
+        )
+    }
+}
+
+fun Fragment?.openKeyBoard() {
+    this?.activity?.currentFocus?.let { view ->
+        val imm =
+            activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    }
+}
+
 fun Activity?.closeKeyboard() {
     this?.currentFocus?.let { view ->
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager

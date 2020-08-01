@@ -1,6 +1,8 @@
 package com.gkgio.borsch_cooker.navigation
 
 import android.content.Context
+import com.gkgio.borsch_cooker.auth.InputPhoneFragment
+import com.gkgio.borsch_cooker.auth.ValidatePhoneFragment
 import com.gkgio.borsch_cooker.main.MainFragment
 import com.gkgio.borsch_cooker.onboarding.OnboardingFragment
 import com.gkgio.borsch_cooker.support.SupportFragment
@@ -33,5 +35,13 @@ object Screens {
 
     object OnboardingFragmentScreen : SupportAppScreen() {
         override fun getFragment() = OnboardingFragment()
+    }
+
+    object InputPhoneFragmentScreen : SupportAppScreen() {
+        override fun getFragment() = InputPhoneFragment()
+    }
+
+    class ValidatePhoneFragmentScreen(private val phone: String) : SupportAppScreen() {
+        override fun getFragment() = ValidatePhoneFragment.newInstance(phone)
     }
 }

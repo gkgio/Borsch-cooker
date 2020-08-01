@@ -28,6 +28,16 @@
     <string name="orders_sum">%d ₽</string>
     <string name="orders_no_information">У вас еще нет заказов</string>
 
+    <string name="auth_btn_send_code">Выслать код</string>
+    <string name="auth_input_phone_title">Введите номер</string>
+    <string name="auth_input_phone_sub_title">Чтобы создать аккаунт</string>
+    <string name="auth_input_phone_hint">Номер телефона</string>
+    <string name="auth_validate_phone_title">Подтверждение номера</string>
+    <string name="auth_send_again_sms_title">Повторная отправка через</string>
+    <string name="auth_sms_code_hint">СМС код</string>
+    <string name="auth_sms_code_validate_description">Введите код, который\nмы отправили вам на телефон</string>
+    <string name="auth_send_sms_again_btn">Отправить еще раз</string>
+
     <string name="default_search_hint">Введите текст для поиска</string>
 
     <string-array name="months_s">

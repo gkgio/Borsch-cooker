@@ -3,6 +3,8 @@ package com.gkgio.borsch_cooker.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.gkgio.borsch_cooker.auth.InputPhoneViewModel
+import com.gkgio.borsch_cooker.auth.ValidatePhoneViewModel
 import com.gkgio.domain.analytics.AnalyticsRepository
 import com.gkgio.domain.auth.AuthRepository
 import com.gkgio.domain.theme.ThemeRepository
@@ -56,6 +58,8 @@ interface AppComponent {
     val supportChatViewModel: SupportChatViewModel
     val ordersViewModel: OrdersViewModel
     val ordersListViewModel: OrdersListViewModel
+    val inputPhoneViewModel: InputPhoneViewModel
+    val validatePhoneViewModel: ValidatePhoneViewModel
 
     val context: Context
     val moshi: Moshi
