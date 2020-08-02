@@ -20,7 +20,7 @@ class OrdersListAdapter(
             SyntheticViewHolder.inflateFrom(parent, R.layout.layout_orders_view_holder)
 
         holder.itemView.setDebounceOnClickListener {
-            itemClick(holder.adapterPosition)
+            itemClick(ordersList[holder.adapterPosition].id)
         }
 
         return holder
@@ -32,16 +32,17 @@ class OrdersListAdapter(
 
     override fun onBindViewHolder(holder: SyntheticViewHolder, position: Int) =
         with(holder.itemView) {
+
             ordersId.text =
-                context.getString(R.string.orders_number, ordersList[position].id.toString())
+                context.getString(R.string.orders_number, ordersList[position].id)
             ordersStatus.text =
                 getOrdersStatusNameByOrdersStatus(context, ordersList[position].status)
             ordersSum.text = context.getString(R.string.orders_sum, 400) //TODO
             ordersCreatedTime.text = ordersList[position].address.createdAt //TODO
             ordersDeliveryType.text = "Самовывоз" //TODO
 
-            val ordersMealAdapter = OrdersMealsAdapter(ordersList[position].meals) {
-                println("CLICKED AT $it")
+            val ordersMealAdapter = OrdersMealsAdapter(ordersList[position].meals, false) {
+                itemClick(ordersList[position].id)
             }
             ordersMealsRv.adapter = ordersMealAdapter
             ordersMealsRv.layoutManager =

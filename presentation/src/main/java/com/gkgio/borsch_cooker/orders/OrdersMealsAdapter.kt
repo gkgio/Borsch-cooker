@@ -1,17 +1,20 @@
 package com.gkgio.borsch_cooker.orders
 
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gkgio.borsch_cooker.R
+import com.gkgio.borsch_cooker.ext.getQuantityText
 import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
 import com.gkgio.borsch_cooker.ext.withCenterCropRoundedCorners
 import com.gkgio.borsch_cooker.view.SyntheticViewHolder
 import kotlinx.android.synthetic.main.layout_orders_meal_view_holder.view.*
 
 class OrdersMealsAdapter(
-    private val mealsList: List<OrdersMealsItemUi>,
-    val itemClick: (position: Int) -> Unit
+    private var mealsList: List<OrdersMealsItemUi>,
+    private val showPortions: Boolean,
+    val itemClick: () -> Unit
 ) : RecyclerView.Adapter<SyntheticViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SyntheticViewHolder {
@@ -19,7 +22,7 @@ class OrdersMealsAdapter(
             SyntheticViewHolder.inflateFrom(parent, R.layout.layout_orders_meal_view_holder)
 
         holder.itemView.setDebounceOnClickListener {
-            itemClick(holder.adapterPosition)
+            itemClick()
         }
 
         return holder
@@ -38,5 +41,13 @@ class OrdersMealsAdapter(
                 .withCenterCropRoundedCorners(context, 8)
                 .into(ordersMealImageView)
             ordersMealName.text = mealsList[position].name
+            ordersPortionsCount.isVisible = showPortions
+            ordersPortionsCount.text =
+                context.getQuantityText(R.plurals.portion_counter, mealsList[position].portions)
         }
+
+    fun setMealsList(mealsList: List<OrdersMealsItemUi>) {
+        this.mealsList = mealsList
+        notifyDataSetChanged()
+    }
 }

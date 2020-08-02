@@ -1,35 +1,36 @@
-package com.gkgio.borsch_cooker.orders
+package com.gkgio.borsch_cooker.orderdetails
 
 import androidx.lifecycle.MutableLiveData
 import com.gkgio.borsch_cooker.base.BaseScreensNavigator
 import com.gkgio.borsch_cooker.base.BaseViewModel
+import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
-import com.gkgio.borsch_cooker.navigation.Screens
-import com.gkgio.domain.orders.OrdersUseCase
+import com.gkgio.borsch_cooker.ext.nonNullValue
+import com.gkgio.borsch_cooker.orders.OrdersAddressItemUi
+import com.gkgio.borsch_cooker.orders.OrdersListItemUi
+import com.gkgio.borsch_cooker.orders.OrdersListItemUiTransformer
+import com.gkgio.borsch_cooker.orders.OrdersMealsItemUi
+import com.gkgio.domain.orderdetails.OrderDetailsUseCase
 import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.Screen
+import timber.log.Timber
 import javax.inject.Inject
 
-class OrdersListViewModel @Inject constructor(
-    private val loadOrdersUseCase: OrdersUseCase,
+class OrderDetailsViewModel @Inject constructor(
+    private val loadOrderDetailsUseCase: OrderDetailsUseCase,
     private val ordersListItemUiTransformer: OrdersListItemUiTransformer,
     baseScreensNavigator: BaseScreensNavigator,
     private val router: Router
 ) : BaseViewModel(baseScreensNavigator) {
 
     val state = MutableLiveData<State>()
-    private lateinit var ordersType: String
+    private var orderId: Int = 0
 
-    //for test start
-    var list = mutableListOf<OrdersListItemUi>()
-    var mealsList = mutableListOf<OrdersMealsItemUi>()
-    var imagesList = mutableListOf<String>()
-    var imagesList2 = mutableListOf<String>()
-    //for test end
-
-    fun init(ordersType: String) {
-        this.ordersType = ordersType
+    fun init(orderId: Int) {
+        this.orderId = orderId
         //for test start
+        var mealsList = mutableListOf<OrdersMealsItemUi>()
+        var imagesList = mutableListOf<String>()
+        var imagesList2 = mutableListOf<String>()
         imagesList.add("https://img.povar.ru/main/ab/23/b4/9c/samii_vkusnii_borsh-404089.jpg")
         imagesList2.add("https://www.gastronom.ru/binfiles/images/00000192/00072755.jpg")
         mealsList.add(
@@ -59,7 +60,7 @@ class OrdersListViewModel @Inject constructor(
                 "",
                 listOf(),
                 "Борщ",
-                1,
+                5,
                 500,
                 "",
                 "",
@@ -77,7 +78,7 @@ class OrdersListViewModel @Inject constructor(
                 "",
                 listOf(),
                 "Макароны по-флотски",
-                1,
+                2,
                 500,
                 "",
                 "",
@@ -87,75 +88,46 @@ class OrdersListViewModel @Inject constructor(
             )
         )
 
-        list.add(
-            OrdersListItemUi(
+        val order = OrdersListItemUi(
+            1,
+            2,
+            3,
+            "accepted",
+            OrdersAddressItemUi(
                 1,
-                2,
-                3,
-                "accepted",
-                OrdersAddressItemUi(
-                    1,
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    0,
-                    "2020-05-23T07:14:23.940Z",
-                    "Когда-нибудь",
-                    "",
-                    true
-                ),
-                mealsList,
-                listOf()
-            )
-        )
-        list.add(
-            OrdersListItemUi(
-                1,
-                2,
-                3,
-                "created",
-                OrdersAddressItemUi(
-                    1,
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    0,
-                    "2020-05-23T07:14:23.940Z",
-                    "Сегодня, попозже",
-                    "",
-                    true
-                ),
-                mealsList,
-                listOf()
-            )
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                0,
+                "2020-05-23T07:14:23.940Z",
+                "Когда-нибудь",
+                "",
+                true
+            ),
+            mealsList,
+            listOf()
         )
         //for test stop
 
         if (state.isNonInitialized()) {
-            state.value = State(isLoading = true, isInitialError = false, ordersList = list)
-            // onLoadOrders()
+            state.value = State(
+                orderDetails = order, isLoading = false, isInitialError = false
+            )
+            //onLoadOrderDetails()
         }
     }
-/*
-    fun onLoadOrders() {
-        loadOrdersUseCase
-            .loadOrdersData(ordersType)
+
+    fun onLoadOrderDetails() {
+        loadOrderDetailsUseCase
+            .loadOrderDetailsData(orderId)
             .map { ordersListItemUiTransformer.transform(it) }
             .applySchedulers()
             .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
@@ -163,25 +135,24 @@ class OrdersListViewModel @Inject constructor(
                 {
                     state.value = state.nonNullValue.copy(
                         isLoading = false,
-                        ordersList = it,
+                        orderDetails = it,
                         isInitialError = false
                     )
                 },
                 {
-                    Timber.e(it, "Error load orders")
+                    Timber.e(it, "Error load order details")
                     state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
                 }
             )
             .addDisposable()
     }
- */
 
-    fun clickOrder(orderId: Int) {
-        router.navigateTo(Screens.OrderDetailsScreen(orderId))
+    fun clickLeftIcon() {
+        router.exit()
     }
 
     data class State(
-        val ordersList: List<OrdersListItemUi>,
+        val orderDetails: OrdersListItemUi,
         val isLoading: Boolean,
         val isInitialError: Boolean
     )
