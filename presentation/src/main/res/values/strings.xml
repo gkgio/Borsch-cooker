@@ -27,6 +27,23 @@
     <string name="orders_number">Заказ №%s</string>
     <string name="orders_sum">%d ₽</string>
     <string name="orders_no_information">У вас еще нет заказов</string>
+    
+    <string name="own_welcome">Добрый день, %s</string>
+    <string name="own_profile">Профиль</string>
+    <string name="own_status">Статус активности</string>
+    <string name="own_accept_orders">Принимаю заказы</string>
+    <string name="own_subscription_for">Подписка до %s</string>
+    <string name="own_active_meals">Активные блюда</string>
+    <string name="own_edit">Изменить</string>
+    <string name="own_delivery_title">Варианты доставки</string>
+    <string name="own_pickup">Самовывоз</string>
+    <string name="own_delivery_radius">Доставка в радиусе</string>
+    <string name="own_last_7_days">Последние 7 дней</string>
+    <string name="own_profit">Прибыль</string>
+    <string name="own_rating">Ваш рейтинг</string>
+    <string name="own_container_title">Магазин\nКонтейнеров</string>
+    <string name="own_container_subtitle">Широкий ассортимент для всех блюд</string>
+    <string name="own_container_buy">Докупить конйтейнеры</string>
 
     <string name="auth_btn_send_code">Выслать код</string>
     <string name="auth_input_phone_title">Введите номер</string>

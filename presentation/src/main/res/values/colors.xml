@@ -11,11 +11,13 @@
     <color name="search_view_background">#FCFCFF</color>
 
     <color name="blue">#0a84ff</color>
+    <color name="blue_8">#140A84FF</color>
     <color name="btn_color">#ff5a5f</color>
     <color name="btn_color_40">#66ff5a5f</color>
     <color name="recycle_divider">#1A000000</color>
 
     <color name="blue_text">#595bd4</color>
+    <color name="grey_text_6">#7b7b7b</color>
     <color name="grey_text5">#8f8e92</color>
     <color name="grey_text4">#afafaf</color>
     <color name="grey_text3">#939393</color>
@@ -24,10 +26,14 @@
     <color name="grey_btn">#DCDCDC</color>
     <color name="grey_bg">#f8f8f8</color>
     <color name="grey_bg2">#f7f7f7</color>
+    <color name="green_text">#008c00</color>
+    <color name="red_text">#f94733</color>
     <color name="bg_map_items">#80F2E5E5</color>
     <color name="sum_container">#80686868</color>
+    <color name="bluepurple_text">#572cd8</color>
 
     <color name="green">#04AA11</color>
+    <color name="green_4">#0A04AA11</color>
     <color name="red">#e83131</color>
     <color name="red2">#e02020</color>
 
