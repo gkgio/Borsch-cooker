@@ -44,15 +44,13 @@
     <string name="own_container_title">Магазин\nКонтейнеров</string>
     <string name="own_container_subtitle">Широкий ассортимент для всех блюд</string>
     <string name="own_container_buy">Докупить конйтейнеры</string>
+
     <string name="order_details_sum">Сумма заказа</string>
     <string name="order_details_list">Состав заказа</string>
     <string name="order_details_chat">Чат с клиентом</string>
     <string name="order_details_ready_for_pickup">Готово к самовывозу</string>
     <string name="order_details_delivery_type">Тип доставки</string>
     <string name="order_details_button_hint">Нажмите для изменения статуса</string>
-    <string name="order_details_portions_1">%d порция</string>
-    <string name="order_details_portions_2">%d порции</string>
-    <string name="order_details_portions_3">%d порций</string>
     
     <string name="delivery_type_pickup">Самовывоз</string>
     <string name="delivery_type_courier">Доставка курьеров</string>
