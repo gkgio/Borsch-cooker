@@ -2,7 +2,7 @@ package com.gkgio.data.auth
 
 import android.content.SharedPreferences
 import com.gkgio.domain.auth.AuthRepository
-import com.gkgio.domain.auth.User
+import com.gkgio.domain.auth.Cooker
 import com.squareup.moshi.Moshi
 import io.reactivex.Completable
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 class AuthRepositoryImpl @Inject constructor(
     private val prefs: SharedPreferences,
     private val moshi: Moshi,
-    private val userResponseToTransformer: UserResponseToTransformer,
+    private val userResponseToTransformer: UserToResponseTransformer,
     private val userResponseTransformer: UserResponseTransformer
 ) : AuthRepository {
 
@@ -27,7 +27,7 @@ class AuthRepositoryImpl @Inject constructor(
         prefs.edit().putString(AUTH_TOKEN, token).apply()
     }
 
-    override fun saveUserProfile(user: User) {
+    override fun saveUserProfile(user: Cooker) {
         prefs.edit().putString(
             USER_PROFILE,
             moshi.adapter(UserResponse::class.java)
@@ -38,7 +38,7 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
 
-    override fun loadUserProfile(): User? {
+    override fun loadUserProfile(): Cooker? {
         val basketCountAndSumJsonString = prefs.getString(USER_PROFILE, null)
         basketCountAndSumJsonString?.let { basketCountAndSum ->
             val data = moshi.adapter(UserResponse::class.java)

@@ -89,4 +89,14 @@
             app:cornerRadius="8dp" />
     </LinearLayout>
 
+    <include layout="@layout/empty_error_view" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:visibility="gone" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

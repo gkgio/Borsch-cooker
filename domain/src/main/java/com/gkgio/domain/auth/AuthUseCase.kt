@@ -6,12 +6,12 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 interface AuthUseCase {
-    fun getSmsCodeByPhone(inputPhone: String): Single<String>
-    fun validateSmsCode(token: String, code: String): Completable
+    fun getSmsCodeByPhone(inputPhone: String): Single<Long>
+    fun validateSmsCode(tmpToken: Long, code: String): Completable
     fun getAuthToken(): String?
     fun saveAuthToken(token: String)
-    fun saveUserProfile(user: User)
-    fun loadUserProfile(): User?
+    fun saveUserProfile(user: Cooker)
+    fun loadUserProfile(): Cooker?
     fun savePushToken(pushToken: String): Completable
     fun sendPushToken(pushToken: String): Completable
 }
@@ -21,14 +21,14 @@ class AuthUseCaseImpl @Inject constructor(
     private val authRepository: AuthRepository
 ) : AuthUseCase {
 
-    override fun getSmsCodeByPhone(inputPhone: String): Single<String> =
+    override fun getSmsCodeByPhone(inputPhone: String): Single<Long> =
         authService.getSmsCodeByPhone(inputPhone)
 
-    override fun validateSmsCode(token: String, code: String): Completable =
-        authService.validateSmsCode(token, code)
+    override fun validateSmsCode(tmpToken: Long, code: String): Completable =
+        authService.validateSmsCode(tmpToken, code)
             .flatMapCompletable { validateSmsCode ->
                 saveAuthToken(validateSmsCode.token)
-                saveUserProfile(validateSmsCode.user)
+                saveUserProfile(validateSmsCode.cooker)
                 authService.sendPushToken(authRepository.getPushToken())
             }
 
@@ -39,10 +39,10 @@ class AuthUseCaseImpl @Inject constructor(
     override fun saveAuthToken(token: String) =
         authRepository.saveAuthToken(token)
 
-    override fun saveUserProfile(user: User) =
+    override fun saveUserProfile(user: Cooker) =
         authRepository.saveUserProfile(user)
 
-    override fun loadUserProfile(): User? =
+    override fun loadUserProfile(): Cooker? =
         authRepository.loadUserProfile()
 
     override fun savePushToken(pushToken: String): Completable =

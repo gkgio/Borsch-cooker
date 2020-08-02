@@ -4,10 +4,11 @@ import com.gkgio.data.BaseTransformer
 import com.gkgio.domain.auth.Cooker
 import javax.inject.Inject
 
-class UserResponseTransformer @Inject constructor() : BaseTransformer<UserResponse, Cooker> {
+class UserToResponseTransformer @Inject constructor() :
+    BaseTransformer<Cooker, UserResponse> {
 
-    override fun transform(data: UserResponse) = with(data) {
-        Cooker(
+    override fun transform(data: Cooker) = with(data) {
+        UserResponse(
             id,
             email,
             banned,

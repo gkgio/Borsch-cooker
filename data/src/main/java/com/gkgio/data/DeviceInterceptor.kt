@@ -33,7 +33,7 @@ class DeviceInterceptor @Inject constructor(
 
         val authToken = authRepository.getAuthToken()
         if (!authToken.isNullOrEmpty()) {
-            requestBuilder.addHeader("authorization", authToken)
+            requestBuilder.addHeader("Authorization", authToken)
         }
 
         return chain.proceed(requestBuilder.build())

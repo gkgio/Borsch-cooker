@@ -10,6 +10,7 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
@@ -17,6 +18,7 @@ import com.gkgio.borsch_cooker.ext.*
 import com.gkgio.borsch_cooker.utils.IntentUtils
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
+import kotlinx.android.synthetic.main.empty_error_view.*
 import kotlinx.android.synthetic.main.fragment_input_phone.*
 
 
@@ -41,6 +43,15 @@ class InputPhoneFragment : BaseFragment<InputPhoneViewModel>() {
 
         sendCodeBtn.setDebounceOnClickListener {
             viewModel.onSendCodeBtnClick(inputPhone)
+        }
+
+        updateEmptyBtn.setDebounceOnClickListener {
+            viewModel.onUpdateAfterErrorClick(inputPhone)
+        }
+
+        viewModel.state.observeValue(this) {
+            emptyView.isVisible = it.isInitialError
+            progress.isVisible = it.isProgress
         }
     }
 

@@ -67,6 +67,9 @@
 
     <string name="default_search_hint">Введите текст для поиска</string>
 
+    <string name="error_empty_text">Что-то пошло не так</string>
+    <string name="error_btn_text">Обновить</string>
+
     <string-array name="months_s">
         <item>января</item>
         <item>февраля</item>

@@ -15,11 +15,11 @@ class AuthServiceImpl @Inject constructor(
     serverExceptionTransformer: ServerExceptionTransformer
 ) : BaseService(serverExceptionTransformer), AuthService {
 
-    override fun getSmsCodeByPhone(inputPhone: String): Single<String> = executeRequest(
-        authServiceApi.getSmsCodeByPhone(inputPhone)
+    override fun getSmsCodeByPhone(inputPhone: String): Single<Long> = executeRequest(
+        authServiceApi.getSmsCodeByPhone(inputPhone).map { it.tmpToken }
     )
 
-    override fun validateSmsCode(tmpToken: String, code: String): Single<ValidateSmsCode> =
+    override fun validateSmsCode(tmpToken: Long, code: String): Single<ValidateSmsCode> =
         executeRequest(
             authServiceApi.validateSmsCode(
                 tmpToken,
@@ -36,12 +36,12 @@ class AuthServiceImpl @Inject constructor(
 
 
     interface AuthServiceApi {
-        @POST("cooker/auth")
-        fun getSmsCodeByPhone(@Query("phone") phone: String): Single<String>
+        @POST("auth")
+        fun getSmsCodeByPhone(@Query("phone") phone: String): Single<SmsResponse>
 
-        @PATCH("cooker/auth/{tmpToken}")
+        @PATCH("auth/{tmpToken}")
         fun validateSmsCode(
-            @Path("tmpToken") token: String,
+            @Path("tmpToken") tmpToken: Long,
             @Query("code") code: String
         ): Single<ValidateSmsCodeResponse>
 
