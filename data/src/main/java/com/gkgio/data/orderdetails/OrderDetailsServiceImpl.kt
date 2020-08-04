@@ -17,7 +17,7 @@ class OrderDetailsServiceImpl @Inject constructor(
     serverExceptionTransformer: ServerExceptionTransformer
 
 ) : BaseService(serverExceptionTransformer), OrderDetailsService {
-    override fun loadOrderDetailsData(orderId: Int): Single<OrdersData> =
+    override fun loadOrderDetailsData(orderId: String): Single<OrdersData> =
         executeRequest(
             orderDetailsApi.loadOrderDetailsData(orderId).map {
                 ordersDataResponseTransformer.transform(it)
@@ -27,7 +27,7 @@ class OrderDetailsServiceImpl @Inject constructor(
     interface OrderDetailsApi {
         @GET("orders/{orderId}")
         fun loadOrderDetailsData(
-            @Path("orderId") orderId: Int
+            @Path("orderId") orderId: String
         ): Single<OrdersDataResponse>
     }
 

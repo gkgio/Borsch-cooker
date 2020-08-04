@@ -16,12 +16,12 @@ import kotlinx.android.synthetic.main.toolbar_two_icon_view.view.*
 class OrderDetailsFragment : BaseFragment<OrderDetailsViewModel>() {
 
     companion object {
-        fun newInstance(orderId: Int) = OrderDetailsFragment().apply {
+        fun newInstance(orderId: String) = OrderDetailsFragment().apply {
             this.orderId = orderId
         }
     }
 
-    private var orderId: Int by FragmentArgumentDelegate()
+    private var orderId: String by FragmentArgumentDelegate()
     private lateinit var orderMealsAdapter: OrdersMealsAdapter
 
     override fun getLayoutId(): Int = R.layout.fragment_order_details

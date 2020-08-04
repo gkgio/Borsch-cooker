@@ -6,8 +6,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 interface AuthUseCase {
-    fun getSmsCodeByPhone(inputPhone: String): Single<Long>
-    fun validateSmsCode(tmpToken: Long, code: String): Completable
+    fun getSmsCodeByPhone(inputPhone: String): Single<String>
+    fun validateSmsCode(tmpToken: String, code: String): Completable
     fun getAuthToken(): String?
     fun saveAuthToken(token: String)
     fun saveUserProfile(user: Cooker)
@@ -21,10 +21,10 @@ class AuthUseCaseImpl @Inject constructor(
     private val authRepository: AuthRepository
 ) : AuthUseCase {
 
-    override fun getSmsCodeByPhone(inputPhone: String): Single<Long> =
+    override fun getSmsCodeByPhone(inputPhone: String): Single<String> =
         authService.getSmsCodeByPhone(inputPhone)
 
-    override fun validateSmsCode(tmpToken: Long, code: String): Completable =
+    override fun validateSmsCode(tmpToken: String, code: String): Completable =
         authService.validateSmsCode(tmpToken, code)
             .flatMapCompletable { validateSmsCode ->
                 saveAuthToken(validateSmsCode.token)

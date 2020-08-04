@@ -1,7 +1,7 @@
 package com.gkgio.borsch_cooker.orders
 
 data class OrdersMealsItemUi(
-    val id: Int,
+    val id: String,
     val available: Boolean,
     val calories: Int,
     val cookTime: Int,
@@ -12,7 +12,7 @@ data class OrdersMealsItemUi(
     val price: Int,
     val type: String,
     val weight: String,
-    val cookerId: Int,
-    val lunchId: Int,
+    val cookerId: String,
+    val lunchId: String,
     val images: List<String>
 )

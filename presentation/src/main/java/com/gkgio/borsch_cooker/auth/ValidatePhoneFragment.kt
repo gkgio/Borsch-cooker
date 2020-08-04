@@ -20,13 +20,13 @@ import kotlinx.android.synthetic.main.fragment_validate_phone.*
 class ValidatePhoneFragment : BaseFragment<ValidatePhoneViewModel>() {
 
     companion object {
-        fun newInstance(tmpToken: Long, phone: String) = ValidatePhoneFragment().apply {
+        fun newInstance(tmpToken: String, phone: String) = ValidatePhoneFragment().apply {
             this.tmpToken = tmpToken
             this.phone = phone
         }
     }
 
-    private var tmpToken: Long by FragmentArgumentDelegate()
+    private var tmpToken: String by FragmentArgumentDelegate()
     private var phone: String by FragmentArgumentDelegate()
 
     override fun getLayoutId(): Int = R.layout.fragment_validate_phone

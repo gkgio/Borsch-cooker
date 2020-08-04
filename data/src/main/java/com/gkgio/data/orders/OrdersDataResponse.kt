@@ -6,11 +6,11 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class OrdersDataResponse(
     @Json(name = "id")
-    val id: Int,
+    val id: String,
     @Json(name = "client_id")
-    val clientId: Int,
+    val clientId: String,
     @Json(name = "cooker_id")
-    val cookerId: Int,
+    val cookerId: String,
     @Json(name = "status")
     val status: String,
     @Json(name = "address")

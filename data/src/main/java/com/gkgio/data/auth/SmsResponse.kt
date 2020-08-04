@@ -6,5 +6,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 class SmsResponse(
     @Json(name = "id")
-    val tmpToken: Long
+    val tmpToken: String
 )

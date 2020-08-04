@@ -15,11 +15,11 @@ class AuthServiceImpl @Inject constructor(
     serverExceptionTransformer: ServerExceptionTransformer
 ) : BaseService(serverExceptionTransformer), AuthService {
 
-    override fun getSmsCodeByPhone(inputPhone: String): Single<Long> = executeRequest(
+    override fun getSmsCodeByPhone(inputPhone: String): Single<String> = executeRequest(
         authServiceApi.getSmsCodeByPhone(inputPhone).map { it.tmpToken }
     )
 
-    override fun validateSmsCode(tmpToken: Long, code: String): Single<ValidateSmsCode> =
+    override fun validateSmsCode(tmpToken: String, code: String): Single<ValidateSmsCode> =
         executeRequest(
             authServiceApi.validateSmsCode(
                 tmpToken,
@@ -41,7 +41,7 @@ class AuthServiceImpl @Inject constructor(
 
         @PATCH("auth/{tmpToken}")
         fun validateSmsCode(
-            @Path("tmpToken") tmpToken: Long,
+            @Path("tmpToken") tmpToken: String,
             @Query("code") code: String
         ): Single<ValidateSmsCodeResponse>
 

@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class OrdersMealsDataResponse(
     @Json(name = "id")
-    val id: Int,
+    val id: String,
     @Json(name = "available")
     val available: Boolean,
     @Json(name = "calories")
@@ -28,9 +28,9 @@ data class OrdersMealsDataResponse(
     @Json(name = "weight")
     val weight: String,
     @Json(name = "cooker_id")
-    val cookerId: Int,
+    val cookerId: String,
     @Json(name = "lunch_id")
-    val lunchId: Int,
+    val lunchId: String,
     @Json(name = "images")
     val images: List<String>
 )

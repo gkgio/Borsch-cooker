@@ -25,10 +25,10 @@ class ValidatePhoneViewModel @Inject constructor(
     val countDownSmsTimer = MutableLiveData<Long>()
 
     private var countDownTimer: CountDownTimer? = null
-    private var tmpToken: Long = -1
+    private lateinit var tmpToken: String
     private lateinit var phone: String
 
-    fun init(tmpToken: Long, phone: String) {
+    fun init(tmpToken: String, phone: String) {
         if (state.isNonInitialized()) {
             state.value = State()
 
@@ -45,6 +45,7 @@ class ValidatePhoneViewModel @Inject constructor(
             .doOnSubscribe { state.value = state.nonNullValue.copy(isProgress = true) }
             .subscribe({
                 state.value = state.nonNullValue.copy(isProgress = false, isInitialError = false)
+                tmpToken = it
                 startTimer()
             }, {
                 state.value = state.nonNullValue.copy(isProgress = false, isInitialError = true)
@@ -67,7 +68,7 @@ class ValidatePhoneViewModel @Inject constructor(
             }).addDisposable()
     }
 
-    fun onUpdateAfterErrorClick(){
+    fun onUpdateAfterErrorClick() {
         countDownTimer?.cancel()
         requestSmsCode()
     }

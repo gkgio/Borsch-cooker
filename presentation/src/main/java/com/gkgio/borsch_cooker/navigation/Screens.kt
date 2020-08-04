@@ -21,7 +21,7 @@ object Screens {
     }
 
     class OrderDetailsScreen(
-        private val orderId: Int
+        private val orderId: String
     ) : SupportAppScreen() {
         override fun getFragment() = OrderDetailsFragment.newInstance(orderId)
     }
@@ -50,7 +50,7 @@ object Screens {
     }
 
     class ValidatePhoneFragmentScreen(
-        private val tmpToken: Long,
+        private val tmpToken: String,
         private val phone: String
     ) : SupportAppScreen() {
         override fun getFragment() = ValidatePhoneFragment.newInstance(tmpToken, phone)

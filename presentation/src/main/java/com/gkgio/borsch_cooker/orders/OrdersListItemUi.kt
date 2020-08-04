@@ -1,9 +1,9 @@
 package com.gkgio.borsch_cooker.orders
 
 data class OrdersListItemUi(
-    val id: Int,
-    val clientId: Int,
-    val cookerId: Int,
+    val id: String,
+    val clientId: String,
+    val cookerId: String,
     val status: String,
     val address: OrdersAddressItemUi,
     val meals: List<OrdersMealsItemUi>,

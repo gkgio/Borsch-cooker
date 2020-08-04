@@ -10,7 +10,7 @@ import com.gkgio.borsch_cooker.view.SyntheticViewHolder
 import kotlinx.android.synthetic.main.layout_orders_view_holder.view.*
 
 class OrdersListAdapter(
-    val itemClick: (position: Int) -> Unit
+    val itemClick: (orderId: String) -> Unit
 ) : RecyclerView.Adapter<SyntheticViewHolder>() {
 
     private var ordersList = listOf<OrdersListItemUi>()

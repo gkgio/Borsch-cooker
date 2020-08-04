@@ -4,5 +4,5 @@ import com.gkgio.domain.orders.OrdersData
 import io.reactivex.Single
 
 interface OrderDetailsService {
-    fun loadOrderDetailsData(orderId: Int): Single<OrdersData>
+    fun loadOrderDetailsData(orderId: String): Single<OrdersData>
 }

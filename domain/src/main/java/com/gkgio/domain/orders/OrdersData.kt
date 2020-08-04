@@ -1,9 +1,9 @@
 package com.gkgio.domain.orders
 
 data class OrdersData(
-    val id: Int,
-    val clientId: Int,
-    val cookerId: Int,
+    val id: String,
+    val clientId: String,
+    val cookerId: String,
     val status: String,
     val address: OrdersAddressItemData,
     val meals: List<OrdersMealsItemData>,

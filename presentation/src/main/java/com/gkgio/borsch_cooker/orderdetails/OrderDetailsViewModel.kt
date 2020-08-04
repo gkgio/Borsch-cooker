@@ -23,9 +23,9 @@ class OrderDetailsViewModel @Inject constructor(
 ) : BaseViewModel(baseScreensNavigator) {
 
     val state = MutableLiveData<State>()
-    private var orderId: Int = 0
+    private lateinit var orderId: String
 
-    fun init(orderId: Int) {
+    fun init(orderId: String) {
         this.orderId = orderId
         //for test start
         var mealsList = mutableListOf<OrdersMealsItemUi>()
@@ -35,7 +35,7 @@ class OrderDetailsViewModel @Inject constructor(
         imagesList2.add("https://www.gastronom.ru/binfiles/images/00000192/00072755.jpg")
         mealsList.add(
             OrdersMealsItemUi(
-                0,
+                "0",
                 true,
                 111,
                 1,
@@ -46,14 +46,14 @@ class OrderDetailsViewModel @Inject constructor(
                 500,
                 "",
                 "",
-                2,
-                0,
+                "2",
+                "0",
                 imagesList
             )
         )
         mealsList.add(
             OrdersMealsItemUi(
-                0,
+                "0",
                 true,
                 111,
                 1,
@@ -64,14 +64,14 @@ class OrderDetailsViewModel @Inject constructor(
                 500,
                 "",
                 "",
-                2,
-                0,
+                "2",
+                "0",
                 imagesList
             )
         )
         mealsList.add(
             OrdersMealsItemUi(
-                0,
+                "0",
                 true,
                 111,
                 1,
@@ -82,19 +82,19 @@ class OrderDetailsViewModel @Inject constructor(
                 500,
                 "",
                 "",
-                2,
-                0,
+                "2",
+                "0",
                 imagesList2
             )
         )
 
         val order = OrdersListItemUi(
-            1,
-            2,
-            3,
+            "1",
+            "2",
+            "3",
             "accepted",
             OrdersAddressItemUi(
-                1,
+                "1",
                 "",
                 "",
                 "",

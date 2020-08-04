@@ -34,7 +34,7 @@ class OrdersListViewModel @Inject constructor(
         imagesList2.add("https://www.gastronom.ru/binfiles/images/00000192/00072755.jpg")
         mealsList.add(
             OrdersMealsItemUi(
-                0,
+                "0",
                 true,
                 111,
                 1,
@@ -45,14 +45,14 @@ class OrdersListViewModel @Inject constructor(
                 500,
                 "",
                 "",
-                2,
-                0,
+                "2",
+                "0",
                 imagesList
             )
         )
         mealsList.add(
             OrdersMealsItemUi(
-                0,
+                "0",
                 true,
                 111,
                 1,
@@ -63,14 +63,14 @@ class OrdersListViewModel @Inject constructor(
                 500,
                 "",
                 "",
-                2,
-                0,
+                "2",
+                "0",
                 imagesList
             )
         )
         mealsList.add(
             OrdersMealsItemUi(
-                0,
+                "0",
                 true,
                 111,
                 1,
@@ -81,20 +81,20 @@ class OrdersListViewModel @Inject constructor(
                 500,
                 "",
                 "",
-                2,
-                0,
+                "2",
+                "0",
                 imagesList2
             )
         )
 
         list.add(
             OrdersListItemUi(
-                1,
-                2,
-                3,
+                "1",
+                "2",
+                "3",
                 "accepted",
                 OrdersAddressItemUi(
-                    1,
+                    "1",
                     "",
                     "",
                     "",
@@ -118,12 +118,12 @@ class OrdersListViewModel @Inject constructor(
         )
         list.add(
             OrdersListItemUi(
-                1,
-                2,
-                3,
+                "1",
+                "2",
+                "3",
                 "created",
                 OrdersAddressItemUi(
-                    1,
+                    "1",
                     "",
                     "",
                     "",
@@ -176,7 +176,7 @@ class OrdersListViewModel @Inject constructor(
     }
  */
 
-    fun clickOrder(orderId: Int) {
+    fun clickOrder(orderId: String) {
         router.navigateTo(Screens.OrderDetailsScreen(orderId))
     }
 

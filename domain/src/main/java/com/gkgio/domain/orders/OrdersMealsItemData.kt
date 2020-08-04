@@ -1,7 +1,7 @@
 package com.gkgio.domain.orders
 
 data class OrdersMealsItemData(
-    val id: Int,
+    val id: String,
     val available: Boolean,
     val calories: Int,
     val cookTime: Int,
@@ -12,7 +12,7 @@ data class OrdersMealsItemData(
     val price: Int,
     val type: String,
     val weight: String,
-    val cookerId: Int,
-    val lunchId: Int,
+    val cookerId: String,
+    val lunchId: String,
     val images: List<String>
 )

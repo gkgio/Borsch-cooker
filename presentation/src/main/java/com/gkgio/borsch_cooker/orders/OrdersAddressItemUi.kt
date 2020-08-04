@@ -1,7 +1,7 @@
 package com.gkgio.borsch_cooker.orders
 
 data class OrdersAddressItemUi(
-    val id: Int,
+    val id: String,
     val area: String,
     val block: String,
     val city: String,
@@ -13,7 +13,7 @@ data class OrdersAddressItemUi(
     val intercom: String,
     val region: String,
     val street: String,
-    val ownerId: Int,
+    val ownerId: Long,
     val ownerType: String,
     val createdAt: String,
     val updatedAt: String,

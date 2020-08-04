@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class OrdersAddressDataResponse(
     @Json(name = "id")
-    val id: Int,
+    val id: String,
     @Json(name = "area")
     val area: String,
     @Json(name = "block")
@@ -30,7 +30,7 @@ data class OrdersAddressDataResponse(
     @Json(name = "street")
     val street: String,
     @Json(name = "owner_id")
-    val ownerId: Int,
+    val ownerId: Long,
     @Json(name = "owner_type")
     val ownerType: String,
     @Json(name = "created_at")

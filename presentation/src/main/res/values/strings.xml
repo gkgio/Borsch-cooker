@@ -24,7 +24,7 @@
     <string name="orders_status_cooking">Готовится</string>
     <string name="orders_status_can_pickup">Готов к доставке</string>
     <string name="orders_status_delivering">Доставка</string>
-    <string name="orders_number">Заказ №%d</string>
+    <string name="orders_number">Заказ №%s</string>
     <string name="orders_sum">%d ₽</string>
     <string name="orders_no_information">У вас еще нет заказов</string>
     

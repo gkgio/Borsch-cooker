@@ -5,12 +5,12 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 interface OrderDetailsUseCase {
-    fun loadOrderDetailsData(orderId: Int): Single<OrdersData>
+    fun loadOrderDetailsData(orderId: String): Single<OrdersData>
 }
 
 class OrderDetailsUseCaseImpl @Inject constructor(
     private val orderDetailsService: OrderDetailsService
 ) : OrderDetailsUseCase {
-    override fun loadOrderDetailsData(orderId: Int): Single<OrdersData> =
+    override fun loadOrderDetailsData(orderId: String): Single<OrdersData> =
         orderDetailsService.loadOrderDetailsData(orderId)
 }
