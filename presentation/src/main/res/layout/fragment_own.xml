@@ -43,7 +43,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_profile" />
+                        app:srcCompat="@drawable/ic_profile" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_activity_status" />
+                            app:srcCompat="@drawable/ic_activity_status" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -145,7 +145,7 @@
                         </LinearLayout>
 
                         <Switch
-                            android:id="@+id/ownSubscriptionSwitch"
+                            android:id="@+id/ownIsOnDuty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -247,7 +247,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_takeaway" />
+                            app:srcCompat="@drawable/ic_takeaway" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -260,7 +260,7 @@
                             android:textSize="16sp" />
 
                         <Switch
-                            android:id="@+id/own_pickup"
+                            android:id="@+id/ownIsPickupAvailable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp" />
@@ -276,7 +276,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_radius" />
+                            app:srcCompat="@drawable/ic_radius" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -289,7 +289,7 @@
                             android:textSize="16sp" />
 
                         <Switch
-                            android:id="@+id/ownDeliveryRadius"
+                            android:id="@+id/ownIsDeliveryAvailable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp" />
@@ -358,7 +358,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_increase" />
+                            app:srcCompat="@drawable/ic_increase" />
 
                         <TextView
                             android:id="@+id/ownOrdersPercentage"
@@ -417,7 +417,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_decrease" />
+                            app:srcCompat="@drawable/ic_decrease" />
 
                         <TextView
                             android:id="@+id/ownProfitPersentage"
@@ -484,7 +484,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_rating" />
+                            app:srcCompat="@drawable/ic_rating" />
 
                         <TextView
                             android:id="@+id/ownRatingPercentage"
@@ -552,7 +552,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="8dp"
                             android:gravity="center_vertical"
-                            android:src="@drawable/ic_food_container" />
+                            app:srcCompat="@drawable/ic_food_container" />
                     </LinearLayout>
 
                     <TextView

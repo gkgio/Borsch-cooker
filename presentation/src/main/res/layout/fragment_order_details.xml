@@ -45,7 +45,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
-                android:src="@drawable/ic_cent" />
+                app:srcCompat="@drawable/ic_cent" />
 
             <TextView
                 android:layout_width="0dp"
@@ -92,7 +92,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
-                android:src="@drawable/ic_delivery" />
+                app:srcCompat="@drawable/ic_delivery" />
 
             <TextView
                 android:layout_width="0dp"
@@ -170,7 +170,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:src="@drawable/ic_messages" />
+                app:srcCompat="@drawable/ic_messages" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

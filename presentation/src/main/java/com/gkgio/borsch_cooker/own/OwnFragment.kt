@@ -6,6 +6,7 @@ import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.*
+import kotlinx.android.synthetic.main.fragment_own.*
 
 
 class OwnFragment : BaseFragment<OwnViewModel>() {
@@ -22,6 +23,11 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        ownIsOnDuty.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.setDutyStatus(isChecked)
+        }
+        ownIsDeliveryAvailable.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.setDeliveryStatus(isChecked)
+        }
     }
 }
