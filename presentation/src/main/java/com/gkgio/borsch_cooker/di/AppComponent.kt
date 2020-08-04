@@ -41,7 +41,8 @@ import javax.inject.Singleton
         ThemeModule::class,
         SupportModule::class,
         OrdersModule::class,
-        OrderDetailsModule::class
+        OrderDetailsModule::class,
+        OwnModule::class
     ]
 )
 interface AppComponent {
