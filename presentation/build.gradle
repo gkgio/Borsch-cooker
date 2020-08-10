@@ -36,14 +36,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-   /* signingConfigs {
-        release {
-            storeFile file("borsch.jks")
-            storePassword '21091995gio'
-            keyAlias 'borsch-app'
-            keyPassword '21091995gio'
-        }
-    }*/
+    /* signingConfigs {
+         release {
+             storeFile file("borsch.jks")
+             storePassword '21091995gio'
+             keyAlias 'borsch-app'
+             keyPassword '21091995gio'
+         }
+     }*/
 
     buildTypes {
         release {
@@ -115,6 +115,12 @@ dependencies {
 
     //phoneMask
     implementation deps.phoneMask
+
+    //constraintlayout
+    implementation deps.constraintlayout
+
+    //filepicker
+    implementation deps.filepicker
 
     //test
     androidTestImplementation deps.mockito

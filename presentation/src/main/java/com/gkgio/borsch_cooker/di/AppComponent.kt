@@ -17,6 +17,9 @@ import com.gkgio.borsch_cooker.main.LaunchActivity
 import com.gkgio.borsch_cooker.main.LaunchViewModel
 import com.gkgio.borsch_cooker.main.MainViewModel
 import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
+import com.gkgio.borsch_cooker.onboarding.address.InputAddressViewModel
+import com.gkgio.borsch_cooker.onboarding.avatar.InputAvatarViewModel
+import com.gkgio.borsch_cooker.onboarding.name.InputNameViewModel
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsViewModel
 import com.gkgio.borsch_cooker.orders.OrdersListViewModel
 import com.gkgio.borsch_cooker.orders.OrdersViewModel
@@ -64,6 +67,9 @@ interface AppComponent {
     val orderDetailsViewModel: OrderDetailsViewModel
     val inputPhoneViewModel: InputPhoneViewModel
     val validatePhoneViewModel: ValidatePhoneViewModel
+    val inputNameViewModel: InputNameViewModel
+    val inputAddressViewModel: InputAddressViewModel
+    val inputAvatarViewModel: InputAvatarViewModel
 
     val context: Context
     val moshi: Moshi

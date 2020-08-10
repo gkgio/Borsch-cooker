@@ -6,6 +6,8 @@ import com.gkgio.borsch_cooker.auth.InputPhoneFragment
 import com.gkgio.borsch_cooker.auth.ValidatePhoneFragment
 import com.gkgio.borsch_cooker.main.MainFragment
 import com.gkgio.borsch_cooker.onboarding.OnboardingFragment
+import com.gkgio.borsch_cooker.onboarding.avatar.InputAvatarFragment
+import com.gkgio.borsch_cooker.onboarding.name.InputNameFragment
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsFragment
 import com.gkgio.borsch_cooker.support.SupportFragment
 import com.gkgio.borsch_cooker.utils.IntentUtils
@@ -45,14 +47,26 @@ object Screens {
         override fun getFragment() = OnboardingFragment()
     }
 
-    object InputPhoneFragmentScreen : SupportAppScreen() {
-        override fun getFragment() = InputPhoneFragment()
+    class InputPhoneFragmentScreen(
+        private val isFromOnboarding: Boolean = false
+    ) : SupportAppScreen() {
+        override fun getFragment() = InputPhoneFragment.newInstance(isFromOnboarding)
     }
 
     class ValidatePhoneFragmentScreen(
         private val tmpToken: String,
-        private val phone: String
+        private val phone: String,
+        private val isFromOnboarding: Boolean = false
     ) : SupportAppScreen() {
-        override fun getFragment() = ValidatePhoneFragment.newInstance(tmpToken, phone)
+        override fun getFragment() =
+            ValidatePhoneFragment.newInstance(tmpToken, phone, isFromOnboarding)
+    }
+
+    object InputNameFragmentScreen : SupportAppScreen() {
+        override fun getFragment() = InputNameFragment()
+    }
+
+    object InputAvatarFragmentScreen : SupportAppScreen() {
+        override fun getFragment() = InputAvatarFragment()
     }
 }

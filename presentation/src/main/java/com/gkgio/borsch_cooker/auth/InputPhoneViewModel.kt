@@ -18,8 +18,12 @@ class InputPhoneViewModel @Inject constructor(
 
     val state = MutableLiveData<State>()
 
-    init {
+    private var isFromOnboarding: Boolean = false
+
+    fun init(isFromOnboarding: Boolean) {
         state.value = State()
+
+        this.isFromOnboarding = isFromOnboarding
     }
 
     fun onSendCodeBtnClick(inputPhone: String?) {
@@ -41,7 +45,13 @@ class InputPhoneViewModel @Inject constructor(
             .doOnSubscribe { state.value = state.nonNullValue.copy(isProgress = true) }
             .subscribe({ tmpToken ->
                 state.value = state.nonNullValue.copy(isProgress = false, isInitialError = false)
-                router.navigateTo(Screens.ValidatePhoneFragmentScreen(tmpToken, phone))
+                router.navigateTo(
+                    Screens.ValidatePhoneFragmentScreen(
+                        tmpToken,
+                        phone,
+                        isFromOnboarding
+                    )
+                )
             }, {
                 state.value = state.nonNullValue.copy(isProgress = false, isInitialError = true)
                 processThrowable(it)

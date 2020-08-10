@@ -28,7 +28,6 @@ ext.versions = [
         room                     : '2.2.5',
         timber                   : '4.7.1',
         playServices             : '17.0.0',
-        firebaseCrashlytics      : '2.10.1',
         multidex                 : '2.0.1',
         preferences              : '1.1.0',
         firebaseAnalitics        : '17.2.2',
@@ -40,13 +39,15 @@ ext.versions = [
         circleLayoutManager      : '2.0.22',
         groupie                  : '2.7.2',
         drawableToolbox          : "1.0.7",
-        cloudMessaging           : "20.1.0",
-        crashlytics              : "17.0.0-beta01",
+        cloudMessaging           : "20.2.4",
+        crashlytics              : "17.1.1",
         phoneMask                : "5.0.0",
         mapUtils                 : "1.0.2",
         rxPermissions            : "0.10.2",
         flexBoxLayout            : "1.1.1",
         shimmerLayout            : "0.5.0",
+        constraintlayout         : "2.0.0-rc1",
+        filepicker               : "2.2.4",
 
         //Testing
         jUnit                    : '4.12',
@@ -161,6 +162,10 @@ ext.deps = [
         shimmerLayout      : "com.facebook.shimmer:shimmer:${versions.shimmerLayout}",
 
         chatView           : "com.github.bassaer:chatmessageview:${versions.chatView}",
+
+        constraintlayout   : "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}",
+
+        filepicker         : "com.droidninja:filepicker:${versions.filepicker}",
 
         junit              : "junit:junit:${versions.jUnit}",
         mockito            : "org.mockito:mockito-core:${versions.mockito}",
