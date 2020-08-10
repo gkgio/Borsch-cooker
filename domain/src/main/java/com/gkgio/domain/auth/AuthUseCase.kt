@@ -3,6 +3,7 @@ package com.gkgio.domain.auth
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import java.io.File
 import javax.inject.Inject
 
 interface AuthUseCase {
@@ -14,6 +15,8 @@ interface AuthUseCase {
     fun loadUserProfile(): Cooker?
     fun savePushToken(pushToken: String): Completable
     fun sendPushToken(pushToken: String): Completable
+    fun saveName(name: String, secondName: String): Completable
+    fun saveAvatar(file: File): Completable
 }
 
 class AuthUseCaseImpl @Inject constructor(
@@ -56,4 +59,18 @@ class AuthUseCaseImpl @Inject constructor(
 
     override fun sendPushToken(pushToken: String): Completable =
         authService.sendPushToken(pushToken)
+
+    override fun saveName(name: String, secondName: String): Completable =
+        authService.saveName(name, secondName)
+            .flatMapCompletable {
+                authRepository.saveUserProfile(it)
+                Completable.complete()
+            }
+
+    override fun saveAvatar(file: File): Completable =
+        authService.saveAvatar(file)
+            .flatMapCompletable {
+                authRepository.saveUserProfile(it)
+                Completable.complete()
+            }
 }

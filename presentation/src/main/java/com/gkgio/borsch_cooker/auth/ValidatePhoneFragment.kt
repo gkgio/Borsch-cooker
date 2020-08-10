@@ -20,14 +20,17 @@ import kotlinx.android.synthetic.main.fragment_validate_phone.*
 class ValidatePhoneFragment : BaseFragment<ValidatePhoneViewModel>() {
 
     companion object {
-        fun newInstance(tmpToken: String, phone: String) = ValidatePhoneFragment().apply {
-            this.tmpToken = tmpToken
-            this.phone = phone
-        }
+        fun newInstance(tmpToken: String, phone: String, isFromOnboarding: Boolean) =
+            ValidatePhoneFragment().apply {
+                this.tmpToken = tmpToken
+                this.phone = phone
+                this.isFromOnboarding = isFromOnboarding
+            }
     }
 
     private var tmpToken: String by FragmentArgumentDelegate()
     private var phone: String by FragmentArgumentDelegate()
+    private var isFromOnboarding: Boolean by FragmentArgumentDelegate()
 
     override fun getLayoutId(): Int = R.layout.fragment_validate_phone
 
@@ -37,7 +40,7 @@ class ValidatePhoneFragment : BaseFragment<ValidatePhoneViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.init(tmpToken, phone)
+        viewModel.init(tmpToken, phone, isFromOnboarding)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

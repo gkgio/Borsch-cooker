@@ -7,6 +7,7 @@ import com.gkgio.borsch_cooker.base.BaseViewModel
 import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
 import com.gkgio.borsch_cooker.ext.nonNullValue
+import com.gkgio.borsch_cooker.ext.notIsNullOrBlank
 import com.gkgio.borsch_cooker.navigation.Screens
 import com.gkgio.borsch_cooker.utils.events.UserProfileChanged
 import com.gkgio.domain.auth.AuthUseCase
@@ -27,13 +28,15 @@ class ValidatePhoneViewModel @Inject constructor(
     private var countDownTimer: CountDownTimer? = null
     private lateinit var tmpToken: String
     private lateinit var phone: String
+    private var isFromOnboarding: Boolean = false
 
-    fun init(tmpToken: String, phone: String) {
+    fun init(tmpToken: String, phone: String, isFromOnboarding: Boolean) {
         if (state.isNonInitialized()) {
             state.value = State()
 
             this.tmpToken = tmpToken
             this.phone = phone
+            this.isFromOnboarding = isFromOnboarding
             startTimer()
         }
     }
@@ -61,7 +64,17 @@ class ValidatePhoneViewModel @Inject constructor(
             .subscribe({
                 state.value = state.nonNullValue.copy(isProgress = false)
                 userProfileChanged.onComplete("")
-                router.newRootScreen(Screens.MainFragmentScreen)
+                val profile = authUseCase.loadUserProfile()
+                if (profile?.firstName.notIsNullOrBlank()) {
+                    if (isFromOnboarding) {
+                        router.newRootScreen(Screens.MainFragmentScreen)
+                    } else {
+                        //TODO change to profile edit fragment
+                        router.backTo(Screens.MainFragmentScreen)
+                    }
+                } else {
+                    router.backTo(Screens.OnboardingFragmentScreen)
+                }
             }, { throwable ->
                 state.value = state.nonNullValue.copy(isProgress = false)
                 processThrowable(throwable)

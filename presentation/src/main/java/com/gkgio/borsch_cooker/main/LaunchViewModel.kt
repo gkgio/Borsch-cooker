@@ -5,6 +5,7 @@ import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseScreensNavigator
 import com.gkgio.domain.theme.ThemeRepository
 import com.gkgio.borsch_cooker.base.BaseViewModel
+import com.gkgio.borsch_cooker.ext.notIsNullOrBlank
 import com.gkgio.borsch_cooker.navigation.Screens
 import com.gkgio.borsch_cooker.utils.SingleLiveEvent
 import com.gkgio.domain.auth.AuthUseCase
@@ -21,10 +22,11 @@ class LaunchViewModel @Inject constructor(
     val checkDeepLing = SingleLiveEvent<Intent>()
 
     fun init(intent: Intent?) {
-        if (authUseCase.getAuthToken() != null) {
+        val profile = authUseCase.loadUserProfile()
+        if (profile?.firstName.notIsNullOrBlank() && profile?.phone.notIsNullOrBlank()) {
             router.newRootScreen(Screens.MainFragmentScreen)
         } else {
-            router.newRootScreen(Screens.InputPhoneFragmentScreen)
+            router.newRootScreen(Screens.OnboardingFragmentScreen)
         }
     }
 

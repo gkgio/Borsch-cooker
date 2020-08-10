@@ -26,6 +26,7 @@
     <color name="grey_btn">#DCDCDC</color>
     <color name="grey_bg">#f8f8f8</color>
     <color name="grey_bg2">#f7f7f7</color>
+    <color name="grey_bg3">#eaeaee</color>
     <color name="green_text">#008c00</color>
     <color name="red_text">#f94733</color>
     <color name="bg_map_items">#80F2E5E5</color>
@@ -50,6 +51,7 @@
 
     <color name="black">#000000</color>
     <color name="black_4">#0a000000</color>
+    <color name="black_6">#0f000000</color>
     <color name="black_8">#14000000</color>
     <color name="black_25">#40000000</color>
     <color name="black_35">#59000000</color>

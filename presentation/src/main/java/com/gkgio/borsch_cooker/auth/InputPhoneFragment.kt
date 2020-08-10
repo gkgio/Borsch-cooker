@@ -15,6 +15,7 @@ import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.*
+import com.gkgio.borsch_cooker.utils.FragmentArgumentDelegate
 import com.gkgio.borsch_cooker.utils.IntentUtils
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
@@ -28,7 +29,13 @@ class InputPhoneFragment : BaseFragment<InputPhoneViewModel>() {
         private const val ACCEPTED_SYMBOLS = "1234567890+-() "
         private const val PHONE_FORMAT = "+7 ([000]) [000]-[00]-[00]"
         private const val RU_CODE = "+7"
+
+        fun newInstance(isFromOnboarding: Boolean) = InputPhoneFragment().apply {
+            this.isFromOnboarding = isFromOnboarding
+        }
     }
+
+    var isFromOnboarding: Boolean by FragmentArgumentDelegate()
 
     var inputPhone: String? = null
 
@@ -36,6 +43,12 @@ class InputPhoneFragment : BaseFragment<InputPhoneViewModel>() {
 
     override fun provideViewModel() = createViewModel {
         AppInjector.appComponent.inputPhoneViewModel
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel.init(isFromOnboarding)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
