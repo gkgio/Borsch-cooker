@@ -1,6 +1,5 @@
 package com.gkgio.borsch_cooker.own
 
-import com.gkgio.borsch_cooker.orders.OrdersAddressItemUiTransformer
 import com.gkgio.borsch_cooker.orders.OrdersMealsItemUiTransformer
 import com.gkgio.data.BaseTransformer
 import com.gkgio.domain.own.OwnDashboardData
