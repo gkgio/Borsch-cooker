@@ -2,6 +2,7 @@ package com.gkgio.borsch_cooker.own
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
@@ -28,6 +29,33 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
         }
         ownIsDeliveryAvailable.setOnCheckedChangeListener { buttonView, isChecked ->
             viewModel.setDeliveryStatus(isChecked)
+        }
+        ownIsPickupAvailable.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.setPickupStatus(isChecked)
+        }
+        viewModel.state.observeValue(this) {
+            if (it.dashboard != null) {
+                ownWelcomeTitle.text = getString(R.string.own_welcome, it.dashboard.cookerName)
+                ownIsOnDuty.isChecked = it.dashboard.activityStatus
+                ownIsDeliveryAvailable.isChecked = it.dashboard.delivery
+                ownIsPickupAvailable.isChecked = it.dashboard.pickup
+                if (it.dashboard.subscriptionExpirationDate != null) {
+                    ownSubscriptionDate.text = it.dashboard.subscriptionExpirationDate
+                } else {
+                    ownSubscriptionDate.isVisible = false
+                }
+                if (it.dashboard.activeMeals.isNotEmpty()) {
+                    //TODO
+                } else {
+                    ownActiveMeals.isVisible = false
+                }
+                if (it.dashboard.reviews.totalReviews != 0) {
+                    ownRatingSubtitle.text = it.dashboard.reviews.totalReviews.toString()
+                    ownRatingPercentage.text = it.dashboard.reviews.averageRating
+                } else {
+                    //TODO добавить дизайн, если нет рейтинга
+                }
+            }
         }
     }
 }
