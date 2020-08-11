@@ -10,6 +10,7 @@ data class OwnDashboardUi(
     val activeMeals: List<OrdersMealsItemUi>,
     val activeLunches: List<OrdersMealsItemUi>,
     val delivery: Boolean,
+    val pickup: Boolean,
     val diagrammOrders: List<OwnDashboardDiagrammUi>,
     val profit: Int,
     val reviews: OwnDashboardReviewsUi

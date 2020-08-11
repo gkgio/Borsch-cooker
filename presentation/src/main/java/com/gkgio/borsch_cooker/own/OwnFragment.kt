@@ -37,6 +37,8 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
             if (it.dashboard != null) {
                 ownWelcomeTitle.text = getString(R.string.own_welcome, it.dashboard.cookerName)
                 ownIsOnDuty.isChecked = it.dashboard.activityStatus
+                ownIsDeliveryAvailable.isChecked = it.dashboard.delivery
+                ownIsPickupAvailable.isChecked = it.dashboard.pickup
                 if (it.dashboard.subscriptionExpirationDate != null) {
                     ownSubscriptionDate.text = it.dashboard.subscriptionExpirationDate
                 } else {
@@ -47,10 +49,9 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                 } else {
                     ownActiveMeals.isVisible = false
                 }
-                // TODO ownIsPickupAvailable.isChecked = it.dashboard.pickup
-                ownIsDeliveryAvailable.isChecked = it.dashboard.delivery
                 if (it.dashboard.reviews.totalReviews != 0) {
                     ownRatingSubtitle.text = it.dashboard.reviews.totalReviews.toString()
+                    ownRatingPercentage.text = it.dashboard.reviews.averageRating
                 } else {
                     //TODO добавить дизайн, если нет рейтинга
                 }

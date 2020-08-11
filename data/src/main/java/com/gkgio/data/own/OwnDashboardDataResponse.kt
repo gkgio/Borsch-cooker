@@ -20,6 +20,8 @@ data class OwnDashboardDataResponse(
     val activeLunches: List<OrdersMealsDataResponse>,
     @Json(name = "delivery")
     val delivery: Boolean,
+    @Json(name = "pickup")
+    val pickup: Boolean,
     @Json(name = "diagramm_orders")
     val diagrammOrders: List<OwnDashboardDiagrammResponse>,
     @Json(name = "profit")

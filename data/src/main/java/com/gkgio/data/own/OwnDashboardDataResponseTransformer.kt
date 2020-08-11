@@ -19,6 +19,7 @@ class OwnDashboardDataResponseTransformer @Inject constructor(
             activeMeals.map { ownMealsDataResponseTransformer.transform(it) },
             activeLunches.map { ownMealsDataResponseTransformer.transform(it) },
             delivery,
+            pickup,
             diagrammOrders.map { ownDashboardDiagrammTransformer.transform(it) },
             profit,
             ownDashboardReviewsTransformer.transform(data.reviews)

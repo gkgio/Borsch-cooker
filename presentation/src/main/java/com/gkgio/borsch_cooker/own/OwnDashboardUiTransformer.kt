@@ -19,6 +19,7 @@ class OwnDashboardUiTransformer @Inject constructor(
             activeMeals.map { ownsMealsItemUiTransformer.transform(it) },
             activeLunches.map { ownsMealsItemUiTransformer.transform(it) },
             delivery,
+            pickup,
             diagrammOrders.map { ownDashboardDiagrammUiTransformer.transform(it) },
             profit,
             ownDashboardReviewsUiTransformer.transform(data.reviews)

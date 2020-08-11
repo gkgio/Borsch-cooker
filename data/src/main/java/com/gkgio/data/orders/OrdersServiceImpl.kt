@@ -23,7 +23,7 @@ class OrdersServiceImpl @Inject constructor(
 
     override fun loadActiveOrdersData(): Single<List<OrdersData>> =
         executeRequest(
-            ordersApi.loadAllOrdersData().map { ordersList ->
+            ordersApi.loadActiveOrdersData().map { ordersList ->
                 ordersList.map { ordersDataResponseTransformer.transform(it) }
             }
         )
