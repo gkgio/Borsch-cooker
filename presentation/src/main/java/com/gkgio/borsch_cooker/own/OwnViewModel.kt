@@ -6,6 +6,7 @@ import com.gkgio.borsch_cooker.base.BaseViewModel
 import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
 import com.gkgio.borsch_cooker.ext.nonNullValue
+import com.gkgio.borsch_cooker.navigation.Screens
 import com.gkgio.domain.analytics.AnalyticsRepository
 import com.gkgio.domain.own.OwnUseCase
 import ru.terrakok.cicerone.Router
@@ -27,6 +28,10 @@ class OwnViewModel @Inject constructor(
             state.value = State(isLoading = true, isInitialError = false)
             loadDashboardData()
         }
+    }
+
+    fun onProfileClicked(){
+        //
     }
 
     fun setDutyStatus(isOnDuty: Boolean) {

@@ -47,7 +47,7 @@ ext.versions = [
         flexBoxLayout            : "1.1.1",
         shimmerLayout            : "0.5.0",
         constraintlayout         : "2.0.0-rc1",
-        filepicker               : "2.2.4",
+        easyImage                : "3.0.3",
 
         //Testing
         jUnit                    : '4.12',
@@ -165,7 +165,7 @@ ext.deps = [
 
         constraintlayout   : "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}",
 
-        filepicker         : "com.droidninja:filepicker:${versions.filepicker}",
+        easyImage         : "com.github.jkwiecien:EasyImage:${versions.easyImage}",
 
         junit              : "junit:junit:${versions.jUnit}",
         mockito            : "org.mockito:mockito-core:${versions.mockito}",

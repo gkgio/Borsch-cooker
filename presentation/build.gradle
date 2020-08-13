@@ -119,8 +119,9 @@ dependencies {
     //constraintlayout
     implementation deps.constraintlayout
 
-    //filepicker
-    implementation deps.filepicker
+    implementation deps.easyImage
+
+    implementation deps.rxPermissions
 
     //test
     androidTestImplementation deps.mockito
