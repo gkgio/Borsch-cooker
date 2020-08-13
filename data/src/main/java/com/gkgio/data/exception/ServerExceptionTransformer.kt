@@ -3,7 +3,6 @@ package com.gkgio.data.exception
 import com.gkgio.data.base.BaseServerException
 import com.gkgio.data.base.ServerExceptionType
 import com.gkgio.data.BaseTransformer
-import com.gkgio.data.base.ApiError
 import com.gkgio.data.base.ApiResponse
 import com.gkgio.data.ext.getExceptionType
 import com.gkgio.domain.errorreporter.ErrorReporter
@@ -40,24 +39,24 @@ class ServerExceptionTransformer @Inject constructor(
     }
 
     private fun createBaseServerException(
-        apiError: ApiError,
+        apiError: String,
         httpException: HttpException
     ): BaseServerException {
         if (httpException.getExceptionType() == ServerExceptionType.HTTP_4xxx) {
             errorReporter.log(httpException)
         }
         return BaseServerException(
-            apiError.value,
+            apiError,
             httpException.getExceptionType(),
             httpException
         )
     }
 
 
-    private fun getApiErrorFromHttpException(httpException: HttpException): ApiError = try {
+    private fun getApiErrorFromHttpException(httpException: HttpException): String = try {
         val json = httpException.response()!!.errorBody()!!.string()
         moshi.adapter(ApiResponse::class.java).fromJson(json)!!.error
     } catch (e: Exception) {
-        ApiError("Проблемы на сервере. Скоро все исправим")
+        "Проблемы на сервере. Скоро все исправим"
     }
 }

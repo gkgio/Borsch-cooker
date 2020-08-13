@@ -3,7 +3,6 @@ package com.gkgio.data.exception
 import com.gkgio.data.base.BaseServerException
 import com.gkgio.data.base.ServerExceptionType
 import com.gkgio.data.BaseTransformer
-import com.gkgio.data.base.ApiError
 import com.gkgio.data.base.ApiResponse
 import com.squareup.moshi.Moshi
 import javax.inject.Inject
@@ -20,19 +19,11 @@ class ErrorJsonTransformer @Inject constructor(
         val apiError = try {
             moshi.adapter(ApiResponse::class.java).fromJson(data)!!.error
         } catch (e: Exception) {
-            ApiError("Проблемы на сервере. Скоро все исправим")
+            "Проблемы на сервере. Скоро все исправим"
         }
-        return when (apiError.code) {
-            UNSUPPORTED_API_VERSION -> {
-                BaseServerException(
-                    "API устарело",
-                    ServerExceptionType.UNSUPORTED_VERSION
-                )
-            }
-            else -> BaseServerException(
-                apiError.value,
-                ServerExceptionType.HTTP_4xxx
-            )
-        }
+        return BaseServerException(
+            apiError,
+            ServerExceptionType.HTTP_4xxx
+        )
     }
 }

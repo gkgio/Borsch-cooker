@@ -40,7 +40,7 @@ class DeviceInterceptor @Inject constructor(
     }
 
     private fun getUserAgent(): String {
-        return "Borsch-cooker" +
+        return "Borsch-cooker " +
                 getVersionName() +
                 " (Android ${Build.VERSION.RELEASE}" +
                 "; Scale/${context.resources.displayMetrics.density})"
