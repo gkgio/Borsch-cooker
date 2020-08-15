@@ -47,9 +47,11 @@ class MealsListFragment : BaseFragment<MealsListViewModel>() {
     }
 
     private fun initMealsRv() {
-        mealsAdapter = MealsAdapter {
-            //TODO go to editPage
-        }
+        mealsAdapter = MealsAdapter(MealsConstants.MEALS_TYPE_LUNCHES == mealsType, {
+            //TODO editClick
+        }, {
+            //TODO lunchClick
+        })
         mealsListRv.adapter = mealsAdapter
         mealsListRv.layoutManager = LinearLayoutManager(requireContext())
     }

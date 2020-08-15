@@ -1,6 +1,7 @@
 package com.gkgio.borsch_cooker.meals
 
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gkgio.borsch_cooker.R
@@ -10,7 +11,9 @@ import com.gkgio.borsch_cooker.view.SyntheticViewHolder
 import kotlinx.android.synthetic.main.layout_meals_view_holder.view.*
 
 class MealsAdapter(
-    val itemClick: (position: Int) -> Unit
+    private val isLunches: Boolean,
+    val itemClick: (position: Int) -> Unit,
+    val lunchClick: (position: Int) -> Unit
 ) : RecyclerView.Adapter<SyntheticViewHolder>() {
 
     private var mealsList = listOf<MealsItemUi>()
@@ -26,6 +29,10 @@ class MealsAdapter(
             mealsEdit.setDebounceOnClickListener {
                 itemClick(mealsList[position].id)
             }
+            mealsLunch.setDebounceOnClickListener {
+                lunchClick(mealsList[position].id)
+            }
+            mealsLunch.isVisible = isLunches
             Glide.with(mealsImage)
                 .load(mealsList[position].image)
                 .placeholder(R.drawable.ic_image_placeholder)

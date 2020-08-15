@@ -19,7 +19,7 @@ class MealsListViewModel @Inject constructor(
     private val testList = mutableListOf<MealsItemUi>()
 
     fun init(mealsType: String) {
-        if (mealsType == "sing5les") {
+        if (mealsType == "singles") {
             testList.add(
                 MealsItemUi(
                     1,
