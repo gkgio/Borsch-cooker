@@ -3,33 +3,26 @@ package com.gkgio.borsch_cooker.meals
 import androidx.lifecycle.MutableLiveData
 import com.gkgio.borsch_cooker.base.BaseScreensNavigator
 import com.gkgio.borsch_cooker.base.BaseViewModel
-import com.gkgio.borsch_cooker.ext.isNonInitialized
-import com.gkgio.domain.analytics.AnalyticsRepository
-import ru.terrakok.cicerone.Router
+import com.gkgio.borsch_cooker.orders.OrdersTypeTitle
 import javax.inject.Inject
 
 class MealsViewModel @Inject constructor(
-    private val router: Router,
-    private val analyticsRepository: AnalyticsRepository,
     baseScreensNavigator: BaseScreensNavigator
 ) : BaseViewModel(baseScreensNavigator) {
 
-    val state = MutableLiveData<State>()
-
-    private val testList = mutableListOf<MealsItemUi>()
+    val titlesLiveData = MutableLiveData<List<OrdersTypeTitle>>()
+    private var currentPagePosition = 0
+    private val typeTitles = listOf(
+        OrdersTypeTitle(MealsConstants.MEALS_TYPE_SINGLES, true),
+        OrdersTypeTitle(MealsConstants.MEALS_TYPE_LUNCHES)
+    )
 
     init {
-        testList.add(MealsItemUi(1, "Шаурма на углях", "https://img.povar.ru/main/94/1c/00/85/shaurma_na_mangale-577820.JPG", 340))
-        testList.add(MealsItemUi(2, "Шаурма на шаурме", "https://i2.wp.com/crispy.news/wp-content/uploads/2019/11/shaurma-svininoj.jpg", 440))
-        testList.add(MealsItemUi(3, "Шаурма сырная", "https://eda.yandex/images/1380157/5813ba8cdb0c2a7fec400f8f455d6c63-400x400.jpeg", 430))
-        if (state.isNonInitialized()) {
-            state.value = State(testList, false, false)
-        }
+        titlesLiveData.value = typeTitles
     }
 
-    data class State(
-        val mealsList: List<MealsItemUi>,
-        val isLoading: Boolean,
-        val isInitialError: Boolean
-    )
+    fun onCurrentPagePositionChanged(position: Int) {
+        currentPagePosition = position
+    }
+
 }

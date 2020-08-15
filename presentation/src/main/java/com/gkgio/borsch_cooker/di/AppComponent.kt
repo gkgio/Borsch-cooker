@@ -11,11 +11,12 @@ import com.gkgio.domain.theme.ThemeRepository
 import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.base.BaseViewModel
 import com.gkgio.borsch_cooker.base.bottomsheet.BaseBottomSheetDialog
-import com.gkgio.borsch_cooker.meals.MealsViewModel
+import com.gkgio.borsch_cooker.meals.MealsListViewModel
 import com.gkgio.borsch_cooker.own.OwnViewModel
 import com.gkgio.borsch_cooker.main.LaunchActivity
 import com.gkgio.borsch_cooker.main.LaunchViewModel
 import com.gkgio.borsch_cooker.main.MainViewModel
+import com.gkgio.borsch_cooker.meals.MealsViewModel
 import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
 import com.gkgio.borsch_cooker.onboarding.address.InputAddressViewModel
 import com.gkgio.borsch_cooker.onboarding.avatar.InputAvatarViewModel
@@ -57,6 +58,7 @@ interface AppComponent {
 
     val launchViewModel: LaunchViewModel
     val mainViewModel: MainViewModel
+    val mealsListViewModel: MealsListViewModel
     val mealsViewModel: MealsViewModel
     val ownViewModel: OwnViewModel
     val supportViewModel: SupportViewModel

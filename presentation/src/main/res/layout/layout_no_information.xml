@@ -25,5 +25,25 @@
         android:textSize="24sp"
         tools:text="Моя ошибка- мои правила" />
 
+    <Button
+        android:layout_marginTop="32dp"
+        android:id="@+id/noInformationButton"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/tt_norms_medium"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="16dp"
+        android:text="@string/meals_add_meal"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/blue"
+        app:cornerRadius="14dp" />
 
 </LinearLayout>
