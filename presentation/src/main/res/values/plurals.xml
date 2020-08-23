@@ -17,4 +17,13 @@
         <item quantity="many">%d блюд</item>
         <item quantity="other">%d блюдо</item>
     </plurals>
+
+    <plurals name="meals_reviews">
+        <item quantity="zero">%d отзывов</item>
+        <item quantity="one">%d отзыв</item>
+        <item quantity="two">%d отзыва</item>
+        <item quantity="few">%d отзывов</item>
+        <item quantity="many">%d отзывов</item>
+        <item quantity="other">%d отзыв</item>
+    </plurals>
 </resources>
