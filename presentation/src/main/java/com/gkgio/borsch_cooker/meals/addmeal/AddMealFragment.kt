@@ -34,7 +34,7 @@ class AddMealFragment : BaseFragment<AddMealViewModel>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar.setLeftIconClickListener {
-            viewModel.backClick()
+            onBackClick()
         }
         initMealImagesRv()
         initIngredientsRv()

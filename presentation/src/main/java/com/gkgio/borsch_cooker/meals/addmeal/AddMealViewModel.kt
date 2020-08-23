@@ -4,12 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import com.gkgio.borsch_cooker.base.BaseScreensNavigator
 import com.gkgio.borsch_cooker.base.BaseViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.edit.AddMealDataConstants
-import ru.terrakok.cicerone.Router
 import java.io.File
 import javax.inject.Inject
 
 class AddMealViewModel @Inject constructor(
-    private val router: Router,
     screensNavigator: BaseScreensNavigator
 ) : BaseViewModel(screensNavigator) {
 
@@ -25,10 +23,6 @@ class AddMealViewModel @Inject constructor(
 
     init {
         //TODO
-    }
-
-    fun backClick() {
-        router.exit()
     }
 
     fun onImageLoaded(image: File?) {
