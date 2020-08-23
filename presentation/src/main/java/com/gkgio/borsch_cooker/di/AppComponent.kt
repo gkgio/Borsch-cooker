@@ -16,6 +16,8 @@ import com.gkgio.borsch_cooker.own.OwnViewModel
 import com.gkgio.borsch_cooker.main.LaunchActivity
 import com.gkgio.borsch_cooker.main.LaunchViewModel
 import com.gkgio.borsch_cooker.main.MainViewModel
+import com.gkgio.borsch_cooker.meals.addmeal.AddMealViewModel
+import com.gkgio.borsch_cooker.meals.addmeal.edit.AddMealEditDataViewModel
 import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
 import com.gkgio.borsch_cooker.onboarding.address.InputAddressViewModel
 import com.gkgio.borsch_cooker.onboarding.avatar.InputAvatarViewModel
@@ -58,6 +60,8 @@ interface AppComponent {
     val launchViewModel: LaunchViewModel
     val mainViewModel: MainViewModel
     val mealsViewModel: MealsViewModel
+    val addMealViewModel: AddMealViewModel
+    val addMealEditDataViewModel: AddMealEditDataViewModel
     val ownViewModel: OwnViewModel
     val supportViewModel: SupportViewModel
     val onboardingViewModel: OnboardingViewModel

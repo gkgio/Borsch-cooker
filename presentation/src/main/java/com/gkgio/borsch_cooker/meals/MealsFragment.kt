@@ -9,6 +9,7 @@ import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.createViewModel
 import com.gkgio.borsch_cooker.ext.observeValue
+import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
 import kotlinx.android.synthetic.main.fragment_meals.*
 import kotlinx.android.synthetic.main.layout_no_information.*
 
@@ -30,6 +31,9 @@ class MealsFragment : BaseFragment<MealsViewModel>() {
             mealsNoInformationError.isVisible = it.mealsList.isEmpty()
             mealsAdd.isVisible = it.mealsList.isEmpty()
             errorTextView.text = getString(R.string.meals_no_information)
+        }
+        mealsAddMealButton.setDebounceOnClickListener {
+            viewModel.addMealClick()
         }
     }
 

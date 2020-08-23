@@ -1,10 +1,10 @@
 package com.gkgio.borsch_cooker.navigation
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.gkgio.borsch_cooker.auth.InputPhoneFragment
 import com.gkgio.borsch_cooker.auth.ValidatePhoneFragment
 import com.gkgio.borsch_cooker.main.MainFragment
+import com.gkgio.borsch_cooker.meals.addmeal.AddMealFragment
 import com.gkgio.borsch_cooker.onboarding.OnboardingFragment
 import com.gkgio.borsch_cooker.onboarding.avatar.InputAvatarFragment
 import com.gkgio.borsch_cooker.onboarding.name.InputNameFragment
@@ -26,6 +26,10 @@ object Screens {
         private val orderId: String
     ) : SupportAppScreen() {
         override fun getFragment() = OrderDetailsFragment.newInstance(orderId)
+    }
+
+    class AddMealScreen() : SupportAppScreen() {
+        override fun getFragment() = AddMealFragment()
     }
 
     object SettingsFragmentScreen : SupportAppScreen() {

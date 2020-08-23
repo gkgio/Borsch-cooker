@@ -17,6 +17,22 @@
     <string name="meals_no_information">Вы еще не добавили ни одного блюда</string>
     <string name="meals_edit">Редактировать</string>
     <string name="meals_add_meal">Добавить блюдо</string>
+    <string name="meals_add_ingredients_button">Добавить</string>
+    <string name="meals_save_data">Сохранить</string>
+    <string name="meals_edit_price">%s РУБ</string>
+    <string name="meals_edit_weight">%s ГРАММ</string>
+    <string name="meals_add_name">Название</string>
+    <string name="meals_add_ingredients">Ингредиенты</string>
+    <string name="meals_add_price">Цена</string>
+    <string name="meals_add_weight">Вес</string>
+    <string name="meals_add_description">Описание</string>
+    <string name="meals_add_hints_description">Введите описание</string>
+    <string name="meals_add_hints_weight">Укажите вес</string>
+    <string name="meals_add_on_one_portion">На 1 порцию</string>
+    <string name="meals_add_for_one_portion">За 1 порцию</string>
+    <string name="meals_add_hints_price">Укажите цену</string>
+    <string name="meals_add_hints_name">Укажите название</string>
+    <string name="meals_add_images">Фотографии</string>
 
     <string name="orders_type_all">Все</string>
     <string name="orders_type_active">Активные</string>
@@ -32,7 +48,7 @@
     <string name="orders_sum">%d ₽</string>
     <string name="orders_no_information">У вас еще нет заказов</string>
     
-    <string name="own_welcome">Добрый день, %s</string>
+    <string name="own_welcome">Добрый день, %s!</string>
     <string name="own_profile">Профиль</string>
     <string name="own_status">Статус активности</string>
     <string name="own_accept_orders">Принимаю заказы</string>
