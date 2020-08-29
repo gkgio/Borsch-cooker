@@ -2,7 +2,7 @@ package com.gkgio.data.orders
 
 import com.gkgio.data.base.BaseService
 import com.gkgio.data.exception.ServerExceptionTransformer
-import com.gkgio.domain.orders.OrdersData
+import com.gkgio.domain.orders.OrdersItem
 import com.gkgio.domain.orders.OrdersService
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -14,26 +14,26 @@ class OrdersServiceImpl @Inject constructor(
     serverExceptionTransformer: ServerExceptionTransformer
 ) : BaseService(serverExceptionTransformer), OrdersService {
 
-    override fun loadAllOrdersData(): Single<List<OrdersData>> =
+    override fun loadAllOrdersData(): Single<List<OrdersItem>> =
         executeRequest(
             ordersApi.loadAllOrdersData().map { ordersList ->
-                ordersList.map { ordersDataResponseTransformer.transform(it) }
+                ordersDataResponseTransformer.transform(ordersList)
             }
         )
 
-    override fun loadActiveOrdersData(): Single<List<OrdersData>> =
+    override fun loadActiveOrdersData(): Single<List<OrdersItem>> =
         executeRequest(
             ordersApi.loadActiveOrdersData().map { ordersList ->
-                ordersList.map { ordersDataResponseTransformer.transform(it) }
+                ordersDataResponseTransformer.transform(ordersList)
             }
         )
 
     interface OrdersApi {
         @GET("orders")
-        fun loadAllOrdersData(): Single<List<OrdersDataResponse>>
+        fun loadAllOrdersData(): Single<OrdersDataResponse>
 
         @GET("active_orders")
-        fun loadActiveOrdersData(): Single<List<OrdersDataResponse>>
+        fun loadActiveOrdersData(): Single<OrdersDataResponse>
     }
 
 }

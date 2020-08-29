@@ -1,14 +1,14 @@
 package com.gkgio.borsch_cooker.orders
 
 import com.gkgio.data.BaseTransformer
-import com.gkgio.domain.orders.OrdersData
+import com.gkgio.domain.orders.OrdersItem
 import javax.inject.Inject
 
 class OrdersListItemUiTransformer @Inject constructor(
     private val ordersAddressItemUiTransformer: OrdersAddressItemUiTransformer,
     private val ordersMealsItemUiTransformer: OrdersMealsItemUiTransformer
-) : BaseTransformer<OrdersData, OrdersListItemUi> {
-    override fun transform(data: OrdersData) = with(data) {
+) : BaseTransformer<OrdersItem, OrdersListItemUi> {
+    override fun transform(data: OrdersItem) = with(data) {
         OrdersListItemUi(
             id,
             clientId,
