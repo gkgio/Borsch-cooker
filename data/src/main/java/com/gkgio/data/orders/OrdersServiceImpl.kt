@@ -29,10 +29,10 @@ class OrdersServiceImpl @Inject constructor(
         )
 
     interface OrdersApi {
-        @GET("orders")
+        @GET("cooker/orders")
         fun loadAllOrdersData(): Single<OrdersDataResponse>
 
-        @GET("active_orders")
+        @GET("cooker/active_orders")
         fun loadActiveOrdersData(): Single<OrdersDataResponse>
     }
 

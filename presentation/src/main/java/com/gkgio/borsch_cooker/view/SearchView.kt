@@ -28,7 +28,12 @@ class SearchView @JvmOverloads constructor(
         override fun afterTextChanged(text: Editable?) {
             callbacksHandler.removeCallbacks(debounceInputRunnable)
             debounceInputRunnable = Runnable {
-                text?.let { debounceInputListener?.invoke(it.toString()) }
+                text?.let {
+                    val inputText = it.toString()
+                    if (inputText.isNotBlank()) {
+                        debounceInputListener?.invoke(inputText)
+                    }
+                }
             }
             callbacksHandler.postDelayed(debounceInputRunnable, inputDebounce)
         }
@@ -76,6 +81,8 @@ class SearchView @JvmOverloads constructor(
         get() = input.text.toString()
         set(value) {
             input.setText(value)
+            input.setSelection(value.length)
+            requestFocusForInput()
         }
 
     init {
@@ -120,5 +127,13 @@ class SearchView @JvmOverloads constructor(
         } finally {
             typedArray.recycle()
         }
+    }
+
+    fun requestFocusForInput() {
+        input.requestFocus()
+    }
+
+    fun clearFocusForInput() {
+        input.clearFocus()
     }
 }

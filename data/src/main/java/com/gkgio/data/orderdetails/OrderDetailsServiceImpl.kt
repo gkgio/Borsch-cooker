@@ -25,7 +25,7 @@ class OrderDetailsServiceImpl @Inject constructor(
         )
 
     interface OrderDetailsApi {
-        @GET("orders/{orderId}")
+        @GET("cooker/orders/{orderId}")
         fun loadOrderDetailsData(
             @Path("orderId") orderId: String
         ): Single<OrdersItemResponse>

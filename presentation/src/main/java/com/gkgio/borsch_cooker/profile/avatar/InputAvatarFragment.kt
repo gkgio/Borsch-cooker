@@ -1,4 +1,4 @@
-package com.gkgio.borsch_cooker.onboarding.avatar
+package com.gkgio.borsch_cooker.profile.avatar
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,14 +17,7 @@ import pl.aprilapps.easyphotopicker.*
 
 class InputAvatarFragment : BaseFragment<InputAvatarViewModel>() {
 
-    companion object {
-        const val TAG = "InputAvatarFragment"
-        const val PHOTO_GALLERY_REQUEST_CODE = 1
-        private const val IMAGE_QUALITY = 40
-        private const val TEMP_FILE_PREFIX = "image"
-    }
-
-    lateinit var easyImage: EasyImage
+    private lateinit var easyImage: EasyImage
 
     override fun getLayoutId(): Int = R.layout.fragment_input_avatar
 
