@@ -40,22 +40,22 @@ class OwnServiceImpl @Inject constructor(
         )
 
     interface OwnApi {
-        @POST("on_duty")
+        @POST("cooker/on_duty")
         fun setDutyStatus(
             @Query("on_duty") isOnDuty: Boolean
         ): Single<OwnDashboardDataResponse>
 
-        @POST("delivery")
+        @POST("cooker/delivery")
         fun setDeliveryStatus(
             @Query("delivery") isDeliveryAvailable: Boolean
         ): Single<OwnDashboardDataResponse>
 
-        @POST("pickup")
+        @POST("cooker/pickup")
         fun setPickupStatus(
             @Query("pickup") isPickupAvailable: Boolean
         ): Single<OwnDashboardDataResponse>
 
-        @GET("dashboard/main")
+        @GET("cooker/dashboard/main")
         fun loadDashboardData(): Single<OwnDashboardDataResponse>
     }
 }

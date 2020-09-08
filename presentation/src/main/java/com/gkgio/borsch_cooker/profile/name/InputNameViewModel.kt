@@ -1,9 +1,8 @@
-package com.gkgio.borsch_cooker.onboarding.name
+package com.gkgio.borsch_cooker.profile.name
 
 import com.gkgio.borsch_cooker.base.BaseScreensNavigator
 import com.gkgio.borsch_cooker.base.BaseViewModel
 import com.gkgio.borsch_cooker.ext.applySchedulers
-import com.gkgio.borsch_cooker.navigation.Screens
 import com.gkgio.borsch_cooker.utils.SingleLiveEvent
 import com.gkgio.borsch_cooker.utils.events.UserProfileChanged
 import com.gkgio.domain.analytics.AnalyticsRepository

@@ -47,7 +47,10 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                     ownIsOnDuty.isChecked = activityStatus
                     ownIsDeliveryAvailable.isChecked = delivery
                     ownIsPickupAvailable.isChecked = pickup
-
+                    ownRatingSubtitle.text = requireContext().getQuantityText(
+                        R.plurals.meals_reviews,
+                        reviews.totalReviews
+                    )
                     ownSubscriptionDate.setTextOrHide(subscriptionExpirationDate)
 
                     if (activeMeals.isNotEmpty()) {
@@ -56,10 +59,10 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                         ownActiveMeals.isVisible = false
                     }
                     if (reviews.totalReviews != 0) {
-                        ownRatingSubtitle.text = reviews.totalReviews.toString()
                         ownRatingPercentage.text = reviews.averageRating
                     } else {
-                        //TODO добавить дизайн, если нет рейтинга
+                        ownRating.isVisible = false
+                        ownRatingEnough.isVisible = true
                     }
                 }
             }

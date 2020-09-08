@@ -98,6 +98,8 @@
     <string name="file_selection_failed">Не удалось выбрать фото</string>
     <string name="file_chooser_not_found">Для загрузки фото, пожалуйста, установите файловый менеджер</string>
 
+    <string name="address_search_hint">Поиск</string>
+
     <string name="default_search_hint">Введите текст для поиска</string>
 
     <string name="btn_ok">OK</string>

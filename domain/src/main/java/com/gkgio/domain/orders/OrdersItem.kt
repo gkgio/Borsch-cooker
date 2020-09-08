@@ -1,6 +1,6 @@
 package com.gkgio.domain.orders
 
-data class OrdersData(
+data class OrdersItem(
     val id: String,
     val clientId: String,
     val cookerId: String,
