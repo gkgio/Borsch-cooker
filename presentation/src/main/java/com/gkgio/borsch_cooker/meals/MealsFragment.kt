@@ -10,6 +10,8 @@ import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.createViewModel
 import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
+import com.gkgio.borsch_cooker.meals.addmeal.AddMealFragment
+import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeSheet
 import kotlinx.android.synthetic.main.fragment_meals.*
 import kotlinx.android.synthetic.main.layout_no_information.*
 
@@ -18,6 +20,10 @@ class MealsFragment : BaseFragment<MealsViewModel>() {
     private lateinit var mealsAdapter: MealsAdapter
 
     override fun getLayoutId(): Int = R.layout.fragment_meals
+
+    companion object {
+        val TAG = MealsFragment::class.java.simpleName
+    }
 
     override fun provideViewModel() = createViewModel {
         AppInjector.appComponent.mealsViewModel
@@ -33,7 +39,7 @@ class MealsFragment : BaseFragment<MealsViewModel>() {
             errorTextView.text = getString(R.string.meals_no_information)
         }
         mealsAddMealButton.setDebounceOnClickListener {
-            viewModel.addMealClick()
+            showDialog(MealSelectTypeSheet(), TAG)
         }
     }
 
