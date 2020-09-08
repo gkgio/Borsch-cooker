@@ -56,26 +56,26 @@ class AuthServiceImpl @Inject constructor(
     }
 
     interface AuthServiceApi {
-        @POST("auth")
+        @POST("cooker/auth")
         fun getSmsCodeByPhone(@Query("phone") phone: String): Single<SmsResponse>
 
-        @PATCH("auth/{tmpToken}")
+        @PATCH("cooker/auth/{tmpToken}")
         fun validateSmsCode(
             @Path("tmpToken") tmpToken: String,
             @Query("code") code: String
         ): Single<ValidateSmsCodeResponse>
 
-        @POST("misc/device_tokens/gcm")
+        @POST("cooker/misc/device_tokens/gcm")
         fun sendPushTokenToServer(@Body pushTokenRequest: PushTokenRequest): Completable
 
-        @POST("add_name")
+        @POST("cooker/add_name")
         fun saveName(
             @Query("first_name") name: String,
             @Query("last_name") secondName: String
         ): Single<UserResponse>
 
         @Multipart
-        @POST("avatar")
+        @POST("cooker/avatar")
         fun saveAvatar(@Part filePart: MultipartBody.Part): Single<UserResponse>
     }
 }

@@ -10,6 +10,7 @@ import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.createViewModel
 import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.orders.OrdersTypeTitlesAdapter
+import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
 import kotlinx.android.synthetic.main.fragment_meals.*
 
 class MealsFragment : BaseFragment<MealsViewModel>() {
@@ -29,6 +30,9 @@ class MealsFragment : BaseFragment<MealsViewModel>() {
         initViewPager()
         viewModel.titlesLiveData.observeValue(viewLifecycleOwner) {
             typeTitlesAdapter.setTitlesRes(it)
+        }
+        mealsAddMealButton.setDebounceOnClickListener {
+            viewModel.addMealClick()
         }
     }
 

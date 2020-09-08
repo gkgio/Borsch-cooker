@@ -1,4 +1,4 @@
-package com.gkgio.borsch_cooker.onboarding.name
+package com.gkgio.borsch_cooker.profile.name
 
 import android.os.Bundle
 import android.view.View

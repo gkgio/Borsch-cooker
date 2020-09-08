@@ -1,4 +1,4 @@
-package com.gkgio.borsch_cooker.onboarding.avatar
+package com.gkgio.borsch_cooker.profile.avatar
 
 import androidx.lifecycle.MutableLiveData
 import com.gkgio.borsch_cooker.base.BaseScreensNavigator

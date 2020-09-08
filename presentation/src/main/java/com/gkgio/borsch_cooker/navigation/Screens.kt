@@ -1,14 +1,16 @@
 package com.gkgio.borsch_cooker.navigation
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import com.gkgio.borsch_cooker.auth.InputPhoneFragment
 import com.gkgio.borsch_cooker.auth.ValidatePhoneFragment
 import com.gkgio.borsch_cooker.main.MainFragment
+import com.gkgio.borsch_cooker.meals.addmeal.AddMealFragment
 import com.gkgio.borsch_cooker.onboarding.OnboardingFragment
-import com.gkgio.borsch_cooker.onboarding.avatar.InputAvatarFragment
-import com.gkgio.borsch_cooker.onboarding.name.InputNameFragment
+import com.gkgio.borsch_cooker.profile.avatar.InputAvatarFragment
+import com.gkgio.borsch_cooker.profile.name.InputNameFragment
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsFragment
+import com.gkgio.borsch_cooker.profile.ProfileFragment
+import com.gkgio.borsch_cooker.profile.address.FindAddressFragment
 import com.gkgio.borsch_cooker.support.SupportFragment
 import com.gkgio.borsch_cooker.utils.IntentUtils
 import ru.terrakok.cicerone.android.support.SupportAppScreen
@@ -26,6 +28,10 @@ object Screens {
         private val orderId: String
     ) : SupportAppScreen() {
         override fun getFragment() = OrderDetailsFragment.newInstance(orderId)
+    }
+
+    class AddMealScreen() : SupportAppScreen() {
+        override fun getFragment() = AddMealFragment()
     }
 
     object SettingsFragmentScreen : SupportAppScreen() {
@@ -68,5 +74,13 @@ object Screens {
 
     object InputAvatarFragmentScreen : SupportAppScreen() {
         override fun getFragment() = InputAvatarFragment()
+    }
+
+    object FindAddressFragmentScreen : SupportAppScreen() {
+        override fun getFragment() = FindAddressFragment()
+    }
+
+    object ProfileFragmentScreen : SupportAppScreen() {
+        override fun getFragment() = ProfileFragment()
     }
 }
