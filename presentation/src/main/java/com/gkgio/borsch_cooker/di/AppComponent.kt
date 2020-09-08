@@ -18,6 +18,8 @@ import com.gkgio.borsch_cooker.main.LaunchViewModel
 import com.gkgio.borsch_cooker.main.MainViewModel
 import com.gkgio.borsch_cooker.meals.MealsViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.AddMealViewModel
+import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeSheet
+import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.edit.AddMealEditDataViewModel
 import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
 import com.gkgio.borsch_cooker.profile.avatar.InputAvatarViewModel
@@ -67,6 +69,7 @@ interface AppComponent {
     val mealsViewModel: MealsViewModel
     val addMealViewModel: AddMealViewModel
     val addMealEditDataViewModel: AddMealEditDataViewModel
+    val mealSelectTypeViewModel: MealSelectTypeViewModel
     val ownViewModel: OwnViewModel
     val supportViewModel: SupportViewModel
     val onboardingViewModel: OnboardingViewModel

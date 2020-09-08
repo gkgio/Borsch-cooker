@@ -35,6 +35,12 @@
     <string name="meals_add_hints_price">Укажите цену</string>
     <string name="meals_add_hints_name">Укажите название</string>
     <string name="meals_add_images">Фотографии</string>
+    <string name="meals_select_type_create">Создать</string>
+    <string name="meals_select_type_meal">Новое блюдо</string>
+    <string name="meals_select_type_lunch">Новый ланч</string>
+    <string name="meals_select_type_meal_description">Единичное блюдо, которое состоит из 1 порции. Например яичница!</string>
+    <string name="meals_select_type_lunch_description">Ланч состоит из нескольких блюд, которые уже есть у вас в меню</string>
+    <string name="meals_select_type_lunch_warn">Чтобы начать добавлять комбо-наборы создайте хотя бы 2 единичных блюда</string>
 
     <string name="orders_type_all">Все</string>
     <string name="orders_type_active">Активные</string>
