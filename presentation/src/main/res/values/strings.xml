@@ -17,6 +17,8 @@
     <string name="meals_no_information">Вы еще не добавили ни одного блюда</string>
     <string name="meals_edit">Редактировать</string>
     <string name="meals_add_meal">Добавить блюдо</string>
+    <string name="meals_singles">Единичные</string>
+    <string name="meals_lunches">Ланчи</string>
     <string name="meals_add_ingredients_button">Добавить</string>
     <string name="meals_save_data">Сохранить</string>
     <string name="meals_edit_price">%s РУБ</string>
@@ -63,7 +65,7 @@
     <string name="own_rating">Ваш рейтинг</string>
     <string name="own_container_title">Магазин\nКонтейнеров</string>
     <string name="own_container_subtitle">Широкий ассортимент для всех блюд</string>
-    <string name="own_container_buy">Докупить конйтейнеры</string>
+    <string name="own_container_buy">Докупить контейнеры</string>
 
     <string name="order_details_sum">Сумма заказа</string>
     <string name="order_details_list">Состав заказа</string>

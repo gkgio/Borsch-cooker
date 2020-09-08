@@ -7,6 +7,7 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.TranslateAnimation
 import com.gkgio.borsch_cooker.R
+import com.gkgio.borsch_cooker.meals.MealsConstants
 import com.gkgio.borsch_cooker.orders.OrdersConstants
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
@@ -116,7 +117,9 @@ fun getOrdersTypeNameByOrdersType(context: Context, ordersType: String): String 
     return when (ordersType) {
         OrdersConstants.ORDERS_TYPE_ALL -> context.resources.getString(R.string.orders_type_all)
         OrdersConstants.ORDERS_TYPE_ACTIVE -> context.resources.getString(R.string.orders_type_active)
-        else -> context.resources.getString(R.string.orders_type_active)
+        MealsConstants.MEALS_TYPE_LUNCHES -> context.resources.getString(R.string.meals_lunches)
+        MealsConstants.MEALS_TYPE_SINGLES -> context.resources.getString(R.string.meals_singles)
+        else -> "unknown"
     }
 }
 
