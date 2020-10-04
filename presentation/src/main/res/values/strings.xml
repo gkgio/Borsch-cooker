@@ -62,7 +62,7 @@
     <string name="own_accept_orders">Принимаю заказы</string>
     <string name="own_subscription_for">Подписка до %s</string>
     <string name="own_active_meals">Активные блюда</string>
-    <string name="own_edit">Изменить</string>
+    <string name="data_edit">Изменить</string>
     <string name="own_delivery_title">Варианты доставки</string>
     <string name="own_pickup">Самовывоз</string>
     <string name="own_delivery_radius">Доставка в радиусе</string>
@@ -130,4 +130,11 @@
     <string name="server_error">Проблемы на сервере. Скоро все исправим</string>
     <string name="default_error">Что-то пошло не так. Попробуй еще раз</string>
     <string name="api_not_connect_error">Google Play устарели</string>
+
+    <string name="profile_page_title">Профиль</string>
+    <string name="profile_photo">Фотография</string>
+    <string name="change_avatar_photo">Изменить</string>
+    <string name="profile_name">Имя и фамилия</string>
+    <string name="profile_cooker_address">Физический адрес</string>
+    <string name="profile_phone">Номер телефона</string>
 </resources>

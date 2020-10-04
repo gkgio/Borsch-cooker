@@ -42,9 +42,9 @@ class InputAvatarViewModel @Inject constructor(
                     progressState.value = false
                     userProfileChanged.onComplete("")
                     router.exit()
-                }, {
+                }, { throwable ->
                     progressState.value = false
-                    processThrowable(it)
+                    processThrowable(throwable)
                 }).addDisposable()
 
         }

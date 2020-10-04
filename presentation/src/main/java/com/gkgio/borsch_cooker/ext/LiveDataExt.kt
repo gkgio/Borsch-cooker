@@ -1,5 +1,6 @@
 package com.gkgio.borsch_cooker.ext
 
+import androidx.annotation.NonNull
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -14,3 +15,12 @@ val <T> LiveData<T>.nonNullValue: T
 fun <T> LiveData<T>.isInitialized() = value != null
 
 fun <T> LiveData<T>.isNonInitialized() = value == null
+
+inline fun <T> LiveData<T>.nonNullObserve(
+    @NonNull owner: LifecycleOwner,
+    crossinline block: (T) -> Unit
+) {
+    observe(owner, Observer { value ->
+        value?.let { block(it) }
+    })
+}

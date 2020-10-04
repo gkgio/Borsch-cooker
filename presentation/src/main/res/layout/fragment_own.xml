@@ -185,7 +185,7 @@
                     android:paddingTop="4dp"
                     android:paddingEnd="12dp"
                     android:paddingBottom="4dp"
-                    android:text="@string/own_edit"
+                    android:text="@string/data_edit"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>

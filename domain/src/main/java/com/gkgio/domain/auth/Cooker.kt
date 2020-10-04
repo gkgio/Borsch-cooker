@@ -2,7 +2,6 @@ package com.gkgio.domain.auth
 
 
 data class Cooker(
-    val id: String,
     val email: String?,
     val banned: Boolean? = false,
     val certificationPending: Boolean? = false,

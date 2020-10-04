@@ -8,7 +8,6 @@ class UserResponseTransformer @Inject constructor() : BaseTransformer<UserRespon
 
     override fun transform(data: UserResponse) = with(data) {
         Cooker(
-            id,
             email,
             banned,
             certificationPending,

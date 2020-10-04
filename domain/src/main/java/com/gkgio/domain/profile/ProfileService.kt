@@ -1,7 +1,8 @@
 package com.gkgio.domain.profile
 
-import io.reactivex.Completable
+import com.gkgio.domain.auth.Cooker
+import io.reactivex.Single
 
 interface ProfileService {
-    fun loadProfile(): Completable
+    fun loadProfile(): Single<Cooker>
 }

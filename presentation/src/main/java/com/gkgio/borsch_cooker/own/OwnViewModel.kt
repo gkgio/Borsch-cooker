@@ -31,7 +31,7 @@ class OwnViewModel @Inject constructor(
     }
 
     fun onProfileClicked(){
-        //
+        router.navigateTo(Screens.ProfileFragmentScreen)
     }
 
     fun setDutyStatus(isOnDuty: Boolean) {

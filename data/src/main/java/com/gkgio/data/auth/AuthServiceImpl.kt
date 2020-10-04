@@ -47,7 +47,7 @@ class AuthServiceImpl @Inject constructor(
 
     override fun saveAvatar(file: File): Single<Cooker> {
         val filePart = MultipartBody.Part.createFormData(
-            "file",
+            "avatar",
             file.name,
             file.asRequestBody("image/*".toMediaTypeOrNull())
         )

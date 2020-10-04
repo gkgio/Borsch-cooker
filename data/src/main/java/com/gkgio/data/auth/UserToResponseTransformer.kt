@@ -9,7 +9,6 @@ class UserToResponseTransformer @Inject constructor() :
 
     override fun transform(data: Cooker) = with(data) {
         UserResponse(
-            id,
             email,
             banned,
             certificationPending,
