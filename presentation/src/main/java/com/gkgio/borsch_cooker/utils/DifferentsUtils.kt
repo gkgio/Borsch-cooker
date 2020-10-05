@@ -9,6 +9,7 @@ import android.view.animation.TranslateAnimation
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.meals.MealsConstants
 import com.gkgio.borsch_cooker.orders.OrdersConstants
+import com.gkgio.data.HostInterceptor
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
@@ -136,6 +137,9 @@ fun getOrdersStatusNameByOrdersStatus(context: Context, ordersStatus: String): S
         else -> context.resources.getString(R.string.orders_status_created)
     }
 }
+
+fun getImageUrl(image: String): String =
+    "http://" + HostInterceptor.CONNECT_URL + ":3001" + image
 
 fun endlessJumpingViewAnimation(view: View) {
     val animation = TranslateAnimation(

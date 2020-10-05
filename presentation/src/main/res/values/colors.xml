@@ -32,10 +32,13 @@
     <color name="grey_bg3">#eaeaee</color>
     <color name="grey_bg4">#126C6C6C</color>
     <color name="green_text">#008c00</color>
+    <color name="yellow_bg">#ffd647</color>
     <color name="red_text">#f94733</color>
+    <color name="red_text_8">#14F94733</color>
     <color name="bg_map_items">#80F2E5E5</color>
     <color name="sum_container">#80686868</color>
     <color name="bluepurple_text">#572cd8</color>
+    <color name="bluepurple_text_8">#14572CD8</color>
 
     <color name="green">#04AA11</color>
     <color name="green_4">#0A04AA11</color>

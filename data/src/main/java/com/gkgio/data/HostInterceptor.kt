@@ -10,11 +10,15 @@ class HostInterceptor @Inject constructor(
     private val errorJsonTransformer: ErrorJsonTransformer
 ) : Interceptor {
 
+    companion object {
+        const val CONNECT_URL = "80.249.146.240"
+    }
+
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
 
         val newUrl = request.url.newBuilder()
-            .host("80.249.146.240")
+            .host(CONNECT_URL)
             .build()
 
         val response = chain.proceed(

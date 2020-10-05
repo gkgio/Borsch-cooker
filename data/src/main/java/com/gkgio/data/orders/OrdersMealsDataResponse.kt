@@ -23,13 +23,9 @@ data class OrdersMealsDataResponse(
     val portions: Int,
     @Json(name = "price")
     val price: Int,
-    @Json(name = "type")
-    val type: String,
     @Json(name = "weight")
     val weight: String,
     @Json(name = "cooker_id")
-    val cookerId: String,
-    @Json(name = "lunch_id")
     val lunchId: String,
     @Json(name = "images")
     val images: List<String>

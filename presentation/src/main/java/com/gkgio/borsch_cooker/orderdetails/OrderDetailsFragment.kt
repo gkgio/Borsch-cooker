@@ -40,7 +40,7 @@ class OrderDetailsFragment : BaseFragment<OrderDetailsViewModel>() {
         initMealsRv()
         viewModel.state.observeValue(this) {
             orderMealsAdapter.setMealsList(it.orderDetails.meals)
-            orderDetailsSum.text = getString(R.string.orders_sum, 400) //TODO
+            orderDetailsSum.text = getString(R.string.orders_sum, 400.toString()) //TODO
             orderDetailsDelivery.text = "Самовывоз" //TODO
         }
         toolbar.setLeftIconClickListener {

@@ -1,13 +1,16 @@
 package com.gkgio.borsch_cooker.meals.addmeal.edit
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseScreensNavigator
 import com.gkgio.borsch_cooker.base.BaseViewModel
 import com.gkgio.borsch_cooker.utils.SingleLiveEvent
 import javax.inject.Inject
 
 class AddMealEditDataViewModel @Inject constructor(
-    screensNavigator: BaseScreensNavigator
+    screensNavigator: BaseScreensNavigator,
+    private val context: Context
 ) : BaseViewModel(screensNavigator) {
 
     private var ingredientsList = mutableListOf<String>()
@@ -16,14 +19,41 @@ class AddMealEditDataViewModel @Inject constructor(
     val editInfo = MutableLiveData<EditInfo>()
 
     fun init(typeData: String, ingredientsList: List<String>?) {
-        this.ingredientsList = if (ingredientsList.isNullOrEmpty()) mutableListOf() else ingredientsList.toMutableList()
+        this.ingredientsList =
+            if (ingredientsList.isNullOrEmpty()) mutableListOf() else ingredientsList.toMutableList()
         mealIngredients.value = ingredientsList
-        when(typeData) {
-            AddMealDataConstants.MEAL_EDIT_TYPE_TITLE -> editInfo.value = EditInfo("Название", null)
-            AddMealDataConstants.MEAL_EDIT_TYPE_PRICE -> editInfo.value = EditInfo("Цена", "РУБЛЕЙ")
-            AddMealDataConstants.MEAL_EDIT_TYPE_WEIGHT -> editInfo.value = EditInfo("Вес", "ГРАММ")
-            AddMealDataConstants.MEAL_EDIT_TYPE_DESCRIPTION -> editInfo.value = EditInfo("Описание", null)
-            AddMealDataConstants.MEAL_EDIT_TYPE_INGREDIENTS -> editInfo.value = EditInfo("Ингредиенты", null)
+        when (typeData) {
+            AddMealDataConstants.MEAL_EDIT_TYPE_TITLE -> editInfo.value =
+                EditInfo(context.getString(R.string.meals_add_name), null)
+            AddMealDataConstants.MEAL_EDIT_TYPE_PRICE -> editInfo.value =
+                EditInfo(
+                    context.getString(R.string.meals_add_price),
+                    context.getString(R.string.meals_edit_price_value)
+                )
+            AddMealDataConstants.LUNCH_EDIT_TYPE_PRICE -> editInfo.value =
+                EditInfo(
+                    context.getString(R.string.meals_add_price),
+                    null
+                )
+            AddMealDataConstants.MEAL_EDIT_TYPE_WEIGHT -> editInfo.value =
+                EditInfo(
+                    context.getString(R.string.meals_add_weight),
+                    context.getString(R.string.meals_edit_weight_value)
+                )
+            AddMealDataConstants.MEAL_EDIT_TYPE_CALORIES -> editInfo.value =
+                EditInfo(
+                    context.getString(R.string.meals_add_calories),
+                    context.getString(R.string.meals_edit_calories_value)
+                )
+            AddMealDataConstants.MEAL_EDIT_TYPE_COOK_TIME -> editInfo.value =
+                EditInfo(
+                    context.getString(R.string.meals_add_cook_time),
+                    context.getString(R.string.meals_edit_cook_time_value)
+                )
+            AddMealDataConstants.MEAL_EDIT_TYPE_DESCRIPTION -> editInfo.value =
+                EditInfo(context.getString(R.string.meals_add_description), null)
+            AddMealDataConstants.MEAL_EDIT_TYPE_INGREDIENTS -> editInfo.value =
+                EditInfo(context.getString(R.string.meals_add_ingredients), null)
         }
     }
 

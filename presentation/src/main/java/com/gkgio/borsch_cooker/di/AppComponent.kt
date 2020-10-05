@@ -17,6 +17,8 @@ import com.gkgio.borsch_cooker.main.LaunchActivity
 import com.gkgio.borsch_cooker.main.LaunchViewModel
 import com.gkgio.borsch_cooker.main.MainViewModel
 import com.gkgio.borsch_cooker.meals.MealsViewModel
+import com.gkgio.borsch_cooker.meals.addlunch.AddLunchViewModel
+import com.gkgio.borsch_cooker.meals.addlunch.SelectMealsViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.AddMealViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeSheet
 import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeViewModel
@@ -53,7 +55,8 @@ import javax.inject.Singleton
         OrderDetailsModule::class,
         OwnModule::class,
         AddressModule::class,
-        ProfileModule::class
+        ProfileModule::class,
+        MealsModule::class
     ]
 )
 interface AppComponent {
@@ -83,6 +86,8 @@ interface AppComponent {
     val findAddressViewModel: FindAddressViewModel
     val inputAvatarViewModel: InputAvatarViewModel
     val profileViewModel: ProfileViewModel
+    val addLunchViewModel: AddLunchViewModel
+    val selectMealsViewModel: SelectMealsViewModel
 
     val context: Context
     val moshi: Moshi

@@ -9,6 +9,8 @@ import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.createViewModel
 import com.gkgio.borsch_cooker.ext.observeValue
+import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
+import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeSheet
 import com.gkgio.borsch_cooker.utils.FragmentArgumentDelegate
 import kotlinx.android.synthetic.main.fragment_meals_list.*
 import kotlinx.android.synthetic.main.layout_no_information.*
@@ -19,6 +21,7 @@ class MealsListFragment : BaseFragment<MealsListViewModel>() {
     var mealsType: String by FragmentArgumentDelegate()
 
     companion object {
+        val TAG = MealsListFragment::class.java.simpleName
         fun newInstance(mealsType: String) = MealsListFragment().apply {
             this.mealsType = mealsType
         }
@@ -40,15 +43,18 @@ class MealsListFragment : BaseFragment<MealsListViewModel>() {
         initMealsRv()
         viewModel.state.observeValue(this) {
             mealsAdapter.setMealsList(it.mealsList)
-            mealsNoInformationError.isVisible = it.mealsList.isEmpty()
-            noInformationButton.isVisible = it.mealsList.isEmpty()
+            mealsNoInformationError.isVisible = it.mealsList.isNullOrEmpty()
+            noInformationButton.isVisible = it.mealsList.isNullOrEmpty()
             errorTextView.text = getString(R.string.meals_no_information)
+        }
+        noInformationButton.setDebounceOnClickListener {
+            showDialog(MealSelectTypeSheet(), TAG)
         }
     }
 
     private fun initMealsRv() {
         mealsAdapter = MealsAdapter(MealsConstants.MEALS_TYPE_LUNCHES == mealsType, {
-            //TODO editClick
+            //TODO go to editClick
         }, {
             //TODO lunchClick
         })

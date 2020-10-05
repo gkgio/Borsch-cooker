@@ -17,10 +17,8 @@ class OrdersMealsItemUiTransformer @Inject constructor() :
             name,
             portions,
             price,
-            type,
             weight,
             cookerId,
-            lunchId,
             images
         )
     }

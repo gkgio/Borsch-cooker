@@ -9,13 +9,13 @@
         <item quantity="other">%d порция</item>
     </plurals>
 
-    <plurals name="meals_counter">
-        <item quantity="zero">%d блюд</item>
-        <item quantity="one">%d блюдо</item>
-        <item quantity="two">%d блюда</item>
-        <item quantity="few">%d блюда</item>
-        <item quantity="many">%d блюд</item>
-        <item quantity="other">%d блюдо</item>
+    <plurals name="meals_checked_counter">
+        <item quantity="zero">Выбрано %d блюд</item>
+        <item quantity="one">Выбрано %d блюдо</item>
+        <item quantity="two">Выбрано %d блюда</item>
+        <item quantity="few">Выбрано %d блюда</item>
+        <item quantity="many">Выбрано %d блюд</item>
+        <item quantity="other">Выбрано %d блюдо</item>
     </plurals>
 
     <plurals name="meals_reviews">

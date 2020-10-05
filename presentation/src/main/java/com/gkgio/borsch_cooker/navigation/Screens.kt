@@ -4,6 +4,8 @@ import android.content.Context
 import com.gkgio.borsch_cooker.auth.InputPhoneFragment
 import com.gkgio.borsch_cooker.auth.ValidatePhoneFragment
 import com.gkgio.borsch_cooker.main.MainFragment
+import com.gkgio.borsch_cooker.meals.addlunch.AddLunchFragment
+import com.gkgio.borsch_cooker.meals.addlunch.SelectMealsFragment
 import com.gkgio.borsch_cooker.meals.addmeal.AddMealFragment
 import com.gkgio.borsch_cooker.onboarding.OnboardingFragment
 import com.gkgio.borsch_cooker.profile.avatar.InputAvatarFragment
@@ -32,6 +34,14 @@ object Screens {
 
     class AddMealScreen() : SupportAppScreen() {
         override fun getFragment() = AddMealFragment()
+    }
+
+    class AddLunchScreen() : SupportAppScreen() {
+        override fun getFragment() = AddLunchFragment()
+    }
+
+    class SelectMealsScreen() : SupportAppScreen() {
+        override fun getFragment() = SelectMealsFragment()
     }
 
     object SettingsFragmentScreen : SupportAppScreen() {

@@ -13,6 +13,7 @@
         android:id="@+id/mealsTools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal">
 
         <TextView
@@ -38,8 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingTop="24dp"
-        android:scrollbars="none">
+        android:paddingTop="24dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +60,5 @@
                 android:overScrollMode="never" />
 
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-
 </LinearLayout>

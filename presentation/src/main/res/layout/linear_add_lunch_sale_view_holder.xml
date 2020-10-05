@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/saleSizeTv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/radio_button_unchecked"
+    android:fontFamily="@font/tt_norms_medium"
+    android:padding="16dp"
+    android:textColor="@color/black"
+    android:textSize="16sp"
+    tools:text="5%" />

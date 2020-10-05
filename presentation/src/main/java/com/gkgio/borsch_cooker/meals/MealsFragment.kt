@@ -11,7 +11,6 @@ import com.gkgio.borsch_cooker.ext.createViewModel
 import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.orders.OrdersTypeTitlesAdapter
 import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
-import com.gkgio.borsch_cooker.meals.addmeal.AddMealFragment
 import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeSheet
 import kotlinx.android.synthetic.main.fragment_meals.*
 
