@@ -60,6 +60,8 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                     }
                     if (reviews.totalReviews != 0) {
                         ownRatingPercentage.text = reviews.averageRating
+                        ownRating.isVisible = true
+                        ownRatingEnough.isVisible = false
                     } else {
                         ownRating.isVisible = false
                         ownRatingEnough.isVisible = true
