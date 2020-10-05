@@ -53,7 +53,7 @@
                 android:scrollbars="none"
                 tools:ignore="RtlSymmetry">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -98,7 +98,7 @@
                             android:overScrollMode="never"
                             android:paddingEnd="8dp" />
                     </LinearLayout>
-                </RelativeLayout>
+                </LinearLayout>
             </HorizontalScrollView>
 
             <TextView

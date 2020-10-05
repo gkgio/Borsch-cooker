@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.linear_add_lunch_sale_view_holder.view.*
 class AddMealSaleAdapter(private val itemClick: (saleSize: Int) -> Unit) :
     RecyclerView.Adapter<SyntheticViewHolder>() {
 
+    private val saleStepSize = 5
+    private val saleOptionSize = 6
     private var checkedSize: Int? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SyntheticViewHolder {
@@ -18,7 +20,7 @@ class AddMealSaleAdapter(private val itemClick: (saleSize: Int) -> Unit) :
 
     override fun onBindViewHolder(holder: SyntheticViewHolder, position: Int) =
         with(holder.itemView) {
-            val saleSize = ((position + 1) * 5)
+            val saleSize = ((position + 1) * saleStepSize)
             saleSizeTv.text = "$saleSize%"
             saleSizeTv.setDebounceOnClickListener {
                 checkedSize = position
@@ -34,6 +36,6 @@ class AddMealSaleAdapter(private val itemClick: (saleSize: Int) -> Unit) :
             }
         }
 
-    override fun getItemCount(): Int = 6
+    override fun getItemCount(): Int = saleOptionSize
 
 }

@@ -27,7 +27,10 @@ class AddLunchMealsAdapter(
             Glide.with(lunchMealsIv)
                 .load(if (meal.images.isEmpty()) null else getImageUrl(meal.images.first()))
                 .placeholder(R.drawable.ic_image_placeholder)
-                .withCenterCropRoundedCorners(context, 8)
+                .withCenterCropRoundedCorners(
+                    context,
+                    context.resources.getInteger(R.integer.corner_radius_small_image)
+                )
                 .into(lunchMealsIv)
             lunchMealsNameTv.text = meal.name
             lunchMealsPriceTv.text = context.getString(R.string.orders_sum, meal.price.toString())

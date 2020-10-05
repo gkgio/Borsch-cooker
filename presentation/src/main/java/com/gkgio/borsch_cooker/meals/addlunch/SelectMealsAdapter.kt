@@ -28,7 +28,10 @@ class SelectMealsAdapter(
             Glide.with(selectMealsIv)
                 .load(if (meal.images.isEmpty()) null else getImageUrl(meal.images.first()))
                 .placeholder(R.drawable.ic_image_placeholder)
-                .withCenterCropRoundedCorners(context, 8)
+                .withCenterCropRoundedCorners(
+                    context,
+                    context.resources.getInteger(R.integer.corner_radius_small_image)
+                )
                 .into(selectMealsIv)
             selectMealsNameTv.text = meal.name
             selectMealsPriceTv.text = context.getString(R.string.orders_sum, meal.price.toString())

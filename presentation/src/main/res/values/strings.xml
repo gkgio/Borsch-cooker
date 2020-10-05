@@ -20,6 +20,7 @@
     <string name="meals_not_available">НЕДОСТУПНО\nДЛЯ ВЫБОРА</string>
     <string name="meals_delete">Удалить</string>
     <string name="meals_add_meal">Добавить блюдо</string>
+    <string name="meals_add_select_meals">Выбор блюд</string>
     <string name="meals_add_selected_meals">Блюдо</string>
     <string name="meals_singles">Единичные</string>
     <string name="meals_lunches">Ланчи</string>

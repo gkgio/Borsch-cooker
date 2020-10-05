@@ -13,6 +13,7 @@ import com.gkgio.borsch_cooker.utils.SingleLiveEvent
 import com.gkgio.borsch_cooker.utils.events.LunchMealsChanged
 import com.gkgio.borsch_cooker.utils.events.LunchesListChanged
 import com.gkgio.domain.meals.add.AddMealUseCase
+import pl.aprilapps.easyphotopicker.MediaFile
 import ru.terrakok.cicerone.Router
 import java.io.File
 import javax.inject.Inject
@@ -32,15 +33,14 @@ class AddLunchViewModel @Inject constructor(
     val mealsList = MutableLiveData<List<MealsItemUi>>()
     private val imagesList = mutableListOf<File?>()
     val state = SingleLiveEvent<State>()
+    val errorLoadPhoto = SingleLiveEvent<Unit>()
 
     init {
-        if (state.isNonInitialized()) {
-            state.value = State(
-                isInitialError = false,
-                loaded = false,
-                isHasEmptyField = false
-            )
-        }
+        state.value = State(
+            isInitialError = false,
+            loaded = false,
+            isHasEmptyField = false
+        )
         initMealsChanges()
     }
 
@@ -48,10 +48,13 @@ class AddLunchViewModel @Inject constructor(
         router.navigateTo(Screens.SelectMealsScreen())
     }
 
-    fun onImageLoaded(image: File?) {
-        image.let {
-            imagesList.add(image)
-            lunchImages.value = imagesList
+    fun onImageLoaded(imageFiles: Array<MediaFile>) {
+        if (imageFiles.isNotEmpty()) {
+            val image = imageFiles[0].file
+            image.let {
+                imagesList.add(image)
+                lunchImages.value = imagesList
+            }
         }
     }
 
@@ -109,6 +112,10 @@ class AddLunchViewModel @Inject constructor(
             newPrice += meal.price
         }
         return newPrice.toString()
+    }
+
+    fun onErrorLoadFile() {
+        errorLoadPhoto.call()
     }
 
     data class EditData(

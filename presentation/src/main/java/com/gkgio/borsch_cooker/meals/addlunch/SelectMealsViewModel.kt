@@ -26,10 +26,8 @@ class SelectMealsViewModel @Inject constructor(
     private val checkedList = mutableListOf<MealsItemUi>()
 
     init {
-        if (state.isNonInitialized()) {
-            state.value = State(isLoading = false, isInitialError = false)
-            onLoadMeals()
-        }
+        state.value = State(isLoading = false, isInitialError = false)
+        onLoadMeals()
         checkedMeals.value = checkedList
     }
 

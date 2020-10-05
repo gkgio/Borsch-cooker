@@ -8,7 +8,6 @@ import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.*
-import com.gkgio.borsch_cooker.meals.MealsItemUi
 import com.gkgio.borsch_cooker.meals.addmeal.AddMealImagesAdapter
 import com.gkgio.borsch_cooker.meals.addmeal.edit.AddMealDataConstants
 import com.gkgio.borsch_cooker.meals.addmeal.edit.AddMealEditDataSheet
@@ -89,6 +88,12 @@ class AddLunchFragment : BaseFragment<AddLunchViewModel>(),
                 }
             }
         }
+        viewModel.errorLoadPhoto.observeValue(this) {
+            DialogUtils.showError(
+                view,
+                getString(R.string.file_selection_failed)
+            )
+        }
         addLunchSaveButton.setDebounceOnClickListener {
             viewModel.onClickSaveLunch()
         }
@@ -138,16 +143,11 @@ class AddLunchFragment : BaseFragment<AddLunchViewModel>(),
             object : DefaultCallback() {
 
                 override fun onMediaFilesPicked(imageFiles: Array<MediaFile>, source: MediaSource) {
-                    if (imageFiles.isNotEmpty()) {
-                        viewModel.onImageLoaded(imageFiles[0].file)
-                    }
+                    viewModel.onImageLoaded(imageFiles)
                 }
 
                 override fun onImagePickerError(error: Throwable, source: MediaSource) {
-                    DialogUtils.showError(
-                        view,
-                        getString(R.string.file_selection_failed)
-                    )
+                    viewModel.onErrorLoadFile()
                 }
 
                 override fun onCanceled(source: MediaSource) {

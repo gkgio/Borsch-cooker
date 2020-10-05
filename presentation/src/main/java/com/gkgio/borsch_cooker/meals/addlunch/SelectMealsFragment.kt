@@ -26,7 +26,7 @@ class SelectMealsFragment : BaseFragment<SelectMealsViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initMealsRv()
-        toolbar.setTitle("Выбор блюд") //TODO
+        toolbar.setTitle(getString(R.string.meals_add_select_meals))
         toolbar.setLeftIconClickListener {
             onBackClick()
         }

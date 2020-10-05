@@ -37,7 +37,10 @@ class MealsAdapter(
             Glide.with(mealsImage)
                 .load(if (mealsList[position].images.isEmpty()) null else getImageUrl(mealsList[position].images.first()))
                 .placeholder(R.drawable.ic_image_placeholder)
-                .withCenterCropRoundedCorners(context, 8)
+                .withCenterCropRoundedCorners(
+                    context,
+                    context.resources.getInteger(R.integer.corner_radius_small_image)
+                )
                 .into(mealsImage)
             mealsItemName.text = mealsList[position].name
             mealsPrice.text =

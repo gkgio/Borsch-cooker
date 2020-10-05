@@ -107,13 +107,13 @@ class AddMealViewModel @Inject constructor(
             addMealUseCase
                 .uploadMeal(
                     AddMealItem(
-                        true,//TODO make checkbox
+                        true,
                         mealCalories.value!!.toInt(),
                         mealCookTime.value!!.toInt(),
                         mealDescription.value!!,
                         mealIngredients.value!!,
                         mealName.value!!,
-                        1,// TODO make field
+                        1,
                         mealPrice.value!!.toInt(),
                         mealWeight.value!!.toInt(),
                         mealImages.value!!

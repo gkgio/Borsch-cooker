@@ -28,7 +28,10 @@ class AddMealImagesAdapter(
             Glide.with(addMealImageView)
                 .load(imagesList[position])
                 .placeholder(R.drawable.ic_image_placeholder)
-                .withCenterCropRoundedCorners(context, 8)
+                .withCenterCropRoundedCorners(
+                    context,
+                    context.resources.getInteger(R.integer.corner_radius_small_image)
+                )
                 .into(addMealImageView)
             addMealDeleteButton.setDebounceOnClickListener {
                 itemClick(position)
