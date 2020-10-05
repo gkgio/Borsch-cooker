@@ -25,11 +25,6 @@ class MealsViewModel @Inject constructor(
         currentPagePosition = position
     }
 
-
-    fun addMealClick() {
-        //router.navigateTo(Screens.AddMealScreen())
-    }
-
     data class State(
         val mealsList: List<MealsItemUi>,
         val isLoading: Boolean,

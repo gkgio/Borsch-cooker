@@ -42,7 +42,7 @@
         android:text="@string/meals_add_meal"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:backgroundTint="@color/blue"
         app:cornerRadius="14dp" />
 

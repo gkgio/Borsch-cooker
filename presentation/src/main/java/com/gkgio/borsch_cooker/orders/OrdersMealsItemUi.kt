@@ -10,9 +10,7 @@ data class OrdersMealsItemUi(
     val name: String,
     val portions: Int,
     val price: Int,
-    val type: String,
     val weight: String,
     val cookerId: String,
-    val lunchId: String,
     val images: List<String>
 )

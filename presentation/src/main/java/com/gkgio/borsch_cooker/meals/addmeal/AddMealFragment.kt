@@ -38,6 +38,19 @@ class AddMealFragment : BaseFragment<AddMealViewModel>(),
         }
         initMealImagesRv()
         initIngredientsRv()
+        viewModel.state.observeValue(this) {
+            when {
+                it.isInitialError -> {
+                    showError(getString(R.string.error_empty_text))
+                }
+                it.isHasEmptyField -> {
+                    showError(getString(R.string.error_empty_filed))
+                }
+                it.loaded -> {
+                    onBackClick()
+                }
+            }
+        }
         viewModel.mealImages.observeValue(this) {
             mealImagesAdapter.setImagesList(it)
         }
@@ -56,6 +69,12 @@ class AddMealFragment : BaseFragment<AddMealViewModel>(),
         viewModel.mealDescription.observeValue(this) {
             addMealDescription.text = it
         }
+        viewModel.mealCalories.observeValue(this) {
+            addMealCalories.text = getString(R.string.meals_edit_calories, it)
+        }
+        viewModel.mealCookTime.observeValue(this) {
+            addMealCookTime.text = getString(R.string.meals_edit_cook_time, it)
+        }
         viewModel.onEditButton.observeValue(this) {
             showDialog(
                 AddMealEditDataSheet.getInstance(
@@ -66,7 +85,7 @@ class AddMealFragment : BaseFragment<AddMealViewModel>(),
             )
         }
         easyImageMeals = EasyImage.Builder(requireContext())
-            .setChooserTitle("Выберите фотографию")
+            .setChooserTitle(getString(R.string.file_choose_photo))
             .setCopyImagesToPublicGalleryFolder(true)
             .setChooserType(ChooserType.CAMERA_AND_GALLERY)
             .allowMultiple(false)
@@ -91,6 +110,12 @@ class AddMealFragment : BaseFragment<AddMealViewModel>(),
         }
         addMealAddIngredientsTv.setDebounceOnClickListener {
             viewModel.onEditButtonClick(AddMealDataConstants.MEAL_EDIT_TYPE_INGREDIENTS)
+        }
+        addMealEditCaloriesTv.setDebounceOnClickListener {
+            viewModel.onEditButtonClick(AddMealDataConstants.MEAL_EDIT_TYPE_CALORIES)
+        }
+        addMealEditCookTimeTv.setDebounceOnClickListener {
+            viewModel.onEditButtonClick(AddMealDataConstants.MEAL_EDIT_TYPE_COOK_TIME)
         }
     }
 

@@ -17,9 +17,7 @@ class OrdersMealsDataResponseTransformer @Inject constructor() :
             name,
             portions,
             price,
-            type,
             weight,
-            cookerId,
             lunchId,
             images
         )

@@ -37,7 +37,7 @@ class OrdersListAdapter(
                 context.getString(R.string.orders_number, ordersList[position].id)
             ordersStatus.text =
                 getOrdersStatusNameByOrdersStatus(context, ordersList[position].status)
-            ordersSum.text = context.getString(R.string.orders_sum, 400) //TODO
+            ordersSum.text = context.getString(R.string.orders_sum, 400.toString()) //TODO
             ordersCreatedTime.text = ordersList[position].address.createdAt //TODO
             ordersDeliveryType.text = "Самовывоз" //TODO
 

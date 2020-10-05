@@ -45,9 +45,7 @@ class OrderDetailsViewModel @Inject constructor(
                 1,
                 500,
                 "",
-                "",
                 "2",
-                "0",
                 imagesList
             )
         )
@@ -63,9 +61,7 @@ class OrderDetailsViewModel @Inject constructor(
                 5,
                 500,
                 "",
-                "",
                 "2",
-                "0",
                 imagesList
             )
         )
@@ -81,9 +77,7 @@ class OrderDetailsViewModel @Inject constructor(
                 2,
                 500,
                 "",
-                "",
                 "2",
-                "0",
                 imagesList2
             )
         )

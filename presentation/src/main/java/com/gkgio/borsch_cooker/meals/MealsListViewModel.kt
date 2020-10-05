@@ -3,80 +3,111 @@ package com.gkgio.borsch_cooker.meals
 import androidx.lifecycle.MutableLiveData
 import com.gkgio.borsch_cooker.base.BaseScreensNavigator
 import com.gkgio.borsch_cooker.base.BaseViewModel
+import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
+import com.gkgio.borsch_cooker.ext.nonNullValue
+import com.gkgio.borsch_cooker.utils.events.LunchesListChanged
+import com.gkgio.borsch_cooker.utils.events.MealsListChanged
 import com.gkgio.domain.analytics.AnalyticsRepository
+import com.gkgio.domain.meals.MealsUseCase
 import ru.terrakok.cicerone.Router
+import timber.log.Timber
 import javax.inject.Inject
 
 class MealsListViewModel @Inject constructor(
     private val router: Router,
     private val analyticsRepository: AnalyticsRepository,
+    private val mealsUseCase: MealsUseCase,
+    private val mealsItemUiTransformer: MealsItemUiTransformer,
+    private val lunchesItemUiTransformer: LunchesItemUiTransformer,
+    private val lunchesListChanged: LunchesListChanged,
+    private val mealsListChanged: MealsListChanged,
     baseScreensNavigator: BaseScreensNavigator
 ) : BaseViewModel(baseScreensNavigator) {
 
     val state = MutableLiveData<State>()
 
-    private val testList = mutableListOf<MealsItemUi>()
-
     fun init(mealsType: String) {
-        if (mealsType == "singles") {
-            testList.add(
-                MealsItemUi(
-                    1,
-                    "Шаурма на углях",
-                    "https://img.povar.ru/main/94/1c/00/85/shaurma_na_mangale-577820.JPG",
-                    340
-                )
-            )
-            testList.add(
-                MealsItemUi(
-                    2,
-                    "Шаурма на шаурме",
-                    "https://i2.wp.com/crispy.news/wp-content/uploads/2019/11/shaurma-svininoj.jpg",
-                    440
-                )
-            )
-            testList.add(
-                MealsItemUi(
-                    3,
-                    "Шаурма сырная",
-                    "https://eda.yandex/images/1380157/5813ba8cdb0c2a7fec400f8f455d6c63-400x400.jpeg",
-                    430
-                )
-            )
-        } else if(mealsType == "lunches") {
-            testList.add(
-                MealsItemUi(
-                    1,
-                    "Комбо шаурмы",
-                    "https://img.povar.ru/main/94/1c/00/85/shaurma_na_mangale-577820.JPG",
-                    740
-                )
-            )
-            testList.add(
-                MealsItemUi(
-                    2,
-                    "Шавернутая шаверма",
-                    "https://i2.wp.com/crispy.news/wp-content/uploads/2019/11/shaurma-svininoj.jpg",
-                    940
-                )
-            )
-            testList.add(
-                MealsItemUi(
-                    3,
-                    "Семья в комбо",
-                    "https://eda.yandex/images/1380157/5813ba8cdb0c2a7fec400f8f455d6c63-400x400.jpeg",
-                    230
-                )
-            )
-        }
         if (state.isNonInitialized()) {
-            state.value = State(testList, false, false)
+            state.value = State(isLoading = true, isInitialError = false)
+            if (mealsType == MealsConstants.MEALS_TYPE_SINGLES) {
+                onLoadMeals()
+                initMealsListChanged()
+            } else if (mealsType == MealsConstants.MEALS_TYPE_LUNCHES) {
+                onLoadLunches()
+                initLunchesListChanged()
+            }
         }
     }
 
+    private fun onLoadMeals() {
+        mealsUseCase
+            .loadMeals()
+            .applySchedulers()
+            .map { meals -> meals.map { mealsItemUiTransformer.transform(it) } }
+            .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
+            .subscribe(
+                {
+                    state.value = state.nonNullValue.copy(
+                        isLoading = false,
+                        mealsList = it,
+                        isInitialError = false
+                    )
+                },
+                { throwable ->
+                    Timber.e(throwable, "Error load meals")
+                    processThrowable(throwable)
+                    state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
+                }
+            )
+            .addDisposable()
+    }
+
+    private fun onLoadLunches() {
+        mealsUseCase
+            .loadLunches()
+            .applySchedulers()
+            .map { lunches -> lunches.map { lunchesItemUiTransformer.transform(it) } }
+            .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
+            .subscribe(
+                {
+                    state.value = state.nonNullValue.copy(
+                        isLoading = false,
+                        mealsList = it,
+                        isInitialError = false
+                    )
+                },
+                { throwable ->
+                    Timber.e(throwable, "Error load lunches")
+                    processThrowable(throwable)
+                    state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
+                }
+            )
+            .addDisposable()
+    }
+
+    private fun initLunchesListChanged() {
+        lunchesListChanged
+            .getEventResult()
+            .applySchedulers()
+            .subscribe {
+                onLoadLunches()
+            }
+            .addDisposable()
+    }
+
+    private fun initMealsListChanged() {
+        mealsListChanged
+            .getEventResult()
+            .applySchedulers()
+            .subscribe {
+                onLoadMeals()
+            }
+            .addDisposable()
+    }
+
     data class State(
-        val mealsList: List<MealsItemUi>,
+        val mealsList: List<MealsItemUi>? = null,
         val isLoading: Boolean,
         val isInitialError: Boolean
     )

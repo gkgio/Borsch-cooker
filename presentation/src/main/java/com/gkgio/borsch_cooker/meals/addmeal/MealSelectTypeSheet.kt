@@ -28,6 +28,9 @@ class MealSelectTypeSheet : BaseBottomSheetDialog() {
             lunchWarnTv.isVisible = !it
             lunchAddTv.isVisible = it
         }
+        viewModel.isInitialError.observeValue(this) {
+            //TODO Error load lunchList
+        }
         lunchAddTv.setDebounceOnClickListener {
             viewModel.addLunchClick()
             dismiss()
