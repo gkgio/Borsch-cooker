@@ -28,5 +28,5 @@ data class OrdersMealsDataResponse(
     @Json(name = "cooker_id")
     val lunchId: String,
     @Json(name = "images")
-    val images: List<String>
+    val images: List<String>?
 )

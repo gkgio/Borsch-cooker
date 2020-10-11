@@ -35,14 +35,16 @@ class OrdersMealsAdapter(
     override fun onBindViewHolder(holder: SyntheticViewHolder, position: Int) =
         with(holder.itemView) {
             val meal = mealsList[position]
-            Glide.with(ordersMealImageView)
-                .load(meal.images[0])
-                .placeholder(R.drawable.ic_image_placeholder)
-                .withCenterCropRoundedCorners(
-                    context,
-                    context.resources.getInteger(R.integer.corner_radius_small_image)
-                )
-                .into(ordersMealImageView)
+            if (!meal.images.isNullOrEmpty()) {
+                Glide.with(ordersMealImageView)
+                    .load(meal.images[0])
+                    .placeholder(R.drawable.ic_image_placeholder)
+                    .withCenterCropRoundedCorners(
+                        context,
+                        context.resources.getInteger(R.integer.corner_radius_small_image)
+                    )
+                    .into(ordersMealImageView)
+            }
             ordersMealName.text = mealsList[position].name
             ordersPortionsCount.isVisible = showPortions
             ordersPortionsCount.text =
