@@ -24,36 +24,51 @@ class AddMealEditDataViewModel @Inject constructor(
         mealIngredients.value = ingredientsList
         when (typeData) {
             AddMealDataConstants.MEAL_EDIT_TYPE_TITLE -> editInfo.value =
-                EditInfo(context.getString(R.string.meals_add_name), null)
+                EditInfo(
+                    context.getString(R.string.meals_add_name),
+                    null,
+                    context.getString(R.string.meals_add_hints_name)
+                )
             AddMealDataConstants.MEAL_EDIT_TYPE_PRICE -> editInfo.value =
                 EditInfo(
                     context.getString(R.string.meals_add_price),
-                    context.getString(R.string.meals_edit_price_value)
+                    context.getString(R.string.meals_edit_price_value),
+                    context.getString(R.string.meals_add_hints_price)
                 )
             AddMealDataConstants.LUNCH_EDIT_TYPE_PRICE -> editInfo.value =
                 EditInfo(
                     context.getString(R.string.meals_add_price),
-                    null
+                    null, context.getString(R.string.meals_add_hints_price)
                 )
             AddMealDataConstants.MEAL_EDIT_TYPE_WEIGHT -> editInfo.value =
                 EditInfo(
                     context.getString(R.string.meals_add_weight),
-                    context.getString(R.string.meals_edit_weight_value)
+                    context.getString(R.string.meals_edit_weight_value),
+                    context.getString(R.string.meals_add_hints_weight)
                 )
             AddMealDataConstants.MEAL_EDIT_TYPE_CALORIES -> editInfo.value =
                 EditInfo(
                     context.getString(R.string.meals_add_calories),
-                    context.getString(R.string.meals_edit_calories_value)
+                    context.getString(R.string.meals_edit_calories_value),
+                    context.getString(R.string.meals_add_hints_calories)
                 )
             AddMealDataConstants.MEAL_EDIT_TYPE_COOK_TIME -> editInfo.value =
                 EditInfo(
                     context.getString(R.string.meals_add_cook_time),
-                    context.getString(R.string.meals_edit_cook_time_value)
+                    context.getString(R.string.meals_edit_cook_time_value),
+                    context.getString(R.string.meals_add_hints_cook_time)
                 )
             AddMealDataConstants.MEAL_EDIT_TYPE_DESCRIPTION -> editInfo.value =
-                EditInfo(context.getString(R.string.meals_add_description), null)
+                EditInfo(
+                    context.getString(R.string.meals_add_description),
+                    null,
+                    context.getString(R.string.meals_add_hints_description)
+                )
             AddMealDataConstants.MEAL_EDIT_TYPE_INGREDIENTS -> editInfo.value =
-                EditInfo(context.getString(R.string.meals_add_ingredients), null)
+                EditInfo(
+                    context.getString(R.string.meals_add_ingredients),
+                    null
+                )
         }
     }
 
@@ -75,6 +90,7 @@ class AddMealEditDataViewModel @Inject constructor(
 
     data class EditInfo(
         val title: String,
-        val hint: String? = null
+        val hint: String? = null,
+        val hintEditText: String? = null
     )
 }

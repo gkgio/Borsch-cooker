@@ -95,6 +95,7 @@
     <string name="own_container_title">Магазин\nКонтейнеров</string>
     <string name="own_container_subtitle">Широкий ассортимент для всех блюд</string>
     <string name="own_container_buy">Докупить контейнеры</string>
+    <string name="own_enough_rate">Мало оценок</string>
 
     <string name="order_details_sum">Сумма заказа</string>
     <string name="order_details_list">Состав заказа</string>

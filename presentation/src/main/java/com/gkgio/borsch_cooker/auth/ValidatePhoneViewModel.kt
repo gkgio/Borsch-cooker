@@ -69,8 +69,7 @@ class ValidatePhoneViewModel @Inject constructor(
                     if (isFromOnboarding) {
                         router.newRootScreen(Screens.MainFragmentScreen)
                     } else {
-                        //TODO change to profile edit fragment
-                        router.backTo(Screens.MainFragmentScreen)
+                        router.backTo(Screens.ProfileFragmentScreen)
                     }
                 } else {
                     router.backTo(Screens.OnboardingFragmentScreen)
