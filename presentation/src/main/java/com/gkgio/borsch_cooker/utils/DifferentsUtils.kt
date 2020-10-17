@@ -138,6 +138,9 @@ fun getOrdersStatusNameByOrdersStatus(context: Context, ordersStatus: String): S
     }
 }
 
+fun convertValueToDecimal(value: String?): String =
+    String.format("%.1f", value?.toDouble())
+
 fun getImageUrl(image: String): String =
     "http://" + HostInterceptor.CONNECT_URL + ":3001" + image
 

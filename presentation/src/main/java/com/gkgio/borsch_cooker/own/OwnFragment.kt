@@ -3,14 +3,18 @@ package com.gkgio.borsch_cooker.own
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.*
+import com.gkgio.borsch_cooker.orders.OrdersMealsAdapter
 import kotlinx.android.synthetic.main.fragment_own.*
 
 
 class OwnFragment : BaseFragment<OwnViewModel>() {
+
+    private lateinit var activeMealsAdapter: OrdersMealsAdapter
 
     companion object {
         val TAG = OwnFragment::class.java.simpleName
@@ -24,6 +28,7 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initMealsRv()
         ownIsOnDuty.setDebounceOnClickListener {
             viewModel.setDutyStatus(ownIsOnDuty.isChecked)
         }
@@ -52,12 +57,6 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                         reviews.totalReviews
                     )
                     ownSubscriptionDate.setTextOrHide(subscriptionExpirationDate)
-
-                    if (activeMeals.isNotEmpty()) {
-                        //TODO
-                    } else {
-                        ownActiveMeals.isVisible = false
-                    }
                     if (reviews.totalReviews != 0) {
                         ownRatingPercentage.text = reviews.averageRating
                         ownRating.isVisible = true
@@ -68,6 +67,20 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                     }
                 }
             }
+            viewModel.activeMeals.observeValue(this) {
+                if (it.isNotEmpty()) {
+                    activeMealsAdapter.setMealsList(it)
+                } else {
+                    ownActiveMeals.isVisible = false
+                }
+            }
         }
+    }
+
+    private fun initMealsRv() {
+        activeMealsAdapter = OrdersMealsAdapter(listOf(), true) {}
+        ownActiveMealsRv.adapter = activeMealsAdapter
+        ownActiveMealsRv.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 }

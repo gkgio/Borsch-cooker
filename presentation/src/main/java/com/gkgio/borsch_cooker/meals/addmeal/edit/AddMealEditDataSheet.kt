@@ -110,6 +110,7 @@ class AddMealEditDataSheet : BaseBottomSheetDialog() {
             addMealSheetTitle.text = it.title
             addMealSheetValue.isVisible = !it.hint.equals(null)
             addMealSheetValue.text = it.hint
+            addMealSheetData.hint = it.hintEditText
         }
         viewModel.mealIngredients.observeValue(this) {
             mealIngredientsAdapter.setIngredientsList(it)

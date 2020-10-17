@@ -20,7 +20,6 @@ import com.gkgio.borsch_cooker.meals.MealsViewModel
 import com.gkgio.borsch_cooker.meals.addlunch.AddLunchViewModel
 import com.gkgio.borsch_cooker.meals.addlunch.SelectMealsViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.AddMealViewModel
-import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeSheet
 import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.edit.AddMealEditDataViewModel
 import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
