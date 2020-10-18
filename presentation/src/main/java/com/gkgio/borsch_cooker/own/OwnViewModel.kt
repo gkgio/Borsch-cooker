@@ -8,6 +8,7 @@ import com.gkgio.borsch_cooker.ext.isNonInitialized
 import com.gkgio.borsch_cooker.ext.nonNullValue
 import com.gkgio.borsch_cooker.navigation.Screens
 import com.gkgio.borsch_cooker.orders.OrdersMealsItemUi
+import com.gkgio.borsch_cooker.utils.events.ActiveMealChanged
 import com.gkgio.domain.analytics.AnalyticsRepository
 import com.gkgio.domain.own.OwnUseCase
 import ru.terrakok.cicerone.Router
@@ -19,6 +20,7 @@ class OwnViewModel @Inject constructor(
     private val analyticsRepository: AnalyticsRepository,
     private val ownDashboardUiTransformer: OwnDashboardUiTransformer,
     private val ownUseCase: OwnUseCase,
+    private val activeMealChanged: ActiveMealChanged,
     baseScreensNavigator: BaseScreensNavigator
 ) : BaseViewModel(baseScreensNavigator) {
 
@@ -29,10 +31,11 @@ class OwnViewModel @Inject constructor(
         if (state.isNonInitialized()) {
             state.value = State(isLoading = true, isInitialError = false)
             loadDashboardData()
+            initActiveMealsChanged()
         }
     }
 
-    fun onProfileClicked(){
+    fun onProfileClicked() {
         router.navigateTo(Screens.ProfileFragmentScreen)
     }
 
@@ -108,6 +111,10 @@ class OwnViewModel @Inject constructor(
             .addDisposable()
     }
 
+    fun onEditActiveMealsClick() {
+        router.navigateTo(Screens.ActiveMealsScreen)
+    }
+
     private fun loadDashboardData() {
         ownUseCase
             .loadDashboardData()
@@ -132,11 +139,24 @@ class OwnViewModel @Inject constructor(
             .addDisposable()
     }
 
-    private fun onUpdateActiveMeals(meals: List<OrdersMealsItemUi>, lunches: List<OrdersMealsItemUi>) {
+    private fun onUpdateActiveMeals(
+        meals: List<OrdersMealsItemUi>,
+        lunches: List<OrdersMealsItemUi>
+    ) {
         val activeMealsList = mutableListOf<OrdersMealsItemUi>()
         activeMealsList.addAll(meals)
         activeMealsList.addAll(lunches)
         activeMeals.value = activeMealsList
+    }
+
+    private fun initActiveMealsChanged() {
+        activeMealChanged
+            .getEventResult()
+            .applySchedulers()
+            .subscribe {
+                loadDashboardData()
+            }
+            .addDisposable()
     }
 
     data class State(

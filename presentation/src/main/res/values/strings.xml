@@ -97,6 +97,9 @@
     <string name="own_container_buy">Докупить контейнеры</string>
     <string name="own_enough_rate">Мало оценок</string>
 
+    <string name="active_meals_status">Статус активности</string>
+    <string name="active_meals_portions">Порций</string>
+
     <string name="order_details_sum">Сумма заказа</string>
     <string name="order_details_list">Состав заказа</string>
     <string name="order_details_chat">Чат с клиентом</string>

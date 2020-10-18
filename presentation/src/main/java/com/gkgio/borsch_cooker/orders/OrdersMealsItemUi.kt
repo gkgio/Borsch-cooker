@@ -12,5 +12,6 @@ data class OrdersMealsItemUi(
     val price: Int,
     val weight: String,
     val cookerId: String,
-    val images: List<String>?
+    val images: List<String>?,
+    val isLunch: Boolean? = null
 )
