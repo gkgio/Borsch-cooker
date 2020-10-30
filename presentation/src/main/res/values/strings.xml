@@ -19,6 +19,8 @@
     <string name="support_fragment_faq_title">FAQ</string>
     <string name="support_fragment_faq_url">https://borschapp.wixsite.com/for-cookers</string>
     <string name="support_fragment_telegram_package">org.telegram.messenger</string>
+    <string name="support_fragment_telegram_need_app">Для обращения в поддержку установите, пожалуйста, Telegram</string>
+    <string name="support_fragment_telegram_link">tg://resolve?domain=borsch_support</string>
     
     <string name="orders_fragment_title">Заказы</string>
     <string name="meals_fragment_title">Мои блюда</string>

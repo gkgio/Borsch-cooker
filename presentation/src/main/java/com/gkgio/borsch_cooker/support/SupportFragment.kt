@@ -34,11 +34,11 @@ class SupportFragment : BaseFragment<SupportViewModel>() {
             requireContext().openLink(getString(R.string.support_fragment_faq_url))
         }
         viewModel.openChat.observeValue(this) {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=borsch_support"))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.support_fragment_telegram_link)))
             startActivity(intent)
         }
         viewModel.chatNeedApp.observeValue(this) {
-            showError("Для обращения в поддержку установите, пожалуйста, Telegram")
+            showError(getString(R.string.support_fragment_telegram_need_app))
         }
     }
 }
