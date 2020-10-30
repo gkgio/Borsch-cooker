@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_bg"
@@ -55,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/tt_norms_medium"
-                    android:text="Чат с поддержкой"
+                    android:text="@string/support_fragment_chat_title"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -66,7 +65,7 @@
                     android:fontFamily="@font/tt_norms_medium"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="3dp"
-                    android:text="Поможем решить любые \n спорные вопросы 🚀🦸"
+                    android:text="@string/support_fragment_chat"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -83,7 +82,7 @@
                     android:paddingTop="12dp"
                     android:paddingEnd="20dp"
                     android:paddingBottom="12dp"
-                    android:text="Написать"
+                    android:text="@string/support_fragment_button_write"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:backgroundTint="@color/blue"
@@ -114,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/tt_norms_medium"
-                    android:text="FAQ"
+                    android:text="@string/support_fragment_faq_title"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -125,12 +124,12 @@
                     android:fontFamily="@font/tt_norms_medium"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="3dp"
-                    android:text="Собрали ответы на самые\nчастые вопросы 🙋🤔"
+                    android:text="@string/support_fragment_faq"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <Button
-                    android:id="@+id/openFac"
+                    android:id="@+id/openFaq"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -142,7 +141,7 @@
                     android:paddingTop="12dp"
                     android:paddingEnd="20dp"
                     android:paddingBottom="12dp"
-                    android:text="ЧИТАТЬ"
+                    android:text="@string/support_fragment_button_read"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:backgroundTint="@color/blue"

@@ -1,6 +1,7 @@
 package com.gkgio.borsch_cooker.ext
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.PorterDuff
@@ -13,9 +14,13 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
+import android.net.Uri
 import android.os.Build.VERSION_CODES
 import android.os.Build.VERSION
 import androidx.annotation.PluralsRes
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.browser.customtabs.CustomTabsSession
+import timber.log.Timber
 import java.util.*
 
 fun Context.getColorCompat(@ColorRes colorId: Int) = ContextCompat.getColor(this, colorId)
@@ -51,4 +56,31 @@ private fun Context.getResourcesByLocaleRu(): Resources {
     }
 
     return createConfigurationContext(configuration).resources
+}
+
+fun Context.openLink(url: String, customTabsSession: CustomTabsSession? = null): Boolean {
+    try {
+        CustomTabsIntent.Builder(customTabsSession)
+            .build()
+            .launchUrl(this, Uri.parse(url))
+        return true
+    } catch (throwable: Throwable) {
+        Timber.tag("Context::openLink").e(throwable, "CustomTabsIntent error on url: $url")
+    }
+
+    return openLinkInBrowser(url)
+}
+
+
+private fun Context.openLinkInBrowser(url: String): Boolean {
+    val intent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+        addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
+    }
+
+    if (intent.resolveActivity(packageManager) != null) {
+        startActivity(intent)
+        return true
+    }
+
+    return false
 }

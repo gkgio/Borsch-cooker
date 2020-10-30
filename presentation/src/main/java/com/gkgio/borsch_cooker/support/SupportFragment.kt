@@ -1,11 +1,17 @@
 package com.gkgio.borsch_cooker.support
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.createViewModel
+import com.gkgio.borsch_cooker.ext.observeValue
+import com.gkgio.borsch_cooker.ext.openLink
+import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
+import kotlinx.android.synthetic.main.fragment_support.*
 
 
 class SupportFragment : BaseFragment<SupportViewModel>() {
@@ -18,5 +24,21 @@ class SupportFragment : BaseFragment<SupportViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        openFaq.setDebounceOnClickListener {
+            viewModel.onFaqClick()
+        }
+        openChat.setDebounceOnClickListener {
+            viewModel.onChatClick()
+        }
+        viewModel.openFaq.observeValue(this) {
+            requireContext().openLink(getString(R.string.support_fragment_faq_url))
+        }
+        viewModel.openChat.observeValue(this) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=borsch_support"))
+            startActivity(intent)
+        }
+        viewModel.chatNeedApp.observeValue(this) {
+            showError("Для обращения в поддержку установите, пожалуйста, Telegram")
+        }
     }
 }
