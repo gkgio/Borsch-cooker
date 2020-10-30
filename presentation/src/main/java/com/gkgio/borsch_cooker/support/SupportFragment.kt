@@ -13,7 +13,6 @@ import com.gkgio.borsch_cooker.ext.openLink
 import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
 import kotlinx.android.synthetic.main.fragment_support.*
 
-
 class SupportFragment : BaseFragment<SupportViewModel>() {
 
     override fun getLayoutId(): Int = R.layout.fragment_support
