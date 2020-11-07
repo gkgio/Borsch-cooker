@@ -45,6 +45,10 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
             viewModel.onProfileClicked()
         }
 
+        changeActiveMealsTv.setDebounceOnClickListener {
+            viewModel.onEditActiveMealsClick()
+        }
+
         viewModel.state.observeValue(this) { state ->
             state.dashboard?.let { dashboard ->
                 with(dashboard) {
