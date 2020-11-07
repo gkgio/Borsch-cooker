@@ -116,6 +116,9 @@ dependencies {
     //phoneMask
     implementation deps.phoneMask
 
+    //browser
+    implementation deps.browser
+
     //constraintlayout
     implementation deps.constraintlayout
 
