@@ -1,6 +1,7 @@
 package com.gkgio.borsch_cooker.utils
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.text.format.DateFormat
 import android.view.View
 import android.view.animation.Animation
@@ -13,7 +14,6 @@ import com.gkgio.data.HostInterceptor
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 /**
  * @return dd month yyyy / dd month / СЕГОДНЯ
@@ -138,6 +138,9 @@ fun getOrdersStatusNameByOrdersStatus(context: Context, ordersStatus: String): S
     }
 }
 
+fun convertValueToDecimal(value: String?): String =
+    String.format("%.1f", value?.toDouble())
+
 fun getImageUrl(image: String): String =
     "http://" + HostInterceptor.CONNECT_URL + ":3001" + image
 
@@ -153,4 +156,13 @@ fun endlessJumpingViewAnimation(view: View) {
     animation.repeatMode = Animation.REVERSE
     animation.interpolator = LinearInterpolator()
     view.startAnimation(animation)
+}
+
+fun isPackageInstalled(packageName: String, packageManager: PackageManager): Boolean {
+    return try {
+        packageManager.getPackageInfo(packageName, 0)
+        true
+    } catch (e: PackageManager.NameNotFoundException) {
+        false
+    }
 }

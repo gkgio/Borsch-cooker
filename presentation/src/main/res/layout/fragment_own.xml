@@ -175,6 +175,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/changeActiveMealsTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -194,7 +195,11 @@
                 android:id="@+id/ownActiveMealsRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingEnd="20dp"
+                tools:ignore="RtlSymmetry" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -480,11 +485,11 @@
 
                     <LinearLayout
                         android:id="@+id/ownRating"
-                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -502,6 +507,7 @@
                             android:textSize="32sp"
                             tools:text="3,4" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/ownRatingEnough"
                         android:layout_width="wrap_content"
@@ -519,9 +525,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/tt_norms_regular"
+                            android:text="@string/own_enough_rate"
                             android:textColor="@color/grey_text7"
                             android:textSize="10sp"
-                            android:text="Мало оценок"
                             tools:ignore="SmallSp" />
                     </LinearLayout>
                 </LinearLayout>

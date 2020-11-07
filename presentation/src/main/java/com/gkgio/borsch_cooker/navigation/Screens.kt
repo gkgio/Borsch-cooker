@@ -1,6 +1,7 @@
 package com.gkgio.borsch_cooker.navigation
 
 import android.content.Context
+import androidx.fragment.app.Fragment
 import com.gkgio.borsch_cooker.auth.InputPhoneFragment
 import com.gkgio.borsch_cooker.auth.ValidatePhoneFragment
 import com.gkgio.borsch_cooker.main.MainFragment
@@ -11,6 +12,7 @@ import com.gkgio.borsch_cooker.onboarding.OnboardingFragment
 import com.gkgio.borsch_cooker.profile.avatar.InputAvatarFragment
 import com.gkgio.borsch_cooker.profile.name.InputNameFragment
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsFragment
+import com.gkgio.borsch_cooker.own.activemeals.ActiveMealsFragment
 import com.gkgio.borsch_cooker.profile.ProfileFragment
 import com.gkgio.borsch_cooker.profile.address.FindAddressFragment
 import com.gkgio.borsch_cooker.support.SupportFragment
@@ -61,6 +63,10 @@ object Screens {
 
     object OnboardingFragmentScreen : SupportAppScreen() {
         override fun getFragment() = OnboardingFragment()
+    }
+
+    object ActiveMealsScreen : SupportAppScreen() {
+        override fun getFragment(): Fragment = ActiveMealsFragment()
     }
 
     class InputPhoneFragmentScreen(

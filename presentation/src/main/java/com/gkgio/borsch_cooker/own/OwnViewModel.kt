@@ -7,6 +7,8 @@ import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
 import com.gkgio.borsch_cooker.ext.nonNullValue
 import com.gkgio.borsch_cooker.navigation.Screens
+import com.gkgio.borsch_cooker.orders.OrdersMealsItemUi
+import com.gkgio.borsch_cooker.utils.events.ActiveMealChanged
 import com.gkgio.domain.analytics.AnalyticsRepository
 import com.gkgio.domain.own.OwnUseCase
 import ru.terrakok.cicerone.Router
@@ -18,19 +20,22 @@ class OwnViewModel @Inject constructor(
     private val analyticsRepository: AnalyticsRepository,
     private val ownDashboardUiTransformer: OwnDashboardUiTransformer,
     private val ownUseCase: OwnUseCase,
+    private val activeMealChanged: ActiveMealChanged,
     baseScreensNavigator: BaseScreensNavigator
 ) : BaseViewModel(baseScreensNavigator) {
 
     val state = MutableLiveData<State>()
+    val activeMeals = MutableLiveData<List<OrdersMealsItemUi>>()
 
     init {
         if (state.isNonInitialized()) {
             state.value = State(isLoading = true, isInitialError = false)
             loadDashboardData()
+            initActiveMealsChanged()
         }
     }
 
-    fun onProfileClicked(){
+    fun onProfileClicked() {
         router.navigateTo(Screens.ProfileFragmentScreen)
     }
 
@@ -47,6 +52,7 @@ class OwnViewModel @Inject constructor(
                         dashboard = it,
                         isInitialError = false
                     )
+                    onUpdateActiveMeals(it.activeMeals, it.activeLunches)
                 },
                 { throwable ->
                     Timber.e(throwable, "Error send duty status request")
@@ -70,6 +76,7 @@ class OwnViewModel @Inject constructor(
                         dashboard = it,
                         isInitialError = false
                     )
+                    onUpdateActiveMeals(it.activeMeals, it.activeLunches)
                 },
                 { throwable ->
                     Timber.e(throwable, "Error send delivery status request")
@@ -93,6 +100,7 @@ class OwnViewModel @Inject constructor(
                         dashboard = it,
                         isInitialError = false
                     )
+                    onUpdateActiveMeals(it.activeMeals, it.activeLunches)
                 },
                 { throwable ->
                     Timber.e(throwable, "Error send pickup status request")
@@ -101,6 +109,10 @@ class OwnViewModel @Inject constructor(
                 }
             )
             .addDisposable()
+    }
+
+    fun onEditActiveMealsClick() {
+        router.navigateTo(Screens.ActiveMealsScreen)
     }
 
     private fun loadDashboardData() {
@@ -116,6 +128,7 @@ class OwnViewModel @Inject constructor(
                         dashboard = it,
                         isInitialError = false
                     )
+                    onUpdateActiveMeals(it.activeMeals, it.activeLunches)
                 },
                 { throwable ->
                     Timber.e(throwable, "Error send dashboard request")
@@ -126,10 +139,31 @@ class OwnViewModel @Inject constructor(
             .addDisposable()
     }
 
+    private fun onUpdateActiveMeals(
+        meals: List<OrdersMealsItemUi>,
+        lunches: List<OrdersMealsItemUi>
+    ) {
+        val activeMealsList = mutableListOf<OrdersMealsItemUi>()
+        activeMealsList.addAll(meals)
+        activeMealsList.addAll(lunches)
+        activeMeals.value = activeMealsList
+    }
+
+    private fun initActiveMealsChanged() {
+        activeMealChanged
+            .getEventResult()
+            .applySchedulers()
+            .subscribe {
+                loadDashboardData()
+            }
+            .addDisposable()
+    }
+
     data class State(
         val dashboard: OwnDashboardUi? = null,
         val isLoading: Boolean,
-        val isInitialError: Boolean
+        val isInitialError: Boolean,
+        val activeMeals: List<OrdersMealsItemUi>? = null
     )
 
 }

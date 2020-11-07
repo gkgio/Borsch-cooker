@@ -11,6 +11,17 @@
     <string name="theme_system">Системная тема</string>
 
     <string name="support_fragment_title">Помощь</string>
+    <string name="support_fragment_button_read">ЧИТАТЬ</string>
+    <string name="support_fragment_button_write">НАПИСАТЬ</string>
+    <string name="support_fragment_faq">Собрали ответы на самые\nчастые вопросы 🙋🤔</string>
+    <string name="support_fragment_chat">Поможем решить любые \n спорные вопросы 🚀🦸</string>
+    <string name="support_fragment_chat_title">Чат с поддержкой</string>
+    <string name="support_fragment_faq_title">FAQ</string>
+    <string name="support_fragment_faq_url">https://borschapp.wixsite.com/for-cookers</string>
+    <string name="support_fragment_telegram_package">org.telegram.messenger</string>
+    <string name="support_fragment_telegram_need_app">Для обращения в поддержку установите, пожалуйста, Telegram</string>
+    <string name="support_fragment_telegram_link">tg://resolve?domain=borsch_support</string>
+    
     <string name="orders_fragment_title">Заказы</string>
     <string name="meals_fragment_title">Мои блюда</string>
 
@@ -95,6 +106,10 @@
     <string name="own_container_title">Магазин\nКонтейнеров</string>
     <string name="own_container_subtitle">Широкий ассортимент для всех блюд</string>
     <string name="own_container_buy">Докупить контейнеры</string>
+    <string name="own_enough_rate">Мало оценок</string>
+
+    <string name="active_meals_status">Статус активности</string>
+    <string name="active_meals_portions">Порций</string>
 
     <string name="order_details_sum">Сумма заказа</string>
     <string name="order_details_list">Состав заказа</string>

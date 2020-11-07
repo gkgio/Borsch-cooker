@@ -20,7 +20,6 @@ import com.gkgio.borsch_cooker.meals.MealsViewModel
 import com.gkgio.borsch_cooker.meals.addlunch.AddLunchViewModel
 import com.gkgio.borsch_cooker.meals.addlunch.SelectMealsViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.AddMealViewModel
-import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeSheet
 import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.edit.AddMealEditDataViewModel
 import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
@@ -29,6 +28,7 @@ import com.gkgio.borsch_cooker.profile.name.InputNameViewModel
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsViewModel
 import com.gkgio.borsch_cooker.orders.OrdersListViewModel
 import com.gkgio.borsch_cooker.orders.OrdersViewModel
+import com.gkgio.borsch_cooker.own.activemeals.ActiveMealsViewModel
 import com.gkgio.borsch_cooker.profile.ProfileViewModel
 import com.gkgio.borsch_cooker.profile.address.FindAddressViewModel
 import com.gkgio.borsch_cooker.support.SupportViewModel
@@ -88,6 +88,7 @@ interface AppComponent {
     val profileViewModel: ProfileViewModel
     val addLunchViewModel: AddLunchViewModel
     val selectMealsViewModel: SelectMealsViewModel
+    val activeMealsViewModel: ActiveMealsViewModel
 
     val context: Context
     val moshi: Moshi
