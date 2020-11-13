@@ -98,15 +98,12 @@
 
                     tools:text="Gio Rgi" />
 
-                <TextView
+                <Button
                     android:id="@+id/editNameTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/SmallButton"
+                    android:layout_gravity="center"
                     android:layout_marginStart="12dp"
-                    android:background="@drawable/bg_rounded_grey_button"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:text="@string/data_edit"
-                    android:textColor="@color/blue" />
+                    android:text="@string/data_edit" />
 
             </LinearLayout>
 
@@ -141,15 +138,12 @@
 
                     tools:text="Gio Rgi" />
 
-                <TextView
+                <Button
                     android:id="@+id/editPhoneTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/SmallButton"
+                    android:layout_gravity="center"
                     android:layout_marginStart="12dp"
-                    android:background="@drawable/bg_rounded_grey_button"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:text="@string/data_edit"
-                    android:textColor="@color/blue" />
+                    android:text="@string/data_edit" />
 
             </LinearLayout>
 
@@ -184,15 +178,12 @@
 
                     tools:text="Gio Rgi" />
 
-                <TextView
+                <Button
                     android:id="@+id/editAddressTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/SmallButton"
+                    android:layout_gravity="center"
                     android:layout_marginStart="12dp"
-                    android:background="@drawable/bg_rounded_grey_button"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:text="@string/data_edit"
-                    android:textColor="@color/blue" />
+                    android:text="@string/data_edit" />
 
             </LinearLayout>
 

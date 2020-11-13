@@ -150,7 +150,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginStart="16dp" />
+                            android:layout_marginStart="16dp"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -174,21 +175,14 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/changeActiveMealsTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/SmallButton"
                     android:layout_gravity="center"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_rounded_button_blue"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:paddingStart="12dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="4dp"
+                    android:backgroundTint="@color/blue"
                     android:text="@string/data_edit"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -271,7 +265,8 @@
                             android:id="@+id/ownIsPickupAvailable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp" />
+                            android:layout_marginEnd="8dp"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -300,7 +295,8 @@
                             android:id="@+id/ownIsDeliveryAvailable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp" />
+                            android:layout_marginEnd="8dp"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -589,21 +585,14 @@
                             app:srcCompat="@drawable/ic_food_container" />
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <Button
+                        style="@style/SmallButton"
                         android:layout_gravity="center"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="20dp"
-                        android:background="@drawable/bg_rounded_button_blue"
-                        android:fontFamily="@font/tt_norms_medium"
-                        android:paddingStart="12dp"
-                        android:paddingTop="4dp"
-                        android:paddingEnd="12dp"
-                        android:paddingBottom="4dp"
+                        android:backgroundTint="@color/blue"
                         android:text="@string/own_container_buy"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
