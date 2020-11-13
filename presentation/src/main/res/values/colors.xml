@@ -19,8 +19,9 @@
     <color name="btn_color_grey">#ececec</color>
 
     <color name="blue_text">#595bd4</color>
+    <color name="grey_text8">#8b8b8b</color>
     <color name="grey_text7">#c3c3c3</color>
-    <color name="grey_text_6">#7b7b7b</color>
+    <color name="grey_text6">#7b7b7b</color>
     <color name="grey_text5">#8f8e92</color>
     <color name="grey_text4">#afafaf</color>
     <color name="grey_text3">#939393</color>
@@ -46,6 +47,7 @@
     <color name="red2">#e02020</color>
     <color name="red2_8">#14E02020</color>
     <color name="orange">#fa6400</color>
+    <color name="orange_8">#14FA6400</color>
 
     <color name="white">#FFFFFF</color>
     <color name="white_2">#05ffffff</color>

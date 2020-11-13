@@ -7,6 +7,8 @@ import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
 import com.gkgio.borsch_cooker.ext.nonNullValue
 import com.gkgio.borsch_cooker.navigation.Screens
+import com.gkgio.borsch_cooker.orders.OrdersAddressItemUi
+import com.gkgio.borsch_cooker.orders.OrdersListItemUi
 import com.gkgio.borsch_cooker.orders.OrdersMealsItemUi
 import com.gkgio.borsch_cooker.utils.events.ActiveMealChanged
 import com.gkgio.domain.analytics.AnalyticsRepository
@@ -35,8 +37,9 @@ class OwnViewModel @Inject constructor(
         }
     }
 
-    fun onProfileClicked() {
-        router.navigateTo(Screens.ProfileFragmentScreen)
+    fun onProfileClicked(){
+        router.navigateTo(Screens.OrderOfferFragmentScreen("how deep is "))
+        //router.navigateTo(Screens.ProfileFragmentScreen)
     }
 
     fun setDutyStatus(isOnDuty: Boolean) {

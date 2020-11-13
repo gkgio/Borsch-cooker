@@ -359,7 +359,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/tt_norms_bold"
                             android:text="@string/own_last_7_days"
-                            android:textColor="@color/grey_text_6"
+                            android:textColor="@color/grey_text6"
                             android:textSize="13sp" />
 
                         <ImageView
@@ -418,7 +418,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/tt_norms_bold"
                             android:text="@string/own_last_7_days"
-                            android:textColor="@color/grey_text_6"
+                            android:textColor="@color/grey_text6"
                             android:textSize="13sp" />
 
                         <ImageView
@@ -478,7 +478,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
                             android:fontFamily="@font/tt_norms_bold"
-                            android:textColor="@color/grey_text_6"
+                            android:textColor="@color/grey_text6"
                             android:textSize="13sp"
                             tools:text="24 отзыва" />
                     </LinearLayout>
@@ -576,7 +576,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/tt_norms_bold"
                                 android:text="@string/own_container_subtitle"
-                                android:textColor="@color/grey_text_6"
+                                android:textColor="@color/grey_text6"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
