@@ -40,6 +40,14 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
                     nameTv.text = name
 
                     phoneTv.text = phone
+
+                    address?.let {
+                        val block =
+                            if (it.block != null) "корпус" + it.block else null
+                        val address =
+                            "${it.city ?: ""}  ${it.street}  ${it.house} ${block ?: ""}"
+                        addressTv.text = address
+                    }
                 }
             }
         }

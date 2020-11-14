@@ -4,7 +4,9 @@ import com.gkgio.data.BaseTransformer
 import com.gkgio.domain.auth.Cooker
 import javax.inject.Inject
 
-class UserToResponseTransformer @Inject constructor() :
+class UserToResponseTransformer @Inject constructor(
+    private val addressToResponseTransformer: AddressToResponseTransformer
+) :
     BaseTransformer<Cooker, UserResponse> {
 
     override fun transform(data: Cooker) = with(data) {
@@ -19,7 +21,8 @@ class UserToResponseTransformer @Inject constructor() :
             firstName,
             lastName,
             phone,
-            avatarUrl
+            avatarUrl,
+            address?.let { addressToResponseTransformer.transform(it) }
         )
     }
 }

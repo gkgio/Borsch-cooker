@@ -46,6 +46,7 @@
                 android:fontFamily="@font/tt_norms_regular"
                 android:hint="@string/input_name_name"
                 android:importantForAutofill="no"
+                android:inputType="textCapSentences"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor,TextFields" />
@@ -67,6 +68,7 @@
                 android:fontFamily="@font/tt_norms_regular"
                 android:hint="@string/input_name_second"
                 android:importantForAutofill="no"
+                android:inputType="textCapSentences"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor,TextFields" />
