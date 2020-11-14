@@ -1,5 +1,6 @@
 package com.gkgio.data.auth
 
+import com.gkgio.data.address.adding.AddressResponse
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -26,5 +27,7 @@ data class UserResponse(
     @Json(name = "phone")
     val phone: String?,
     @Json(name = "avatar_url")
-    val avatarUrl: String?
+    val avatarUrl: String?,
+    @Json(name = "address")
+    val address: AddressResponse?
 )

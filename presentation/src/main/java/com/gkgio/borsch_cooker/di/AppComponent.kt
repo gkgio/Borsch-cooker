@@ -28,6 +28,7 @@ import com.gkgio.borsch_cooker.profile.name.InputNameViewModel
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsViewModel
 import com.gkgio.borsch_cooker.orders.OrdersListViewModel
 import com.gkgio.borsch_cooker.orders.OrdersViewModel
+import com.gkgio.borsch_cooker.orders.chat.OrderChatViewModel
 import com.gkgio.borsch_cooker.own.activemeals.ActiveMealsViewModel
 import com.gkgio.borsch_cooker.orders.offer.OrderOfferViewModel
 import com.gkgio.borsch_cooker.orders.offer.sheet.DeliverySheetViewModel
@@ -95,6 +96,7 @@ interface AppComponent {
     val orderOfferViewModel: OrderOfferViewModel
     val deliverySheetViewModel: DeliverySheetViewModel
     val mealsSheetViewModel: MealsSheetViewModel
+    val orderChatViewModel: OrderChatViewModel
 
     val context: Context
     val moshi: Moshi

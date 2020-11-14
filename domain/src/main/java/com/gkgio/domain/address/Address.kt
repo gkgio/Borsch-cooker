@@ -1,7 +1,7 @@
 package com.gkgio.domain.address
 
 data class Address(
-    val id: String?,
+    val id: String,
     val city: String?,
     val country: String?,
     val flat: String?,

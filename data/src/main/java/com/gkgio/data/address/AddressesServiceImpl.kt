@@ -2,6 +2,8 @@ package com.gkgio.data.address
 
 import com.gkgio.data.address.adding.AddressAddingDataRequest
 import com.gkgio.data.address.adding.AddressAddingDataRequestTransformer
+import com.gkgio.data.address.suggestions.GeoSuggestionsDataRequest
+import com.gkgio.data.address.suggestions.GeoSuggestionsDataRequestTransformer
 import com.gkgio.data.address.suggestions.GeoSuggestionsListResponse
 import com.gkgio.data.address.suggestions.GeoSuggestionsListResponseTransformer
 import com.gkgio.data.base.BaseService
@@ -16,15 +18,19 @@ import javax.inject.Inject
 
 class AddressesServiceImpl @Inject constructor(
     private val addressServiceApi: AddressServiceApi,
+    private val geoSuggestionsDataRequestTransformer: GeoSuggestionsDataRequestTransformer,
     private val geoSuggestionsListResponseTransformer: GeoSuggestionsListResponseTransformer,
     private val addressAddingDataRequestTransformer: AddressAddingDataRequestTransformer,
     serverExceptionTransformer: ServerExceptionTransformer
 ) : BaseService(serverExceptionTransformer), AddressesService {
 
-    override fun loadGeoSuggestions(query: String): Single<GeoSuggestionsList> =
+    override fun loadGeoSuggestions(geoSuggestionsRequest: GeoSuggestionsRequest): Single<GeoSuggestionsList> =
         executeRequest(
-            addressServiceApi.getGeoSuggestions(query)
-                .map { geoSuggestionsListResponseTransformer.transform(it) }
+            addressServiceApi.getGeoSuggestions(
+                geoSuggestionsDataRequestTransformer.transform(
+                    geoSuggestionsRequest
+                )
+            ).map { geoSuggestionsListResponseTransformer.transform(it) }
         )
 
     override fun addSelectedAddress(addressAddingRequest: AddressAddingRequest): Completable =
@@ -38,11 +44,9 @@ class AddressesServiceImpl @Inject constructor(
 
     interface AddressServiceApi {
         @POST("geo/suggestions")
-        fun getGeoSuggestions(
-            @Query("query") query: String
-        ): Single<GeoSuggestionsListResponse>
+        fun getGeoSuggestions(@Body geoSuggestionsDataRequest: GeoSuggestionsDataRequest): Single<GeoSuggestionsListResponse>
 
-        @POST("geo/get_address")
+        @POST("cooker/addresses/add")
         fun addSelectedAddress(@Body addressAddingDataRequest: AddressAddingDataRequest): Completable
     }
 

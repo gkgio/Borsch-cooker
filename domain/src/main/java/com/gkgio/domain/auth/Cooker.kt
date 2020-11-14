@@ -1,5 +1,7 @@
 package com.gkgio.domain.auth
 
+import com.gkgio.domain.address.Address
+
 
 data class Cooker(
     val email: String?,
@@ -12,5 +14,6 @@ data class Cooker(
     val firstName: String?,
     val lastName: String?,
     val phone: String?,
-    val avatarUrl: String?
+    val avatarUrl: String?,
+    val address: Address?
 )

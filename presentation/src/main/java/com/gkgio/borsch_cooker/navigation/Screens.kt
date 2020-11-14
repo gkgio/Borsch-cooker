@@ -13,6 +13,7 @@ import com.gkgio.borsch_cooker.profile.avatar.InputAvatarFragment
 import com.gkgio.borsch_cooker.profile.name.InputNameFragment
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsFragment
 import com.gkgio.borsch_cooker.orders.OrdersListItemUi
+import com.gkgio.borsch_cooker.orders.chat.OrderChatFragment
 import com.gkgio.borsch_cooker.own.activemeals.ActiveMealsFragment
 import com.gkgio.borsch_cooker.orders.offer.OrderOfferFragment
 import com.gkgio.borsch_cooker.profile.ProfileFragment
@@ -103,6 +104,16 @@ object Screens {
     }
 
     class OrderOfferFragmentScreen(private val order: String) : SupportAppScreen() {
-        override fun getFragment() = OrderOfferFragment.newInstance(order)
+        override fun getFragment() = OrderOfferFragment.newInstance(order) }
+
+    class OrderChatFragmentScreen(
+        private val orderId: String,
+        private val cookerId: String
+    ) : SupportAppScreen() {
+        override fun getFragment() = OrderChatFragment.newInstance(
+            orderId = orderId,
+            userId = cookerId
+        )
     }
+    
 }

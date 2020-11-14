@@ -2,17 +2,31 @@ package com.gkgio.borsch_cooker.notification
 
 import android.app.PendingIntent
 import android.content.Intent
+import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.main.LaunchActivity
+import com.gkgio.domain.auth.AuthUseCase
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import timber.log.Timber
+import javax.inject.Inject
 
 class NotificationService : FirebaseMessagingService() {
     private val TAG = NotificationService::class.java.simpleName
 
+    @Inject
+    lateinit var authUseCase: AuthUseCase
+
     override fun onNewToken(token: String) {
         super.onNewToken(token)
 
-        //send registration to Server
+        authUseCase.sendPushToken(token)
+            .applySchedulers()
+            .subscribe({
+
+            }, {
+                Timber.e(it)
+            })
+
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {

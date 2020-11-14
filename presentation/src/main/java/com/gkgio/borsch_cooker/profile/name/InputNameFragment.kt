@@ -27,6 +27,10 @@ class InputNameFragment : BaseFragment<InputNameViewModel>() {
             progress.isVisible = it
         }
 
+        iconBack.setDebounceOnClickListener {
+            viewModel.onBackClick()
+        }
+
         saveBtn.setDebounceOnClickListener {
             if (nameEditText.text.notIsNullOrBlank() && secondNameEditText.text.notIsNullOrBlank()) {
                 viewModel.onSaveNameClicked(

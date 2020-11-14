@@ -40,6 +40,14 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
                     nameTv.text = name
 
                     phoneTv.text = phone
+
+                    address?.let {
+                        val block =
+                            if (it.block != null) "корпус" + it.block else null
+                        val address =
+                            "${it.city ?: ""}  ${it.street}  ${it.house} ${block ?: ""}"
+                        addressTv.text = address
+                    }
                 }
             }
         }
@@ -60,11 +68,23 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
             viewModel.onChangePhoneClicked()
         }
 
+        editPhoneTv.setDebounceOnClickListener {
+            viewModel.onChangePhoneClicked()
+        }
+
         nameTv.setDebounceOnClickListener {
             viewModel.onChangeNameClicked()
         }
 
+        editNameTv.setDebounceOnClickListener {
+            viewModel.onChangeNameClicked()
+        }
+
         addressTv.setDebounceOnClickListener {
+            viewModel.onChangeAddressClicked()
+        }
+
+        editAddressTv.setDebounceOnClickListener {
             viewModel.onChangeAddressClicked()
         }
     }

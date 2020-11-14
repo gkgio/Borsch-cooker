@@ -29,7 +29,12 @@ class FindAddressViewModel @Inject constructor(
 
     fun onSearchTextChanged(searchText: String) {
         loadAddressesUseCase
-            .loadGeoSuggestions(searchText)
+            .loadGeoSuggestions(
+                GeoSuggestionsRequest(
+                    query = searchText,
+                    count = 8
+                )
+            )
             .applySchedulers()
             .doOnSubscribe { state.value = state.nonNullValue.copy(isProgress = true) }
             .subscribe({
@@ -43,7 +48,7 @@ class FindAddressViewModel @Inject constructor(
     }
 
     fun onAddressSelectClick(geoSuggestion: GeoSuggestion) {
-        /*loadAddressesUseCase
+        loadAddressesUseCase
             .loadGeoSuggestions(
                 GeoSuggestionsRequest(
                     query = geoSuggestion.value
@@ -51,41 +56,35 @@ class FindAddressViewModel @Inject constructor(
             ).flatMapCompletable { geoSuggestionList ->
                 loadAddressesUseCase
                     .addNewClientAddress(
-                        AddressAddingRequest(
-                            geoSuggestionList.suggestions[0].data.city,
-                            geoSuggestionList.suggestions[0].data.country,
-                            null,
-                            geoSuggestionList.suggestions[0].data.house,
-                            Coordinates(
-                                geoSuggestionList.suggestions[0].data.geo_lat!!.toDouble(),
-                                geoSuggestionList.suggestions[0].data.geo_lon!!.toDouble()
-                            ),
-                            geoSuggestionList.suggestions[0].data.streetWithType,
-                            geoSuggestionList.suggestions[0].data.block
-                        )
+                        with(geoSuggestionList.suggestions[0].data) {
+                            AddressAddingRequest(
+                                city = city,
+                                country = country,
+                                flat = null,
+                                house = house,
+                                location = Coordinates(
+                                    geo_lat!!.toDouble(),
+                                    geo_lon!!.toDouble()
+                                ),
+                                street = streetWithType,
+                                block = block,
+                                region = region,
+                                cityArea = city_area,
+                                cityDistrict = city_district
+                            )
+                        }
                     )
             }
             .applySchedulers()
             .doOnSubscribe { state.value = state.nonNullValue.copy(isProgress = true) }
             .subscribe({
                 state.value = state.nonNullValue.copy(isProgress = false)
-                addressChangedEvent.onComplete(
-                    String.format(
-                        "%s, %s%s",
-                        geoSuggestion.data.streetWithType,
-                        geoSuggestion.data.house,
-                        if (geoSuggestion.data.block != null) ", ${geoSuggestion.data.block}" else ""
-                    )
-                )
-                if (isOpenFromOnboarding) {
-                    router.newRootScreen(Screens.MainFragmentScreen)
-                } else {
-                    router.backTo(Screens.MainFragmentScreen)
-                }
+                userProfileChanged.onComplete("")
+                onBackClick()
             }, { throwable ->
                 state.value = state.nonNullValue.copy(isProgress = false)
                 processThrowable(throwable)
-            }).addDisposable()*/
+            }).addDisposable()
 
     }
 

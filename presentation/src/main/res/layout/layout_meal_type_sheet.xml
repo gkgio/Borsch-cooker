@@ -68,21 +68,17 @@
                 android:textSize="16sp"
                 android:visibility="visible" />
 
-            <TextView
+            <Button
                 android:id="@+id/lunchAddTv"
+                style="@style/SmallButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/bg_rounded_button_blue"
-                android:fontFamily="@font/tt_norms_medium"
-                android:paddingStart="12dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="4dp"
+                android:backgroundTint="@color/blue"
                 android:text="@string/meals_select_type_create"
                 android:textColor="@color/white"
-                android:textSize="14sp"
                 android:visibility="gone" />
         </LinearLayout>
 
@@ -124,21 +120,17 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/mealAddTv"
+                style="@style/SmallButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/bg_rounded_button_blue"
-                android:fontFamily="@font/tt_norms_medium"
-                android:paddingStart="12dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="4dp"
+                android:backgroundTint="@color/blue"
                 android:text="@string/meals_select_type_create"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
