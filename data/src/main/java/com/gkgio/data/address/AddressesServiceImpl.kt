@@ -46,7 +46,7 @@ class AddressesServiceImpl @Inject constructor(
         @POST("geo/suggestions")
         fun getGeoSuggestions(@Body geoSuggestionsDataRequest: GeoSuggestionsDataRequest): Single<GeoSuggestionsListResponse>
 
-        @POST("geo/get_address")
+        @POST("cooker/addresses/add")
         fun addSelectedAddress(@Body addressAddingDataRequest: AddressAddingDataRequest): Completable
     }
 

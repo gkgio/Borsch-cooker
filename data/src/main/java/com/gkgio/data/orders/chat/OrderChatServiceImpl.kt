@@ -3,17 +3,18 @@ package com.gkgio.data.orders.chat
 import com.gkgio.data.base.BaseService
 import com.gkgio.data.exception.ServerExceptionTransformer
 import com.gkgio.domain.orders.chat.MessageChat
+import com.gkgio.domain.orders.chat.OrderChatService
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Path
 import javax.inject.Inject
 
-class ChatServiceImpl @Inject constructor(
-    private val chatServiceApi: ChatServiceApi,
+class OrderChatServiceImpl @Inject constructor(
+    private val chatServiceApi: OrderChatServiceApi,
     private val messagesChatResponseTransformer: MessagesChatResponseTransformer,
     serverExceptionTransformer: ServerExceptionTransformer
-) : BaseService(serverExceptionTransformer), ChatService {
+) : BaseService(serverExceptionTransformer), OrderChatService {
 
 
     override fun loadOrderChatMessages(orderId: String): Single<List<MessageChat>> = executeRequest(
@@ -34,7 +35,7 @@ class ChatServiceImpl @Inject constructor(
                 .map { messagesChatResponseTransformer.transform(it.message) }
         )
 
-    interface ChatServiceApi {
+    interface OrderChatServiceApi {
         @POST("orders/chat/join/{orderId}")
         fun loadOrderChatMessages(@Path("orderId") orderId: String): Single<OrderChatResponse>
 

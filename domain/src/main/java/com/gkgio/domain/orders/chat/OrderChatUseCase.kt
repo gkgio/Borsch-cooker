@@ -9,7 +9,7 @@ interface OrderChatUseCase {
 }
 
 class OrderChatUseCaseImpl @Inject constructor(
-    private val chatService: ChatService
+    private val chatService: OrderChatService
 ) : OrderChatUseCase {
 
     override fun loadOrderChatMessages(orderId: String): Single<List<MessageChat>> =
