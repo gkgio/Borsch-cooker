@@ -52,9 +52,11 @@ class ActiveMealsAdapter(private val itemClick: (id: String, action: Int, isActi
                 itemClick(meal.id, ActiveMealsFragment.ACTION_PLUS, null)
             }
             portionMinusIv.setDebounceOnClickListener {
-                portions--
-                portionCountTv.text = portions.toString()
-                itemClick(meal.id, ActiveMealsFragment.ACTION_MINUS, null)
+                if (portions > 0) {
+                    portions--
+                    portionCountTv.text = portions.toString()
+                    itemClick(meal.id, ActiveMealsFragment.ACTION_MINUS, null)
+                }
             }
         }
 

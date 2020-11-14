@@ -119,20 +119,12 @@
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/addMealEditTitleTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    style="@style/SmallButton"
+                    android:layout_gravity="center"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_rounded_grey_button"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:paddingStart="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="6dp"
-                    android:text="@string/data_edit"
-                    android:textColor="@color/blue" />
+                    android:text="@string/data_edit" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -175,20 +167,12 @@
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/addMealEditPriceTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    style="@style/SmallButton"
+                    android:layout_gravity="center"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_rounded_grey_button"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:paddingStart="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="6dp"
-                    android:text="@string/data_edit"
-                    android:textColor="@color/blue" />
+                    android:text="@string/data_edit" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -248,20 +232,12 @@
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/addMealEditWeightTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    style="@style/SmallButton"
+                    android:layout_gravity="center"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_rounded_grey_button"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:paddingStart="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="6dp"
-                    android:text="@string/data_edit"
-                    android:textColor="@color/blue" />
+                    android:text="@string/data_edit" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -319,20 +295,12 @@
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/addMealEditCookTimeTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    style="@style/SmallButton"
+                    android:layout_gravity="center"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_rounded_grey_button"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:paddingStart="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="6dp"
-                    android:text="@string/data_edit"
-                    android:textColor="@color/blue" />
+                    android:text="@string/data_edit" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -377,20 +345,12 @@
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/addMealEditCaloriesTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    style="@style/SmallButton"
+                    android:layout_gravity="center"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_rounded_grey_button"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:paddingStart="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="6dp"
-                    android:text="@string/data_edit"
-                    android:textColor="@color/blue" />
+                    android:text="@string/data_edit" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -435,20 +395,12 @@
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/addMealEditDescriptionTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    style="@style/SmallButton"
+                    android:layout_gravity="center"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_rounded_grey_button"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:paddingStart="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="6dp"
-                    android:text="@string/data_edit"
-                    android:textColor="@color/blue" />
+                    android:text="@string/data_edit" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -491,21 +443,14 @@
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/addMealAddIngredientsTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/SmallButton"
                     android:layout_gravity="center"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_rounded_button_blue"
-                    android:fontFamily="@font/tt_norms_medium"
-                    android:paddingStart="12dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="4dp"
-                    android:text="@string/meals_add_button"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:backgroundTint="@color/blue"
+                    android:text="@string/data_edit"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

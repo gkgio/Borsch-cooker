@@ -16,6 +16,7 @@ class ActiveMealsViewModel @Inject constructor(
     private val mealsUseCase: MealsUseCase,
     private val activeMealChanged: ActiveMealChanged,
     private val activeMealsUiTransformer: ActiveMealsUiTransformer,
+    private val activeLunchesUiTransformer: ActiveLunchesUiTransformer,
     screensNavigator: BaseScreensNavigator
 ) : BaseViewModel(screensNavigator) {
 
@@ -25,9 +26,11 @@ class ActiveMealsViewModel @Inject constructor(
         if (state.isNonInitialized()) {
             state.value = State(isLoading = false, isInitialError = false)
             uploadMeals()
-            uploadLunches()
+           // uploadLunches() TODO в первой итерации не нужно
         }
     }
+
+    //public
 
     fun onItemClick(id: String, action: Int, isActive: Boolean?) {
         when (action) {
@@ -37,6 +40,8 @@ class ActiveMealsViewModel @Inject constructor(
             ActiveMealsFragment.ACTION_MEAL_STATE -> onChangeMealState(id, isActive)
         }
     }
+
+    //private
 
     private fun plusPortionClick(id: String) {
         mealsUseCase
@@ -109,7 +114,26 @@ class ActiveMealsViewModel @Inject constructor(
     }
 
     private fun uploadLunches() {
-        //TODO
+        mealsUseCase
+            .loadLunches()
+            .map { meals -> meals.map { activeLunchesUiTransformer.transform(it) } }
+            .applySchedulers()
+            .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
+            .subscribe(
+                {
+                    state.value = state.nonNullValue.copy(
+                        isLoading = false,
+                        activeMeals = onUpdateActiveMeals(it, true),
+                        isInitialError = false
+                    )
+                },
+                { throwable ->
+                    Timber.e(throwable, "Error upload meals")
+                    processThrowable(throwable)
+                    state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
+                }
+            )
+            .addDisposable()
     }
 
     private fun onUpdateActiveMeals(

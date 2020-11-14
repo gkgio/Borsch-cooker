@@ -43,6 +43,26 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="SmallButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="fontFamily">@font/tt_norms_medium</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="backgroundTint">@color/grey_bg4</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
     <declare-styleable name="BorschBrandButton">
         <attr name="corner_radius" format="integer" />
         <attr name="padding_top_bottom_dp" format="integer" />
