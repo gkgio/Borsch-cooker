@@ -12,6 +12,7 @@ import com.gkgio.borsch_cooker.onboarding.OnboardingFragment
 import com.gkgio.borsch_cooker.profile.avatar.InputAvatarFragment
 import com.gkgio.borsch_cooker.profile.name.InputNameFragment
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsFragment
+import com.gkgio.borsch_cooker.orders.chat.OrderChatFragment
 import com.gkgio.borsch_cooker.own.activemeals.ActiveMealsFragment
 import com.gkgio.borsch_cooker.profile.ProfileFragment
 import com.gkgio.borsch_cooker.profile.address.FindAddressFragment
@@ -98,5 +99,15 @@ object Screens {
 
     object ProfileFragmentScreen : SupportAppScreen() {
         override fun getFragment() = ProfileFragment()
+    }
+
+    class OrderChatFragmentScreen(
+        private val orderId: String,
+        private val cookerId: String
+    ) : SupportAppScreen() {
+        override fun getFragment() = OrderChatFragment.newInstance(
+            orderId = orderId,
+            userId = cookerId
+        )
     }
 }

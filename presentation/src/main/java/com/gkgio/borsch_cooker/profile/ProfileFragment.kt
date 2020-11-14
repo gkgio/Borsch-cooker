@@ -60,11 +60,23 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
             viewModel.onChangePhoneClicked()
         }
 
+        editPhoneTv.setDebounceOnClickListener {
+            viewModel.onChangePhoneClicked()
+        }
+
         nameTv.setDebounceOnClickListener {
             viewModel.onChangeNameClicked()
         }
 
+        editNameTv.setDebounceOnClickListener {
+            viewModel.onChangeNameClicked()
+        }
+
         addressTv.setDebounceOnClickListener {
+            viewModel.onChangeAddressClicked()
+        }
+
+        editAddressTv.setDebounceOnClickListener {
             viewModel.onChangeAddressClicked()
         }
     }

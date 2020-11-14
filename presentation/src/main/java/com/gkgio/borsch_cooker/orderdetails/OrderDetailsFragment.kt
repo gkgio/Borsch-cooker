@@ -8,6 +8,7 @@ import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.createViewModel
 import com.gkgio.borsch_cooker.ext.observeValue
+import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
 import com.gkgio.borsch_cooker.orders.OrdersMealsAdapter
 import com.gkgio.borsch_cooker.utils.FragmentArgumentDelegate
 import kotlinx.android.synthetic.main.fragment_order_details.*
@@ -47,6 +48,10 @@ class OrderDetailsFragment : BaseFragment<OrderDetailsViewModel>() {
             viewModel.clickLeftIcon()
         }
         toolbar.titleTextView.text = getString(R.string.orders_number, orderId)
+
+        clientChatView.setDebounceOnClickListener {
+            viewModel.onClientChatClicked()
+        }
     }
 
     private fun initMealsRv() {

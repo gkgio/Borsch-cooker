@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.di.AppInjector
+import com.gkgio.borsch_cooker.ext.nonNullObserve
 import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.utils.DialogUtils
 import io.reactivex.disposables.CompositeDisposable
@@ -67,20 +68,20 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
     }
 
     private fun subscribeErrorEvents() {
-        viewModel.errorEvent.observeValue(this) {
+        viewModel.errorEvent.nonNullObserve(this) {
             showError(it ?: getString(R.string.default_error))
         }
 
-        viewModel.noInternetErrorEvent.observeValue(this) {
+        viewModel.noInternetErrorEvent.nonNullObserve(this) {
             showNetworkError(it ?: getString(R.string.default_error))
         }
 
 
-        viewModel.unsupportedVersionErrorEvent.observeValue(this) {
+        viewModel.unsupportedVersionErrorEvent.nonNullObserve(this) {
             showUnsupportedVersionError(it)
         }
 
-        viewModel.googleGmsApiNotConnectErrorEvent.observeValue(this) {
+        viewModel.googleGmsApiNotConnectErrorEvent.nonNullObserve(this) {
             showError(getString(R.string.api_not_connect_error))
         }
     }

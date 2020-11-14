@@ -6,6 +6,7 @@ import com.gkgio.borsch_cooker.base.BaseViewModel
 import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
 import com.gkgio.borsch_cooker.ext.nonNullValue
+import com.gkgio.borsch_cooker.navigation.Screens
 import com.gkgio.borsch_cooker.orders.OrdersAddressItemUi
 import com.gkgio.borsch_cooker.orders.OrdersListItemUi
 import com.gkgio.borsch_cooker.orders.OrdersListItemUiTransformer
@@ -139,6 +140,12 @@ class OrderDetailsViewModel @Inject constructor(
                 }
             )
             .addDisposable()
+    }
+
+    fun onClientChatClicked() {
+        with(state.nonNullValue.orderDetails) {
+            router.navigateTo(Screens.OrderChatFragmentScreen(orderId, cookerId))
+        }
     }
 
     fun clickLeftIcon() {

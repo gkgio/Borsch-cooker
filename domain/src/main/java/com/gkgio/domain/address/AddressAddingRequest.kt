@@ -7,5 +7,8 @@ data class AddressAddingRequest(
     val house: String?,
     val location: Coordinates,
     val street: String?,
-    val block: String?
+    val block: String?,
+    val cityArea: String?,
+    val region: String?,
+    val cityDistrict: String?
 )
