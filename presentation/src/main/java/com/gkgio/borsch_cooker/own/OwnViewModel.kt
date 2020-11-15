@@ -10,6 +10,7 @@ import com.gkgio.borsch_cooker.navigation.Screens
 import com.gkgio.borsch_cooker.orders.OrdersAddressItemUi
 import com.gkgio.borsch_cooker.orders.OrdersListItemUi
 import com.gkgio.borsch_cooker.orders.OrdersMealsItemUi
+import com.gkgio.borsch_cooker.utils.SingleLiveEvent
 import com.gkgio.borsch_cooker.utils.events.ActiveMealChanged
 import com.gkgio.domain.analytics.AnalyticsRepository
 import com.gkgio.domain.own.OwnUseCase
@@ -28,6 +29,7 @@ class OwnViewModel @Inject constructor(
 
     val state = MutableLiveData<State>()
     val activeMeals = MutableLiveData<List<OrdersMealsItemUi>>()
+    val buttonClicked = SingleLiveEvent<String>()
 
     init {
         if (state.isNonInitialized()) {
@@ -160,6 +162,10 @@ class OwnViewModel @Inject constructor(
                 loadDashboardData()
             }
             .addDisposable()
+    }
+
+    fun onButtonClicked(type: String) {
+        buttonClicked.value = type
     }
 
     data class State(
