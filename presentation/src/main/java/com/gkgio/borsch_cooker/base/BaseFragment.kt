@@ -1,5 +1,6 @@
 package com.gkgio.borsch_cooker.base
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,6 @@ import androidx.fragment.app.Fragment
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.nonNullObserve
-import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.utils.DialogUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -76,7 +76,6 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
             showNetworkError(it ?: getString(R.string.default_error))
         }
 
-
         viewModel.unsupportedVersionErrorEvent.nonNullObserve(this) {
             showUnsupportedVersionError(it)
         }
@@ -111,6 +110,24 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
                 }
             }
         )
+    }
+
+    protected fun showDialogWindow(
+        title: String,
+        body: String,
+        button: String = getString(R.string.dialog_success_button)
+    ) {
+        val builder = AlertDialog.Builder(requireActivity())
+        builder
+            .setTitle(title)
+            .setMessage(body)
+            .setPositiveButton(
+                button
+            ) { dialog, _ ->
+                dialog.cancel()
+            }
+        builder.create()
+        builder.show()
     }
 
     protected fun Disposable.addDisposable() {

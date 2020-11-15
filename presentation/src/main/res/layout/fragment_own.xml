@@ -28,6 +28,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="24dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/tt_norms_bold"
                     android:textColor="@color/black"
@@ -96,6 +97,7 @@
                             android:textSize="20sp" />
 
                         <TextView
+                            android:id="@+id/helpStatusTv"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:background="@drawable/bg_round_button_transparent"
@@ -213,6 +215,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/helpDeliveryTv"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_marginEnd="8dp"
@@ -586,6 +589,7 @@
                     </LinearLayout>
 
                     <Button
+                        android:id="@+id/buyContainers"
                         style="@style/SmallButton"
                         android:layout_gravity="center"
                         android:layout_marginTop="24dp"

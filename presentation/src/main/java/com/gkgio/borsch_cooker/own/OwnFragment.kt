@@ -18,6 +18,9 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
 
     companion object {
         val TAG = OwnFragment::class.java.simpleName
+        const val BUTTON_HELP_STATUS = "helpStatus"
+        const val BUTTON_HELP_DELIVERY = "helpDelivery"
+        const val BUTTON_BUY_CONTAINERS = "buyContainers"
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_own
@@ -77,6 +80,32 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                 } else {
                     ownActiveMeals.isVisible = false
                 }
+            }
+
+            viewModel.buttonClicked.observeValue(this) {
+                when (it) {
+                    BUTTON_HELP_STATUS -> showDialogWindow(
+                        getString(R.string.own_status),
+                        getString(R.string.dialog_help_status)
+                    )
+                    BUTTON_HELP_DELIVERY -> showDialogWindow(
+                        getString(R.string.own_delivery_title),
+                        getString(R.string.dialog_help_delivery)
+                    )
+                    BUTTON_BUY_CONTAINERS -> requireContext().openLink(getString(R.string.own_buy_containers_url))
+                }
+            }
+
+            helpStatusTv.setDebounceOnClickListener {
+                viewModel.onButtonClicked(BUTTON_HELP_STATUS)
+            }
+
+            helpDeliveryTv.setDebounceOnClickListener {
+                viewModel.onButtonClicked(BUTTON_HELP_DELIVERY)
+            }
+
+            buyContainers.setDebounceOnClickListener {
+                viewModel.onButtonClicked(BUTTON_BUY_CONTAINERS)
             }
         }
     }
