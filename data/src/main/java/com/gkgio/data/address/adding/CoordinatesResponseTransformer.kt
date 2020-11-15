@@ -9,8 +9,8 @@ class CoordinatesResponseTransformer @Inject constructor() :
 
     override fun transform(data: CoordinatesResponse) = with(data) {
         Coordinates(
-            lat,
-            lon
+            lat ?: 0.0,
+            lon ?: 0.0
         )
     }
 }
