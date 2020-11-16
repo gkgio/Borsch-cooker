@@ -21,7 +21,7 @@
     <string name="support_fragment_telegram_package">org.telegram.messenger</string>
     <string name="support_fragment_telegram_need_app">Для обращения в поддержку установите, пожалуйста, Telegram</string>
     <string name="support_fragment_telegram_link">tg://resolve?domain=borsch_support</string>
-    
+
     <string name="orders_fragment_title">Заказы</string>
     <string name="meals_fragment_title">Мои блюда</string>
 
@@ -102,7 +102,7 @@
     <string name="order_offer_address">Адрес</string>
     <string name="order_offer_dishes">Блюда</string>
     <string name="order_offer_DETAILS">ДЕТАЛИ</string>
-    
+
     <string name="own_welcome">Добрый день, %s!</string>
     <string name="own_profile">Профиль</string>
     <string name="own_status">Статус активности</string>
@@ -134,7 +134,7 @@
     <string name="order_details_ready_for_pickup">Готово к самовывозу</string>
     <string name="order_details_delivery_type">Тип доставки</string>
     <string name="order_details_button_hint">Нажмите для изменения статуса</string>
-    
+
     <string name="delivery_type_pickup">Самовывоз</string>
     <string name="delivery_type_courier">Доставка курьеров</string>
 

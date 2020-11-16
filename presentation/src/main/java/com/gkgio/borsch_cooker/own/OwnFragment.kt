@@ -73,6 +73,9 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                         ownRatingEnough.isVisible = true
                     }
                 }
+
+                if (dashboard.activityStatus)
+                    viewModel.onStartCatchOrders() else viewModel.onStopCatchOrders()
             }
             viewModel.activeMeals.observeValue(this) {
                 activeMealsAdapter.setMealsList(it)
@@ -108,11 +111,6 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                 viewModel.onButtonClicked(BUTTON_BUY_CONTAINERS)
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.onStartCatchOrders()
     }
 
     override fun onPause() {

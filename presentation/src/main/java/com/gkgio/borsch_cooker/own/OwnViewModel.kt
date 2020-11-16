@@ -46,6 +46,12 @@ class OwnViewModel @Inject constructor(
             state.value = State(isLoading = true, isInitialError = false)
             loadDashboardData()
             initActiveMealsChanged()
+        } else {
+            state.nonNullValue.dashboard.let { db ->
+                if (db != null) {
+                    if (db.activityStatus) onStartCatchOrders() else onStopCatchOrders()
+                }
+            }
         }
         initStartStopCatchOffers()
     }
@@ -137,23 +143,29 @@ class OwnViewModel @Inject constructor(
     }
 
     fun onStartCatchOrders() {
-        disposable?.dispose()
-        disposable = ordersUseCase
-            .loadNewOrdersData()
-            .repeatWhen { Single.timer(30, TimeUnit.SECONDS).repeat() }
-            .applySchedulers()
-            .map { orders ->
-                orders.map { ordersListItemUiTransformer.transform(it) }
-            }
-            .subscribe({
-                if (it.size > 1) {
-                    someOrderOffers.value = it
-                } else if (it.size == 1) {
-                    router.navigateTo(Screens.OrderOfferFragmentScreen(it.first()))
+        state.value.let { state ->
+            state?.dashboard.let { db ->
+                if (db != null && db.activityStatus) {
+                    disposable?.dispose()
+                    disposable = ordersUseCase
+                        .loadNewOrdersData()
+                        .repeatWhen { Single.timer(30, TimeUnit.SECONDS).repeat() }
+                        .applySchedulers()
+                        .map { orders ->
+                            orders.map { ordersListItemUiTransformer.transform(it) }
+                        }
+                        .subscribe({ list ->
+                            if (list.size > 1) {
+                                someOrderOffers.value = list
+                            } else if (list.size == 1) {
+                                router.navigateTo(Screens.OrderOfferFragmentScreen(list.first()))
+                            }
+                        }, { throwable ->
+                            processThrowable(throwable)
+                        })
                 }
-            }, {
-                processThrowable(it)
-            })
+            }
+        }
     }
 
     fun onStopCatchOrders() {
