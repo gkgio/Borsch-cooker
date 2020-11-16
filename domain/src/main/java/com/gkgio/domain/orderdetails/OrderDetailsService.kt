@@ -5,4 +5,5 @@ import io.reactivex.Single
 
 interface OrderDetailsService {
     fun loadOrderDetailsData(orderId: String): Single<OrdersItem>
+    fun changeOrderStatus(orderId: String, status: String): Single<OrdersItem>
 }

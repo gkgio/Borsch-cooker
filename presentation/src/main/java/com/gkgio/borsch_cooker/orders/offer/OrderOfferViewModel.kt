@@ -1,54 +1,46 @@
 package com.gkgio.borsch_cooker.orders.offer
 
 import android.os.CountDownTimer
-import androidx.lifecycle.MutableLiveData
 import com.gkgio.borsch_cooker.base.BaseScreensNavigator
 import com.gkgio.borsch_cooker.base.BaseViewModel
-import com.gkgio.borsch_cooker.orders.OrdersAddressItemUi
+import com.gkgio.borsch_cooker.ext.applySchedulers
+import com.gkgio.borsch_cooker.ext.isNonInitialized
+import com.gkgio.borsch_cooker.orders.OrdersConstants
 import com.gkgio.borsch_cooker.orders.OrdersListItemUi
-import com.gkgio.borsch_cooker.orders.offer.model.ClientModel
-import com.gkgio.borsch_cooker.orders.offer.model.DeliveryModel
-import com.gkgio.borsch_cooker.orders.offer.model.MealModel
-import com.gkgio.borsch_cooker.orders.offer.model.PickupModel
+import com.gkgio.borsch_cooker.orders.offer.model.*
 import com.gkgio.borsch_cooker.utils.SingleLiveEvent
-import kotlinx.android.synthetic.main.fragment_order_offer.*
+import com.gkgio.domain.orderdetails.OrderDetailsUseCase
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class OrderOfferViewModel @Inject constructor(
-    screensNavigator: BaseScreensNavigator,
-    private val router: Router
+    private val router: Router,
+    private val ordersDetailsUseCase: OrderDetailsUseCase,
+    private val ordersToMealsUiTransformer: OrdersToMealsUiTransformer,
+    screensNavigator: BaseScreensNavigator
 ) : BaseViewModel(screensNavigator) {
 
-    val state = MutableLiveData<State>()
+    val orderInfo = SingleLiveEvent<Order>()
     val activeTime = SingleLiveEvent<Time>()
-    val sheetClick = SingleLiveEvent<Info>()
+    val isLoading = SingleLiveEvent<Boolean>()
     var timer: CountDownTimer? = null
+    private lateinit var order: OrdersListItemUi
 
     // public
 
-    fun init(order: String?) {
-        val test = mutableListOf<Any>()
-        val testAd = OrdersAddressItemUi("", "", "", "Членогорск", "", "", "", "4 эт.", "33", "", "", "Малаховская", 0L, "", "", "", false)
-        test.add(MealModel(listOf("Как купить")))
-        test.add(PickupModel("Сам заберу!"))
-        test.add(DeliveryModel(testAd))
-        test.add(ClientModel(1, "Излишне", "Путило Стародубов"))
-        state.value = State(test, false, false)
+    fun init(order: OrdersListItemUi) {
+        this.order = order
+        orderInfo.value = Order(createOfferList(order), order.price.toString())
         initTimer()
+        if (isLoading.isNonInitialized()) isLoading.value = false
     }
 
     fun onAcceptClick() {
-
+        onChangeOrderStatus(order.id, OrdersConstants.ORDERS_STATUS_ACCEPTED)
     }
 
     fun onDeclineClick() {
-        router.exit()
-        //TODO onOrderCancelled()
-    }
-
-    fun onSheetClick(type: String) {
-
+        onChangeOrderStatus(order.id, OrdersConstants.ORDERS_STATUS_CANCELED)
     }
 
     //overrides
@@ -75,25 +67,50 @@ class OrderOfferViewModel @Inject constructor(
 
             override fun onFinish() {
                 router.exit()
-                //TODO onOrderCancelled()
             }
         }
         timer?.start()
     }
 
-    data class State(
+    private fun createOfferList(order: OrdersListItemUi): List<Any> {
+        val list = mutableListOf<Any>()
+        val meals = mutableListOf<MealItemModel>()
+        meals.addAll(ordersToMealsUiTransformer.transform(order.meals))
+        list.add(MealModel(meals))
+        if (order.type == OrdersConstants.ORDERS_TAKE_DELIVERY) {
+            list.add(DeliveryModel(order.address, null))
+        } else {
+            list.add(PickupModel())
+        }
+
+        list.add(ClientModel(0, null, null))
+        return list
+    }
+
+    private fun onChangeOrderStatus(orderId: String, status: String) {
+        ordersDetailsUseCase
+            .changeOrderStatus(orderId, status)
+            .applySchedulers()
+            .doOnSubscribe {
+                isLoading.value = true
+            }
+            .subscribe({
+                isLoading.value = false
+                router.exit()
+            }, {
+                isLoading.value = false
+                processThrowable(it)
+            })
+            .addDisposable()
+    }
+
+    data class Order(
         val offerOrder: List<Any>,
-        val isLoading: Boolean,
-        val isError: Boolean
+        val price: String
     )
 
     data class Time(
         val activeTimer: Int,
         val activeTime: String
-    )
-
-    data class Info(
-        val type: String,
-        val params: Any
     )
 }

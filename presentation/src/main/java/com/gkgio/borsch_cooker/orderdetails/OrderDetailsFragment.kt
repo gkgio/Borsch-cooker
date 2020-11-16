@@ -9,10 +9,10 @@ import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.createViewModel
 import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
+import com.gkgio.borsch_cooker.orders.OrdersConstants
 import com.gkgio.borsch_cooker.orders.OrdersMealsAdapter
 import com.gkgio.borsch_cooker.utils.FragmentArgumentDelegate
 import kotlinx.android.synthetic.main.fragment_order_details.*
-import kotlinx.android.synthetic.main.toolbar_two_icon_view.view.*
 
 class OrderDetailsFragment : BaseFragment<OrderDetailsViewModel>() {
 
@@ -40,22 +40,38 @@ class OrderDetailsFragment : BaseFragment<OrderDetailsViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         initMealsRv()
         viewModel.state.observeValue(this) {
-            orderMealsAdapter.setMealsList(it.orderDetails.meals)
-            orderDetailsSum.text = getString(R.string.orders_sum, 400.toString()) //TODO
-            orderDetailsDelivery.text = "Самовывоз" //TODO
+            orderMealsAdapter.setMealsList(it.orderDetails?.meals)
+            orderDetailsSum.text = getString(R.string.orders_sum, it.orderDetails?.price.toString())
+            orderDetailsDelivery.text =
+                if (it.orderDetails?.type == OrdersConstants.ORDERS_TAKE_DELIVERY)
+                    getString(R.string.order_delivery) else getString(R.string.order_pickup)
         }
+
+        viewModel.status.observeValue(this) {
+            if (it) {
+                showError("Статус успешно обновлен!") //TODO
+            } else {
+                showNetworkError(getString(R.string.server_error))
+            }
+        }
+
         toolbar.setLeftIconClickListener {
             viewModel.clickLeftIcon()
         }
-        toolbar.titleTextView.text = getString(R.string.orders_number, orderId)
+
+        toolbar.setTitle(getString(R.string.orders_number, orderId))
 
         clientChatView.setDebounceOnClickListener {
             viewModel.onClientChatClicked()
         }
+
+        readyForPickupButton.setDebounceOnClickListener {
+            viewModel.onReadyToPickupClicked()
+        }
     }
 
     private fun initMealsRv() {
-        orderMealsAdapter = OrdersMealsAdapter(listOf(), true) {}
+        orderMealsAdapter = OrdersMealsAdapter(true)
         orderMealsListRv.adapter = orderMealsAdapter
         orderMealsListRv.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

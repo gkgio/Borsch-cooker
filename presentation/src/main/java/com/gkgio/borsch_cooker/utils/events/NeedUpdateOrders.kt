@@ -5,4 +5,4 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class UserProfileChanged @Inject constructor() : BaseEvent()
+class NeedUpdateOrders @Inject constructor() : BaseEvent()

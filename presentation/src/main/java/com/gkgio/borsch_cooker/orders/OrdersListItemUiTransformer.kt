@@ -14,9 +14,13 @@ class OrdersListItemUiTransformer @Inject constructor(
             clientId,
             cookerId,
             status,
+            type,
             ordersAddressItemUiTransformer.transform(address),
             meals.map { ordersMealsItemUiTransformer.transform(it) },
-            lunches.map { ordersMealsItemUiTransformer.transform(it) }
+            lunches.map { ordersMealsItemUiTransformer.transform(it) },
+            price,
+            chatId,
+            createdAt
         )
     }
 }

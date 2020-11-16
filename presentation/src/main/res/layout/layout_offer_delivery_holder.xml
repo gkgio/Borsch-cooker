@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="154dp"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="12dp"
     android:layout_marginTop="12dp"
     android:layout_marginBottom="12dp"
@@ -32,7 +32,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/tt_norms_medium"
-                android:text="Доставка"
+                android:text="@string/order_delivery"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -46,7 +46,7 @@
                 android:paddingTop="4dp"
                 android:paddingEnd="12dp"
                 android:paddingBottom="4dp"
-                android:text="НА КАРТЕ"
+                android:text="@string/order_offer_on_map"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -59,9 +59,9 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/tt_norms_regular"
-            tools:text="Котельническая\nнабережная, дом 7/2,\nофис 314, этаж 2"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:text="Котельническая\nнабережная, дом 7/2,\nофис 314, этаж 2" />
 
         <TextView
             android:id="@+id/distanceDeliveryTv"
@@ -72,9 +72,9 @@
             android:layout_marginEnd="12dp"
             android:fontFamily="@font/tt_norms_regular"
             android:gravity="end"
-            tools:text="~1.2 км"
             android:textColor="@color/grey_text8"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:text="~1.2 км" />
 
     </LinearLayout>
 

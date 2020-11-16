@@ -3,6 +3,7 @@ package com.gkgio.borsch_cooker.utils
 import android.content.Context
 import android.content.pm.PackageManager
 import android.text.format.DateFormat
+import android.text.format.DateUtils
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
@@ -95,6 +96,19 @@ fun dateToUIStringMonthWordAndYearAndTime(context: Context, date: Date): String 
     )
 }
 
+/**
+ * @return hh:mm, Day | hh:mm, dd.MM
+ */
+fun dateToUIStringTimeAndDay(date: String): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.getDefault())
+    val parsedDate = dateFormat.parse(date)!!
+    return String.format(
+        "%s, %s",
+        DateFormat.format("HH:mm", parsedDate),
+        getDayOrDayAndMonthByDate(parsedDate)
+    )
+}
+
 fun getMonthNameByMonthNumber(context: Context, monthNumber: String): String {
     val months = context.resources.getStringArray(R.array.months_s)
     return when (monthNumber) {
@@ -111,6 +125,14 @@ fun getMonthNameByMonthNumber(context: Context, monthNumber: String): String {
         "11" -> months[10].toUpperCase(Locale.getDefault())
         "12" -> months[11].toUpperCase(Locale.getDefault())
         else -> ""
+    }
+}
+
+fun getDayOrDayAndMonthByDate(date: Date): String {
+    return if (DateUtils.isToday(date.time)) {
+        "Сегодня"
+    } else {
+        String.format("%s", DateFormat.format("dd MMM", date))
     }
 }
 
@@ -141,7 +163,7 @@ fun getOrdersStatusNameByOrdersStatus(context: Context, ordersStatus: String): S
 fun convertValueToDecimal(value: String?): String =
     String.format("%.1f", value?.toDouble())
 
-fun getImageUrl(image: String): String =
+fun getImageUrl(image: String?): String? =
     "http://" + HostInterceptor.CONNECT_URL + ":3001" + image
 
 fun endlessJumpingViewAnimation(view: View) {

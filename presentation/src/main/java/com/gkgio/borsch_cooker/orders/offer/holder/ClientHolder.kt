@@ -7,15 +7,11 @@ import com.gkgio.borsch_cooker.view.AbstractHolder
 import kotlinx.android.synthetic.main.layout_offer_client_holder.view.*
 
 
-open class ClientHolder(itemView: View) : AbstractHolder<ClientModel>(itemView), View.OnClickListener {
+class ClientHolder(itemView: View) : AbstractHolder<ClientModel>(itemView) {
 
     companion object {
         const val STATUS_NEGATIVE = 0
         const val STATUS_NORMALLY = 1
-    }
-
-    override fun onClick(v: View?) {
-        TODO("Not yet implemented")
     }
 
     override fun bind(item: ClientModel) {

@@ -7,29 +7,39 @@ import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
 import com.gkgio.borsch_cooker.ext.nonNullValue
 import com.gkgio.borsch_cooker.navigation.Screens
-import com.gkgio.borsch_cooker.orders.OrdersAddressItemUi
 import com.gkgio.borsch_cooker.orders.OrdersListItemUi
+import com.gkgio.borsch_cooker.orders.OrdersListItemUiTransformer
 import com.gkgio.borsch_cooker.orders.OrdersMealsItemUi
 import com.gkgio.borsch_cooker.utils.SingleLiveEvent
 import com.gkgio.borsch_cooker.utils.events.ActiveMealChanged
+import com.gkgio.borsch_cooker.utils.events.StartStopCatchOffers
 import com.gkgio.domain.analytics.AnalyticsRepository
+import com.gkgio.domain.orders.OrdersUseCase
 import com.gkgio.domain.own.OwnUseCase
+import io.reactivex.Single
+import io.reactivex.disposables.Disposable
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class OwnViewModel @Inject constructor(
     private val router: Router,
     private val analyticsRepository: AnalyticsRepository,
     private val ownDashboardUiTransformer: OwnDashboardUiTransformer,
+    private val ordersListItemUiTransformer: OrdersListItemUiTransformer,
     private val ownUseCase: OwnUseCase,
     private val activeMealChanged: ActiveMealChanged,
+    private val ordersUseCase: OrdersUseCase,
+    private val startStopCatchOffers: StartStopCatchOffers,
     baseScreensNavigator: BaseScreensNavigator
 ) : BaseViewModel(baseScreensNavigator) {
 
     val state = MutableLiveData<State>()
     val activeMeals = MutableLiveData<List<OrdersMealsItemUi>>()
     val buttonClicked = SingleLiveEvent<String>()
+    val someOrderOffers = SingleLiveEvent<List<OrdersListItemUi>>()
+    private var disposable: Disposable? = null
 
     init {
         if (state.isNonInitialized()) {
@@ -37,11 +47,13 @@ class OwnViewModel @Inject constructor(
             loadDashboardData()
             initActiveMealsChanged()
         }
+        initStartStopCatchOffers()
     }
 
-    fun onProfileClicked(){
-        router.navigateTo(Screens.OrderOfferFragmentScreen("how deep is "))
-        //router.navigateTo(Screens.ProfileFragmentScreen)
+    //public
+
+    fun onProfileClicked() {
+        router.navigateTo(Screens.ProfileFragmentScreen)
     }
 
     fun setDutyStatus(isOnDuty: Boolean) {
@@ -120,6 +132,36 @@ class OwnViewModel @Inject constructor(
         router.navigateTo(Screens.ActiveMealsScreen)
     }
 
+    fun onButtonClicked(type: String) {
+        buttonClicked.value = type
+    }
+
+    fun onStartCatchOrders() {
+        disposable?.dispose()
+        disposable = ordersUseCase
+            .loadNewOrdersData()
+            .repeatWhen { Single.timer(30, TimeUnit.SECONDS).repeat() }
+            .applySchedulers()
+            .map { orders ->
+                orders.map { ordersListItemUiTransformer.transform(it) }
+            }
+            .subscribe({
+                if (it.size > 1) {
+                    someOrderOffers.value = it
+                } else if (it.size == 1) {
+                    router.navigateTo(Screens.OrderOfferFragmentScreen(it.first()))
+                }
+            }, {
+                processThrowable(it)
+            })
+    }
+
+    fun onStopCatchOrders() {
+        disposable?.dispose()
+    }
+
+    //private
+
     private fun loadDashboardData() {
         ownUseCase
             .loadDashboardData()
@@ -164,8 +206,18 @@ class OwnViewModel @Inject constructor(
             .addDisposable()
     }
 
-    fun onButtonClicked(type: String) {
-        buttonClicked.value = type
+    //Когда открываем боттомшит, останавливаем делать запросы к новым заказам. По закрытию боттомшита - возобновляем
+    private fun initStartStopCatchOffers() {
+        startStopCatchOffers
+            .getEventResult()
+            .applySchedulers()
+            .subscribe {
+                when (it) {
+                    "start" -> onStartCatchOrders()
+                    "stop" -> onStopCatchOrders()
+                }
+            }
+            .addDisposable()
     }
 
     data class State(
@@ -174,5 +226,4 @@ class OwnViewModel @Inject constructor(
         val isInitialError: Boolean,
         val activeMeals: List<OrdersMealsItemUi>? = null
     )
-
 }

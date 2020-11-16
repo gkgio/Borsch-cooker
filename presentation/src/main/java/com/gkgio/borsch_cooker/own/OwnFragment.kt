@@ -9,8 +9,8 @@ import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.*
 import com.gkgio.borsch_cooker.orders.OrdersMealsAdapter
+import com.gkgio.borsch_cooker.orders.offer.some.SomeOrderOffersSheet
 import kotlinx.android.synthetic.main.fragment_own.*
-
 
 class OwnFragment : BaseFragment<OwnViewModel>() {
 
@@ -75,11 +75,7 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                 }
             }
             viewModel.activeMeals.observeValue(this) {
-                if (it.isNotEmpty()) {
-                    activeMealsAdapter.setMealsList(it)
-                } else {
-                    ownActiveMeals.isVisible = false
-                }
+                activeMealsAdapter.setMealsList(it)
             }
 
             viewModel.buttonClicked.observeValue(this) {
@@ -96,6 +92,10 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                 }
             }
 
+            viewModel.someOrderOffers.observeValue(this) {
+                showDialog(SomeOrderOffersSheet.newInstance(it), TAG)
+            }
+
             helpStatusTv.setDebounceOnClickListener {
                 viewModel.onButtonClicked(BUTTON_HELP_STATUS)
             }
@@ -110,8 +110,18 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.onStartCatchOrders()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.onStopCatchOrders()
+    }
+
     private fun initMealsRv() {
-        activeMealsAdapter = OrdersMealsAdapter(listOf(), true) {}
+        activeMealsAdapter = OrdersMealsAdapter(true)
         ownActiveMealsRv.adapter = activeMealsAdapter
         ownActiveMealsRv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

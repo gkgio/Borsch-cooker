@@ -103,8 +103,9 @@ object Screens {
         override fun getFragment() = ProfileFragment()
     }
 
-    class OrderOfferFragmentScreen(private val order: String) : SupportAppScreen() {
-        override fun getFragment() = OrderOfferFragment.newInstance(order) }
+    class OrderOfferFragmentScreen(private val order: OrdersListItemUi) : SupportAppScreen() {
+        override fun getFragment() = OrderOfferFragment.newInstance(order)
+    }
 
     class OrderChatFragmentScreen(
         private val orderId: String,
@@ -115,5 +116,4 @@ object Screens {
             userId = cookerId
         )
     }
-    
 }

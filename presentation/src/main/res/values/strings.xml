@@ -89,6 +89,19 @@
     <string name="orders_number">Заказ №%s</string>
     <string name="orders_sum">%s ₽</string>
     <string name="orders_no_information">У вас еще нет заказов</string>
+    <string name="order_delivery">Доставка</string>
+    <string name="order_pickup">Доставка</string>
+
+    <string name="order_offer_new_order">Новый заказ</string>
+    <string name="order_offer_new_orders">Новый заказ</string>
+    <string name="order_offer_details">Детали</string>
+    <string name="order_offer_decline">Отклонить</string>
+    <string name="order_offer_on_map">НА КАРТЕ</string>
+    <string name="order_offer_open_map">Открыть карту</string>
+    <string name="order_offer_see_map">Посмотреть адрес на карте</string>
+    <string name="order_offer_address">Адрес</string>
+    <string name="order_offer_dishes">Блюда</string>
+    <string name="order_offer_DETAILS">ДЕТАЛИ</string>
     
     <string name="own_welcome">Добрый день, %s!</string>
     <string name="own_profile">Профиль</string>
@@ -108,6 +121,9 @@
     <string name="own_container_buy">Докупить контейнеры</string>
     <string name="own_enough_rate">Мало оценок</string>
     <string name="own_buy_containers_url">http://borsch4cook.tilda.ws/</string>
+
+    <string name="order_offer_accept_button">ПРИНЯТЬ\n%s ₽</string>
+    <string name="order_offer_accept_button2">Принять, %s ₽</string>
 
     <string name="active_meals_status">Статус активности</string>
     <string name="active_meals_portions">Порций</string>

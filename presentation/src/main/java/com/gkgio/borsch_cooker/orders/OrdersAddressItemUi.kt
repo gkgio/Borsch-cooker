@@ -1,5 +1,7 @@
 package com.gkgio.borsch_cooker.orders
 
+import java.io.Serializable
+
 data class OrdersAddressItemUi(
     val id: String,
     val area: String,
@@ -18,4 +20,4 @@ data class OrdersAddressItemUi(
     val createdAt: String,
     val updatedAt: String,
     val main: Boolean
-)
+) : Serializable

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
+import com.gkgio.borsch_cooker.utils.dateToUIStringTimeAndDay
 import com.gkgio.borsch_cooker.utils.getOrdersStatusNameByOrdersStatus
 import com.gkgio.borsch_cooker.view.SyntheticViewHolder
 import kotlinx.android.synthetic.main.layout_orders_view_holder.view.*
@@ -32,25 +33,26 @@ class OrdersListAdapter(
 
     override fun onBindViewHolder(holder: SyntheticViewHolder, position: Int) =
         with(holder.itemView) {
-
+            val order = ordersList[position]
             ordersId.text =
-                context.getString(R.string.orders_number, ordersList[position].id)
+                context.getString(R.string.orders_number, order.id)
             ordersStatus.text =
-                getOrdersStatusNameByOrdersStatus(context, ordersList[position].status)
-            ordersSum.text = context.getString(R.string.orders_sum, 400.toString()) //TODO
-            ordersCreatedTime.text = ordersList[position].address.createdAt //TODO
-            ordersDeliveryType.text = "Самовывоз" //TODO
+                getOrdersStatusNameByOrdersStatus(context, order.status)
+            ordersSum.text = context.getString(R.string.orders_sum, order.price.toString())
+            ordersCreatedTime.text = dateToUIStringTimeAndDay(order.createdAt)
+            ordersDeliveryType.text =
+                if (order.type == OrdersConstants.ORDERS_TAKE_DELIVERY)
+                    context.getString(R.string.order_delivery) else context.getString(R.string.order_pickup)
 
-            val ordersMealAdapter = OrdersMealsAdapter(ordersList[position].meals, false) {
-                itemClick(ordersList[position].id)
-            }
+            val ordersMealAdapter = OrdersMealsAdapter(false)
             ordersMealsRv.adapter = ordersMealAdapter
             ordersMealsRv.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            ordersMealAdapter.setMealsList(order.meals)
         }
 
     fun setOrdersList(ordersList: List<OrdersListItemUi>) {
         this.ordersList = ordersList
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0, ordersList.size)
     }
 }

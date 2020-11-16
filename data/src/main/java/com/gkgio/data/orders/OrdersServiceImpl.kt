@@ -28,12 +28,22 @@ class OrdersServiceImpl @Inject constructor(
             }
         )
 
+    override fun loadNewOrdersData(): Single<List<OrdersItem>> =
+        executeRequest(
+            ordersApi.loadNewOrdersData().map { ordersList ->
+                ordersDataResponseTransformer.transform(ordersList)
+            }
+        )
+
     interface OrdersApi {
         @GET("cooker/orders")
         fun loadAllOrdersData(): Single<OrdersDataResponse>
 
         @GET("cooker/active_orders")
         fun loadActiveOrdersData(): Single<OrdersDataResponse>
+
+        @GET("cooker/orders/new_orders")
+        fun loadNewOrdersData(): Single<OrdersDataResponse>
     }
 
 }
