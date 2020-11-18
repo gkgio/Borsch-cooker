@@ -43,7 +43,7 @@ class NotificationUtils(val context: Context) : ContextWrapper(context) {
     fun buildNotification(title: String?, message: String?, pendingIntent: PendingIntent, id: Int) {
         val builder = NotificationCompat.Builder(this, DEFAULT_CHANNEL_ID)
             .setLargeIcon(
-                BitmapFactory.decodeResource(resources, R.drawable.icon_notificaion_large)
+                BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
             )
             .setCategory(NotificationCompat.CATEGORY_MESSAGE)
             .setDefaults(Notification.DEFAULT_LIGHTS or Notification.DEFAULT_SOUND)
@@ -59,7 +59,7 @@ class NotificationUtils(val context: Context) : ContextWrapper(context) {
             builder.setSmallIcon(R.drawable.ic_splash)
             builder.color = context.getColorCompat(R.color.accent)
         } else {
-            builder.setSmallIcon(R.mipmap.ic_notification_small)
+            builder.setSmallIcon(R.mipmap.ic_launcher)
         }
 
         notificationManager.notify(id, builder.build())

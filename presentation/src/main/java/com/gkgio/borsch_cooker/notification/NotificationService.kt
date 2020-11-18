@@ -1,5 +1,6 @@
 package com.gkgio.borsch_cooker.notification
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import com.gkgio.borsch_cooker.ext.applySchedulers
@@ -16,6 +17,7 @@ class NotificationService : FirebaseMessagingService() {
     @Inject
     lateinit var authUseCase: AuthUseCase
 
+    @SuppressLint("CheckResult")
     override fun onNewToken(token: String) {
         super.onNewToken(token)
 
