@@ -24,21 +24,21 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class OwnViewModel @Inject constructor(
-    private val router: Router,
-    private val analyticsRepository: AnalyticsRepository,
-    private val ownDashboardUiTransformer: OwnDashboardUiTransformer,
-    private val ordersListItemUiTransformer: OrdersListItemUiTransformer,
-    private val ownUseCase: OwnUseCase,
-    private val activeMealChanged: ActiveMealChanged,
-    private val ordersUseCase: OrdersUseCase,
-    private val startStopCatchOffers: StartStopCatchOffers,
-    baseScreensNavigator: BaseScreensNavigator
+        private val router: Router,
+        private val analyticsRepository: AnalyticsRepository,
+        private val ownDashboardUiTransformer: OwnDashboardUiTransformer,
+        private val ordersListItemUiTransformer: OrdersListItemUiTransformer,
+        private val ownUseCase: OwnUseCase,
+        private val activeMealChanged: ActiveMealChanged,
+        private val ordersUseCase: OrdersUseCase,
+        private val startStopCatchOffers: StartStopCatchOffers,
+        baseScreensNavigator: BaseScreensNavigator
 ) : BaseViewModel(baseScreensNavigator) {
 
     val state = MutableLiveData<State>()
     val activeMeals = MutableLiveData<List<OrdersMealsItemUi>>()
-    val buttonClicked = SingleLiveEvent<String>()
     val someOrderOffers = SingleLiveEvent<List<OrdersListItemUi>>()
+    val singleEvent = SingleLiveEvent<SingleOwnViewModelEvent>()
     private var disposable: Disposable? = null
 
     init {
@@ -64,82 +64,78 @@ class OwnViewModel @Inject constructor(
 
     fun setDutyStatus(isOnDuty: Boolean) {
         ownUseCase
-            .setDutyStatus(isOnDuty)
-            .map { ownDashboardUiTransformer.transform(it) }
-            .applySchedulers()
-            .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
-            .subscribe(
-                {
-                    state.value = state.nonNullValue.copy(
-                        isLoading = false,
-                        dashboard = it,
-                        isInitialError = false
-                    )
-                    onUpdateActiveMeals(it.activeMeals, it.activeLunches)
-                },
-                { throwable ->
-                    Timber.e(throwable, "Error send duty status request")
-                    processThrowable(throwable)
-                    state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
-                }
-            )
-            .addDisposable()
+                .setDutyStatus(isOnDuty)
+                .map { ownDashboardUiTransformer.transform(it) }
+                .applySchedulers()
+                .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
+                .subscribe(
+                        {
+                            state.value = state.nonNullValue.copy(
+                                    isLoading = false,
+                                    dashboard = it,
+                                    isInitialError = false
+                            )
+                            onUpdateActiveMeals(it.activeMeals, it.activeLunches)
+                        },
+                        { throwable ->
+                            Timber.e(throwable, "Error send duty status request")
+                            processThrowable(throwable)
+                            state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
+                        }
+                )
+                .addDisposable()
     }
 
     fun setDeliveryStatus(isDeliveryAvailable: Boolean) {
         ownUseCase
-            .setDeliveryStatus(isDeliveryAvailable)
-            .map { ownDashboardUiTransformer.transform(it) }
-            .applySchedulers()
-            .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
-            .subscribe(
-                {
-                    state.value = state.nonNullValue.copy(
-                        isLoading = false,
-                        dashboard = it,
-                        isInitialError = false
-                    )
-                    onUpdateActiveMeals(it.activeMeals, it.activeLunches)
-                },
-                { throwable ->
-                    Timber.e(throwable, "Error send delivery status request")
-                    processThrowable(throwable)
-                    state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
-                }
-            )
-            .addDisposable()
+                .setDeliveryStatus(isDeliveryAvailable)
+                .map { ownDashboardUiTransformer.transform(it) }
+                .applySchedulers()
+                .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
+                .subscribe(
+                        {
+                            state.value = state.nonNullValue.copy(
+                                    isLoading = false,
+                                    dashboard = it,
+                                    isInitialError = false
+                            )
+                            onUpdateActiveMeals(it.activeMeals, it.activeLunches)
+                        },
+                        { throwable ->
+                            Timber.e(throwable, "Error send delivery status request")
+                            processThrowable(throwable)
+                            state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
+                        }
+                )
+                .addDisposable()
     }
 
     fun setPickupStatus(isPickupAvailable: Boolean) {
         ownUseCase
-            .setPickupStatus(isPickupAvailable)
-            .map { ownDashboardUiTransformer.transform(it) }
-            .applySchedulers()
-            .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
-            .subscribe(
-                {
-                    state.value = state.nonNullValue.copy(
-                        isLoading = false,
-                        dashboard = it,
-                        isInitialError = false
-                    )
-                    onUpdateActiveMeals(it.activeMeals, it.activeLunches)
-                },
-                { throwable ->
-                    Timber.e(throwable, "Error send pickup status request")
-                    processThrowable(throwable)
-                    state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
-                }
-            )
-            .addDisposable()
+                .setPickupStatus(isPickupAvailable)
+                .map { ownDashboardUiTransformer.transform(it) }
+                .applySchedulers()
+                .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
+                .subscribe(
+                        {
+                            state.value = state.nonNullValue.copy(
+                                    isLoading = false,
+                                    dashboard = it,
+                                    isInitialError = false
+                            )
+                            onUpdateActiveMeals(it.activeMeals, it.activeLunches)
+                        },
+                        { throwable ->
+                            Timber.e(throwable, "Error send pickup status request")
+                            processThrowable(throwable)
+                            state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
+                        }
+                )
+                .addDisposable()
     }
 
     fun onEditActiveMealsClick() {
         router.navigateTo(Screens.ActiveMealsScreen)
-    }
-
-    fun onButtonClicked(type: String) {
-        buttonClicked.value = type
     }
 
     fun onStartCatchOrders() {
@@ -148,21 +144,21 @@ class OwnViewModel @Inject constructor(
                 if (db != null && db.activityStatus) {
                     disposable?.dispose()
                     disposable = ordersUseCase
-                        .loadNewOrdersData()
-                        .repeatWhen { Single.timer(30, TimeUnit.SECONDS).repeat() }
-                        .applySchedulers()
-                        .map { orders ->
-                            orders.map { ordersListItemUiTransformer.transform(it) }
-                        }
-                        .subscribe({ list ->
-                            if (list.size > 1) {
-                                someOrderOffers.value = list
-                            } else if (list.size == 1) {
-                                router.navigateTo(Screens.OrderOfferFragmentScreen(list.first()))
+                            .loadNewOrdersData()
+                            .repeatWhen { Single.timer(30, TimeUnit.SECONDS).repeat() }
+                            .applySchedulers()
+                            .map { orders ->
+                                orders.map { ordersListItemUiTransformer.transform(it) }
                             }
-                        }, { throwable ->
-                            processThrowable(throwable)
-                        })
+                            .subscribe({ list ->
+                                if (list.size > 1) {
+                                    someOrderOffers.value = list
+                                } else if (list.size == 1) {
+                                    router.navigateTo(Screens.OrderOfferFragmentScreen(list.first()))
+                                }
+                            }, { throwable ->
+                                processThrowable(throwable)
+                            })
                 }
             }
         }
@@ -176,31 +172,31 @@ class OwnViewModel @Inject constructor(
 
     private fun loadDashboardData() {
         ownUseCase
-            .loadDashboardData()
-            .map { ownDashboardUiTransformer.transform(it) }
-            .applySchedulers()
-            .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
-            .subscribe(
-                {
-                    state.value = state.nonNullValue.copy(
-                        isLoading = false,
-                        dashboard = it,
-                        isInitialError = false
-                    )
-                    onUpdateActiveMeals(it.activeMeals, it.activeLunches)
-                },
-                { throwable ->
-                    Timber.e(throwable, "Error send dashboard request")
-                    processThrowable(throwable)
-                    state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
-                }
-            )
-            .addDisposable()
+                .loadDashboardData()
+                .map { ownDashboardUiTransformer.transform(it) }
+                .applySchedulers()
+                .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
+                .subscribe(
+                        {
+                            state.value = state.nonNullValue.copy(
+                                    isLoading = false,
+                                    dashboard = it,
+                                    isInitialError = false
+                            )
+                            onUpdateActiveMeals(it.activeMeals, it.activeLunches)
+                        },
+                        { throwable ->
+                            Timber.e(throwable, "Error send dashboard request")
+                            processThrowable(throwable)
+                            state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
+                        }
+                )
+                .addDisposable()
     }
 
     private fun onUpdateActiveMeals(
-        meals: List<OrdersMealsItemUi>,
-        lunches: List<OrdersMealsItemUi>
+            meals: List<OrdersMealsItemUi>,
+            lunches: List<OrdersMealsItemUi>
     ) {
         val activeMealsList = mutableListOf<OrdersMealsItemUi>()
         activeMealsList.addAll(meals)
@@ -210,32 +206,43 @@ class OwnViewModel @Inject constructor(
 
     private fun initActiveMealsChanged() {
         activeMealChanged
-            .getEventResult()
-            .applySchedulers()
-            .subscribe {
-                loadDashboardData()
-            }
-            .addDisposable()
+                .getEventResult()
+                .applySchedulers()
+                .subscribe {
+                    loadDashboardData()
+                }
+                .addDisposable()
+    }
+
+    fun onHelpClicked(type: String) {
+        when (type) {
+            OwnFragment.BUTTON_HELP_STATUS -> singleEvent.value = SingleOwnViewModelEvent.HelpStatus
+            OwnFragment.BUTTON_HELP_DELIVERY -> singleEvent.value = SingleOwnViewModelEvent.HelpDelivery
+        }
     }
 
     //Когда открываем боттомшит, останавливаем делать запросы к новым заказам. По закрытию боттомшита - возобновляем
     private fun initStartStopCatchOffers() {
         startStopCatchOffers
-            .getEventResult()
-            .applySchedulers()
-            .subscribe {
-                when (it) {
-                    "start" -> onStartCatchOrders()
-                    "stop" -> onStopCatchOrders()
+                .getEventResult()
+                .applySchedulers()
+                .subscribe {
+                    when (it) {
+                        "start" -> onStartCatchOrders()
+                        "stop" -> onStopCatchOrders()
+                    }
                 }
-            }
-            .addDisposable()
+                .addDisposable()
+    }
+
+    fun onBuyContainersClicked() {
+        singleEvent.value = SingleOwnViewModelEvent.BuyContainers
     }
 
     data class State(
-        val dashboard: OwnDashboardUi? = null,
-        val isLoading: Boolean,
-        val isInitialError: Boolean,
-        val activeMeals: List<OrdersMealsItemUi>? = null
+            val dashboard: OwnDashboardUi? = null,
+            val isLoading: Boolean,
+            val isInitialError: Boolean,
+            val activeMeals: List<OrdersMealsItemUi>? = null
     )
 }
