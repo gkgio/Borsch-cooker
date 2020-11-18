@@ -9,6 +9,7 @@ import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.*
 import com.gkgio.borsch_cooker.orders.OrdersMealsAdapter
+import com.gkgio.borsch_cooker.utils.DialogUtils
 import kotlinx.android.synthetic.main.fragment_own.*
 
 
@@ -18,6 +19,8 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
 
     companion object {
         val TAG = OwnFragment::class.java.simpleName
+        const val BUTTON_HELP_STATUS = "helpStatus"
+        const val BUTTON_HELP_DELIVERY = "helpDelivery"
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_own
@@ -57,8 +60,8 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                     ownIsDeliveryAvailable.isChecked = delivery
                     ownIsPickupAvailable.isChecked = pickup
                     ownRatingSubtitle.text = requireContext().getQuantityText(
-                        R.plurals.meals_reviews,
-                        reviews.totalReviews
+                            R.plurals.meals_reviews,
+                            reviews.totalReviews
                     )
                     ownSubscriptionDate.setTextOrHide(subscriptionExpirationDate)
                     if (reviews.totalReviews != 0) {
@@ -78,6 +81,36 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                     ownActiveMeals.isVisible = false
                 }
             }
+
+            viewModel.singleEvent.observeValue(this) {
+                when (it) {
+                    is SingleOwnViewModelEvent.HelpStatus -> DialogUtils.showDialog(
+                            TAG,
+                            requireActivity().supportFragmentManager,
+                            getString(R.string.dialog_help_status),
+                            getString(R.string.dialog_success_button),
+                            title = getString(R.string.own_status))
+                    is SingleOwnViewModelEvent.HelpDelivery -> DialogUtils.showDialog(
+                            TAG,
+                            requireActivity().supportFragmentManager,
+                            getString(R.string.dialog_help_delivery),
+                            getString(R.string.dialog_success_button),
+                            title = getString(R.string.own_delivery_title))
+                    is SingleOwnViewModelEvent.BuyContainers -> requireContext().openLink(getString(R.string.own_buy_containers_url))
+                }
+            }
+
+            helpStatusTv.setDebounceOnClickListener {
+                viewModel.onHelpClicked(BUTTON_HELP_STATUS)
+            }
+
+            helpDeliveryTv.setDebounceOnClickListener {
+                viewModel.onHelpClicked(BUTTON_HELP_DELIVERY)
+            }
+
+            buyContainers.setDebounceOnClickListener {
+                viewModel.onBuyContainersClicked()
+            }
         }
     }
 
@@ -85,6 +118,6 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
         activeMealsAdapter = OrdersMealsAdapter(listOf(), true) {}
         ownActiveMealsRv.adapter = activeMealsAdapter
         ownActiveMealsRv.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 }

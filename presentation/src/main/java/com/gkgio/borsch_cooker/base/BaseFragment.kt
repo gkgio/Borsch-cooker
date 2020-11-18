@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.nonNullObserve
-import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.utils.DialogUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -75,7 +74,6 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
         viewModel.noInternetErrorEvent.nonNullObserve(this) {
             showNetworkError(it ?: getString(R.string.default_error))
         }
-
 
         viewModel.unsupportedVersionErrorEvent.nonNullObserve(this) {
             showUnsupportedVersionError(it)
