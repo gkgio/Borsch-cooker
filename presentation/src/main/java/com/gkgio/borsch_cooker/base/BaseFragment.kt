@@ -1,6 +1,5 @@
 package com.gkgio.borsch_cooker.base
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -110,24 +109,6 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
                 }
             }
         )
-    }
-
-    protected fun showDialogWindow(
-        title: String,
-        body: String,
-        button: String = getString(R.string.dialog_success_button)
-    ) {
-        val builder = AlertDialog.Builder(requireActivity())
-        builder
-            .setTitle(title)
-            .setMessage(body)
-            .setPositiveButton(
-                button
-            ) { dialog, _ ->
-                dialog.cancel()
-            }
-        builder.create()
-        builder.show()
     }
 
     protected fun Disposable.addDisposable() {
