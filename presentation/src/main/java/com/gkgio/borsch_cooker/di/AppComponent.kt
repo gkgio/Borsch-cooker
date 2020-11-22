@@ -23,6 +23,7 @@ import com.gkgio.borsch_cooker.meals.addmeal.AddMealViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.edit.AddMealEditDataViewModel
 import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
+import com.gkgio.borsch_cooker.orderdetails.OrderDetailsStatusViewModel
 import com.gkgio.borsch_cooker.profile.avatar.InputAvatarViewModel
 import com.gkgio.borsch_cooker.profile.name.InputNameViewModel
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsViewModel
@@ -48,21 +49,21 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [
-        NavigationModule::class,
-        AppModule::class,
-        AppModule::class,
-        AuthModule::class,
-        AnalyticsModule::class,
-        ThemeModule::class,
-        SupportModule::class,
-        OrdersModule::class,
-        OrderDetailsModule::class,
-        OwnModule::class,
-        AddressModule::class,
-        ProfileModule::class,
-        MealsModule::class
-    ]
+        modules = [
+            NavigationModule::class,
+            AppModule::class,
+            AppModule::class,
+            AuthModule::class,
+            AnalyticsModule::class,
+            ThemeModule::class,
+            SupportModule::class,
+            OrdersModule::class,
+            OrderDetailsModule::class,
+            OwnModule::class,
+            AddressModule::class,
+            ProfileModule::class,
+            MealsModule::class
+        ]
 )
 interface AppComponent {
     fun inject(app: Application)
@@ -99,6 +100,7 @@ interface AppComponent {
     val mealsSheetViewModel: MealsSheetViewModel
     val orderChatViewModel: OrderChatViewModel
     val someOrderOffersViewModel: SomeOrderOffersViewModel
+    val orderDetailsStatusViewModel: OrderDetailsStatusViewModel
 
     val context: Context
     val moshi: Moshi

@@ -150,11 +150,11 @@ class OwnViewModel @Inject constructor(
                             .map { orders ->
                                 orders.map { ordersListItemUiTransformer.transform(it) }
                             }
-                            .subscribe({ list ->
-                                if (list.size > 1) {
-                                    someOrderOffers.value = list
-                                } else if (list.size == 1) {
-                                    router.navigateTo(Screens.OrderOfferFragmentScreen(list.first()))
+                            .subscribe({ orders ->
+                                if (orders.size > 1) {
+                                    someOrderOffers.value = orders
+                                } else if (orders.size == 1) {
+                                    router.navigateTo(Screens.OrderOfferFragmentScreen(orders.first()))
                                 }
                             }, { throwable ->
                                 processThrowable(throwable)
@@ -166,6 +166,17 @@ class OwnViewModel @Inject constructor(
 
     fun onStopCatchOrders() {
         disposable?.dispose()
+    }
+
+    fun onBuyContainersClicked() {
+        singleEvent.value = SingleOwnViewModelEvent.BuyContainers
+    }
+
+    fun onHelpClicked(type: String) {
+        when (type) {
+            OwnFragment.BUTTON_HELP_STATUS -> singleEvent.value = SingleOwnViewModelEvent.HelpStatus
+            OwnFragment.BUTTON_HELP_DELIVERY -> singleEvent.value = SingleOwnViewModelEvent.HelpDelivery
+        }
     }
 
     //private
@@ -214,14 +225,7 @@ class OwnViewModel @Inject constructor(
                 .addDisposable()
     }
 
-    fun onHelpClicked(type: String) {
-        when (type) {
-            OwnFragment.BUTTON_HELP_STATUS -> singleEvent.value = SingleOwnViewModelEvent.HelpStatus
-            OwnFragment.BUTTON_HELP_DELIVERY -> singleEvent.value = SingleOwnViewModelEvent.HelpDelivery
-        }
-    }
-
-    //Когда открываем боттомшит, останавливаем делать запросы к новым заказам. По закрытию боттомшита - возобновляем
+    //Когда открываем боттомшит с новыми заказами, останавливаем делать запросы к новым заказам. По закрытию боттомшита - возобновляем
     private fun initStartStopCatchOffers() {
         startStopCatchOffers
                 .getEventResult()
@@ -233,10 +237,6 @@ class OwnViewModel @Inject constructor(
                     }
                 }
                 .addDisposable()
-    }
-
-    fun onBuyContainersClicked() {
-        singleEvent.value = SingleOwnViewModelEvent.BuyContainers
     }
 
     data class State(

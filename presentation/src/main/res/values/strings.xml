@@ -81,16 +81,17 @@
     <string name="orders_status_created">Создан</string>
     <string name="orders_status_completed">Завершен</string>
     <string name="orders_status_rejected">Отклонен</string>
-    <string name="orders_status_canceled">Отменен</string>
+    <string name="orders_status_canceled">Отменён</string>
     <string name="orders_status_accepted">Заказ в работе</string>
     <string name="orders_status_cooking">Готовится</string>
-    <string name="orders_status_can_pickup">Готов к доставке</string>
+    <string name="orders_status_can_pickup">Готов к самовывозу</string>
     <string name="orders_status_delivering">Доставка</string>
+    <string name="orders_status_change">Изменить статус</string>
     <string name="orders_number">Заказ №%s</string>
     <string name="orders_sum">%s ₽</string>
     <string name="orders_no_information">У вас еще нет заказов</string>
     <string name="order_delivery">Доставка</string>
-    <string name="order_pickup">Доставка</string>
+    <string name="order_pickup">Самовывоз</string>
 
     <string name="order_offer_new_order">Новый заказ</string>
     <string name="order_offer_new_orders">Новый заказ</string>
@@ -131,9 +132,9 @@
     <string name="order_details_sum">Сумма заказа</string>
     <string name="order_details_list">Состав заказа</string>
     <string name="order_details_chat">Чат с клиентом</string>
-    <string name="order_details_ready_for_pickup">Готово к самовывозу</string>
     <string name="order_details_delivery_type">Тип доставки</string>
-    <string name="order_details_button_hint">Нажмите для изменения статуса</string>
+    <string name="order_details_status">Статус заказа</string>
+    <string name="order_details_button_hint">Меняйте статус заказа по мере готовности</string>
 
     <string name="delivery_type_pickup">Самовывоз</string>
     <string name="delivery_type_courier">Доставка курьеров</string>

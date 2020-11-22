@@ -9,37 +9,37 @@ import retrofit2.http.GET
 import javax.inject.Inject
 
 class OrdersServiceImpl @Inject constructor(
-    private val ordersApi: OrdersApi,
-    private val ordersDataResponseTransformer: OrdersDataResponseTransformer,
-    serverExceptionTransformer: ServerExceptionTransformer
+        private val ordersApi: OrdersApi,
+        private val ordersDataResponseTransformer: OrdersDataResponseTransformer,
+        serverExceptionTransformer: ServerExceptionTransformer
 ) : BaseService(serverExceptionTransformer), OrdersService {
 
     override fun loadAllOrdersData(): Single<List<OrdersItem>> =
-        executeRequest(
-            ordersApi.loadAllOrdersData().map { ordersList ->
-                ordersDataResponseTransformer.transform(ordersList)
-            }
-        )
+            executeRequest(
+                    ordersApi.loadAllOrdersData().map { ordersList ->
+                        ordersDataResponseTransformer.transform(ordersList)
+                    }
+            )
 
     override fun loadActiveOrdersData(): Single<List<OrdersItem>> =
-        executeRequest(
-            ordersApi.loadActiveOrdersData().map { ordersList ->
-                ordersDataResponseTransformer.transform(ordersList)
-            }
-        )
+            executeRequest(
+                    ordersApi.loadActiveOrdersData().map { ordersList ->
+                        ordersDataResponseTransformer.transform(ordersList)
+                    }
+            )
 
     override fun loadNewOrdersData(): Single<List<OrdersItem>> =
-        executeRequest(
-            ordersApi.loadNewOrdersData().map { ordersList ->
-                ordersDataResponseTransformer.transform(ordersList)
-            }
-        )
+            executeRequest(
+                    ordersApi.loadNewOrdersData().map { ordersList ->
+                        ordersDataResponseTransformer.transform(ordersList)
+                    }
+            )
 
     interface OrdersApi {
         @GET("cooker/orders")
         fun loadAllOrdersData(): Single<OrdersDataResponse>
 
-        @GET("cooker/active_orders")
+        @GET("cooker/orders/active_orders")
         fun loadActiveOrdersData(): Single<OrdersDataResponse>
 
         @GET("cooker/orders/new_orders")

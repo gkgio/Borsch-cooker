@@ -7,7 +7,6 @@ import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
 import com.gkgio.borsch_cooker.ext.nonNullValue
 import com.gkgio.borsch_cooker.navigation.Screens
-import com.gkgio.borsch_cooker.orders.OrdersConstants
 import com.gkgio.borsch_cooker.orders.OrdersListItemUi
 import com.gkgio.borsch_cooker.orders.OrdersListItemUiTransformer
 import com.gkgio.borsch_cooker.utils.SingleLiveEvent
@@ -18,16 +17,16 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class OrderDetailsViewModel @Inject constructor(
-    private val loadOrderDetailsUseCase: OrderDetailsUseCase,
-    private val ordersListItemUiTransformer: OrdersListItemUiTransformer,
-    private val ordersDetailsUseCase: OrderDetailsUseCase,
-    private val needUpdateOrders: NeedUpdateOrders,
-    private val router: Router,
-    baseScreensNavigator: BaseScreensNavigator
+        private val loadOrderDetailsUseCase: OrderDetailsUseCase,
+        private val ordersListItemUiTransformer: OrdersListItemUiTransformer,
+        private val router: Router,
+        private val orderDetailsUseCase: OrderDetailsUseCase,
+        private val needUpdateOrders: NeedUpdateOrders,
+        baseScreensNavigator: BaseScreensNavigator
 ) : BaseViewModel(baseScreensNavigator) {
 
     val state = MutableLiveData<State>()
-    val status = SingleLiveEvent<Boolean>()
+    val status = SingleLiveEvent<String>()
     private lateinit var orderId: String
 
     //public
@@ -36,7 +35,7 @@ class OrderDetailsViewModel @Inject constructor(
         this.orderId = orderId
         if (state.isNonInitialized()) {
             state.value = State(
-                isLoading = false, isInitialError = false
+                    isLoading = false, isInitialError = false
             )
             onLoadOrderDetails()
         }
@@ -54,54 +53,60 @@ class OrderDetailsViewModel @Inject constructor(
         router.exit()
     }
 
-    fun onReadyToPickupClicked() {
-        onChangeOrderStatus()
+    fun onChangeStatusClicked() {
+        status.value = state.value?.orderDetails?.status
+    }
+
+    fun onStatusChanged(status: String) {
+        onChangeOrderStatus(status)
     }
 
     //private
 
     private fun onLoadOrderDetails() {
         loadOrderDetailsUseCase
-            .loadOrderDetailsData(orderId)
-            .map { ordersListItemUiTransformer.transform(it) }
-            .applySchedulers()
-            .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
-            .subscribe(
-                {
-                    state.value = state.nonNullValue.copy(
-                        isLoading = false,
-                        orderDetails = it,
-                        isInitialError = false
-                    )
-                },
-                {
-                    Timber.e(it, "Error load order details")
-                    state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
-                }
-            )
-            .addDisposable()
+                .loadOrderDetailsData(orderId)
+                .map { ordersListItemUiTransformer.transform(it) }
+                .applySchedulers()
+                .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
+                .subscribe(
+                        {
+                            state.value = state.nonNullValue.copy(
+                                    isLoading = false,
+                                    orderDetails = it,
+                                    isInitialError = false
+                            )
+                        },
+                        {
+                            Timber.e(it, "Error load order details")
+                            state.value = state.nonNullValue.copy(isLoading = false, isInitialError = true)
+                        }
+                )
+                .addDisposable()
     }
 
-    private fun onChangeOrderStatus() {
-        ordersDetailsUseCase
-            .changeOrderStatus(orderId, OrdersConstants.ORDERS_STATUS_CAN_PICKUP)
-            .applySchedulers()
-            .doOnSubscribe { }
-            .subscribe(
-                {
-                    status.value = true
+    private fun onChangeOrderStatus(status: String) {
+        orderDetailsUseCase
+                .changeOrderStatus(orderId, status)
+                .map { ordersListItemUiTransformer.transform(it) }
+                .applySchedulers()
+                .doOnSubscribe { state.value = state.nonNullValue.copy(isLoading = true) }
+                .subscribe({
+                    state.value = state.nonNullValue.copy(
+                            isLoading = false,
+                            orderDetails = it,
+                            isInitialError = false
+                    )
                     needUpdateOrders.onComplete("")
                 }, {
-                    Timber.e(it, "Error change order status")
-                    status.value = false
-                }
-            )
-            .addDisposable()
+                    processThrowable(it)
+                })
+                .addDisposable()
     }
 
     data class State(
-        val orderDetails: OrdersListItemUi? = null,
-        val isLoading: Boolean,
-        val isInitialError: Boolean
+            val orderDetails: OrdersListItemUi? = null,
+            val isLoading: Boolean,
+            val isInitialError: Boolean
     )
 }
