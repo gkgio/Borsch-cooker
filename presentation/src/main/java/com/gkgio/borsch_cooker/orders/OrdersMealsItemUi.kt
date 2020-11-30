@@ -1,5 +1,7 @@
 package com.gkgio.borsch_cooker.orders
 
+import java.io.Serializable
+
 data class OrdersMealsItemUi(
     val id: String,
     val available: Boolean,
@@ -14,4 +16,4 @@ data class OrdersMealsItemUi(
     val cookerId: String,
     val images: List<String>?,
     val isLunch: Boolean? = null
-)
+) : Serializable

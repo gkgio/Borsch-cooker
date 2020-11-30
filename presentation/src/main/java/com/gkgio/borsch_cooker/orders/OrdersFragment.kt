@@ -24,11 +24,19 @@ class OrdersFragment : BaseFragment<OrdersViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //INIT
         initTypeTitlesRv()
         initViewPager()
         viewModel.titlesLiveData.observeValue(viewLifecycleOwner) {
             typeTitlesAdapter.setTitlesRes(it)
+        }
+
+        ordersSrl.setColorSchemeColors(resources.getColor(R.color.blue_text))
+        ordersSrl.setOnRefreshListener {
+            viewModel.onSwipedToRefresh()
+        }
+
+        viewModel.cancelSwipe.observeValue(this) {
+            ordersSrl.isRefreshing = false
         }
     }
 

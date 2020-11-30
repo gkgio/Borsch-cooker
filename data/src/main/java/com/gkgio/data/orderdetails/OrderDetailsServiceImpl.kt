@@ -8,26 +8,40 @@ import com.gkgio.domain.orderdetails.OrderDetailsService
 import com.gkgio.domain.orders.OrdersItem
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 import javax.inject.Inject
 
 class OrderDetailsServiceImpl @Inject constructor(
-    private val orderDetailsApi: OrderDetailsApi,
-    private val ordersItemResponseTransformer: OrdersItemResponseTransformer,
-    serverExceptionTransformer: ServerExceptionTransformer
+        private val orderDetailsApi: OrderDetailsApi,
+        private val ordersItemResponseTransformer: OrdersItemResponseTransformer,
+        serverExceptionTransformer: ServerExceptionTransformer
 
 ) : BaseService(serverExceptionTransformer), OrderDetailsService {
     override fun loadOrderDetailsData(orderId: String): Single<OrdersItem> =
-        executeRequest(
-            orderDetailsApi.loadOrderDetailsData(orderId).map {
-                ordersItemResponseTransformer.transform(it)
-            }
-        )
+            executeRequest(
+                    orderDetailsApi.loadOrderDetailsData(orderId).map {
+                        ordersItemResponseTransformer.transform(it)
+                    }
+            )
+
+    override fun changeOrderStatus(orderId: String, status: String): Single<OrdersItem> =
+            executeRequest(
+                    orderDetailsApi.changeOrderStatus(orderId, status).map {
+                        ordersItemResponseTransformer.transform(it)
+                    }
+            )
 
     interface OrderDetailsApi {
-        @GET("cooker/orders/{orderId}")
+        @GET("cooker/orders/show/{orderId}")
         fun loadOrderDetailsData(
-            @Path("orderId") orderId: String
+                @Path("orderId") orderId: String
+        ): Single<OrdersItemResponse>
+
+        @POST("cooker/orders/{orderId}/change_status")
+        fun changeOrderStatus(
+                @Path("orderId") orderId: String, @Query("status") status: String
         ): Single<OrdersItemResponse>
     }
 

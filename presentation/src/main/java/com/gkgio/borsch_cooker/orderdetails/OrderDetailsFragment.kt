@@ -7,16 +7,17 @@ import com.gkgio.borsch_cooker.R
 import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.createViewModel
+import com.gkgio.borsch_cooker.ext.getQuantityText
 import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
 import com.gkgio.borsch_cooker.orders.OrdersMealsAdapter
 import com.gkgio.borsch_cooker.utils.FragmentArgumentDelegate
 import kotlinx.android.synthetic.main.fragment_order_details.*
-import kotlinx.android.synthetic.main.toolbar_two_icon_view.view.*
 
-class OrderDetailsFragment : BaseFragment<OrderDetailsViewModel>() {
+class OrderDetailsFragment : BaseFragment<OrderDetailsViewModel>(), OrderDetailsStatusSheet.OrderStatusChangeListener {
 
     companion object {
+        val TAG = OrderDetailsFragment::class.java.simpleName
         fun newInstance(orderId: String) = OrderDetailsFragment().apply {
             this.orderId = orderId
         }
@@ -40,25 +41,44 @@ class OrderDetailsFragment : BaseFragment<OrderDetailsViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         initMealsRv()
         viewModel.state.observeValue(this) {
-            orderMealsAdapter.setMealsList(it.orderDetails.meals)
-            orderDetailsSum.text = getString(R.string.orders_sum, 400.toString()) //TODO
-            orderDetailsDelivery.text = "Самовывоз" //TODO
+            orderMealsAdapter.setMealsList(it.orderDetails?.meals)
+            orderDetailsSum.text = getString(R.string.orders_sum, it.orderDetails?.price.toString())
+            orderDetailsMessagesTv.text = requireContext().getQuantityText(
+                    R.plurals.order_messages,
+                    it.orderDetails?.unreadMessagesCount ?: 0
+            )
+            orderDetailsDelivery.text = it.orderDetails?.typeUi
+            changeStatusButton.text = it.orderDetails?.statusUi
         }
+
+        viewModel.status.observeValue(this) {
+            showDialog(OrderDetailsStatusSheet.newInstance(orderId, it), TAG)
+        }
+
         toolbar.setLeftIconClickListener {
             viewModel.clickLeftIcon()
         }
-        toolbar.titleTextView.text = getString(R.string.orders_number, orderId)
 
         clientChatView.setDebounceOnClickListener {
             viewModel.onClientChatClicked()
         }
+
+        changeStatusButton.setDebounceOnClickListener {
+            viewModel.onChangeStatusClicked()
+        }
+
+        orderDetailsNumTv.text = getString(R.string.orders_number, orderId)
     }
 
     private fun initMealsRv() {
-        orderMealsAdapter = OrdersMealsAdapter(listOf(), true) {}
+        orderMealsAdapter = OrdersMealsAdapter(true)
         orderMealsListRv.adapter = orderMealsAdapter
         orderMealsListRv.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    override fun onOrderStatusChange(status: String) {
+        viewModel.onStatusChanged(status)
     }
 
 }

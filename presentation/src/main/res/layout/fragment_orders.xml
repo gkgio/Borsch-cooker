@@ -24,36 +24,42 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <com.gkgio.borsch_cooker.view.VerticalSwipeRefreshLayout
+        android:id="@+id/ordersSrl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="24dp"
-        android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="24dp"
+            android:scrollbars="none">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ordersTypeTitlesRv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:overScrollMode="never" />
-
-            <com.gkgio.borsch_cooker.view.CustomViewPager
-                android:id="@+id/ordersTypeViewPager"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ordersTypeTitlesRv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:overScrollMode="never" />
 
-    </ScrollView>
+                <com.gkgio.borsch_cooker.view.CustomViewPager
+                    android:id="@+id/ordersTypeViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never" />
 
+            </LinearLayout>
+
+        </ScrollView>
+
+    </com.gkgio.borsch_cooker.view.VerticalSwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

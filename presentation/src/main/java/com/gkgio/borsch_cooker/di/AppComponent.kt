@@ -23,6 +23,7 @@ import com.gkgio.borsch_cooker.meals.addmeal.AddMealViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.MealSelectTypeViewModel
 import com.gkgio.borsch_cooker.meals.addmeal.edit.AddMealEditDataViewModel
 import com.gkgio.borsch_cooker.onboarding.OnboardingViewModel
+import com.gkgio.borsch_cooker.orderdetails.OrderDetailsStatusViewModel
 import com.gkgio.borsch_cooker.profile.avatar.InputAvatarViewModel
 import com.gkgio.borsch_cooker.profile.name.InputNameViewModel
 import com.gkgio.borsch_cooker.orderdetails.OrderDetailsViewModel
@@ -30,6 +31,10 @@ import com.gkgio.borsch_cooker.orders.OrdersListViewModel
 import com.gkgio.borsch_cooker.orders.OrdersViewModel
 import com.gkgio.borsch_cooker.orders.chat.OrderChatViewModel
 import com.gkgio.borsch_cooker.own.activemeals.ActiveMealsViewModel
+import com.gkgio.borsch_cooker.orders.offer.OrderOfferViewModel
+import com.gkgio.borsch_cooker.orders.offer.sheet.DeliverySheetViewModel
+import com.gkgio.borsch_cooker.orders.offer.sheet.MealsSheetViewModel
+import com.gkgio.borsch_cooker.orders.offer.some.SomeOrderOffersViewModel
 import com.gkgio.borsch_cooker.profile.ProfileViewModel
 import com.gkgio.borsch_cooker.profile.address.FindAddressViewModel
 import com.gkgio.borsch_cooker.support.SupportViewModel
@@ -44,21 +49,21 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [
-        NavigationModule::class,
-        AppModule::class,
-        AppModule::class,
-        AuthModule::class,
-        AnalyticsModule::class,
-        ThemeModule::class,
-        SupportModule::class,
-        OrdersModule::class,
-        OrderDetailsModule::class,
-        OwnModule::class,
-        AddressModule::class,
-        ProfileModule::class,
-        MealsModule::class
-    ]
+        modules = [
+            NavigationModule::class,
+            AppModule::class,
+            AppModule::class,
+            AuthModule::class,
+            AnalyticsModule::class,
+            ThemeModule::class,
+            SupportModule::class,
+            OrdersModule::class,
+            OrderDetailsModule::class,
+            OwnModule::class,
+            AddressModule::class,
+            ProfileModule::class,
+            MealsModule::class
+        ]
 )
 interface AppComponent {
     fun inject(app: Application)
@@ -90,7 +95,12 @@ interface AppComponent {
     val addLunchViewModel: AddLunchViewModel
     val selectMealsViewModel: SelectMealsViewModel
     val activeMealsViewModel: ActiveMealsViewModel
+    val orderOfferViewModel: OrderOfferViewModel
+    val deliverySheetViewModel: DeliverySheetViewModel
+    val mealsSheetViewModel: MealsSheetViewModel
     val orderChatViewModel: OrderChatViewModel
+    val someOrderOffersViewModel: SomeOrderOffersViewModel
+    val orderDetailsStatusViewModel: OrderDetailsStatusViewModel
 
     val context: Context
     val moshi: Moshi

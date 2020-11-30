@@ -9,9 +9,10 @@ import com.gkgio.borsch_cooker.base.BaseFragment
 import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.*
 import com.gkgio.borsch_cooker.orders.OrdersMealsAdapter
+import com.gkgio.borsch_cooker.orders.offer.some.SomeOrderOffersSheet
 import com.gkgio.borsch_cooker.utils.DialogUtils
+import com.gkgio.borsch_cooker.utils.dateToUIStringDayAndMonth
 import kotlinx.android.synthetic.main.fragment_own.*
-
 
 class OwnFragment : BaseFragment<OwnViewModel>() {
 
@@ -63,7 +64,9 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                             R.plurals.meals_reviews,
                             reviews.totalReviews
                     )
-                    ownSubscriptionDate.setTextOrHide(subscriptionExpirationDate)
+
+                    ownSubscriptionDate.setTextOrHide(getString(R.string.own_subscription_for, dateToUIStringDayAndMonth(subscriptionExpirationDate)))
+
                     if (reviews.totalReviews != 0) {
                         ownRatingPercentage.text = reviews.averageRating
                         ownRating.isVisible = true
@@ -73,13 +76,13 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                         ownRatingEnough.isVisible = true
                     }
                 }
+
+                if (dashboard.activityStatus)
+                    viewModel.onStartCatchOrders() else viewModel.onStopCatchOrders()
             }
+
             viewModel.activeMeals.observeValue(this) {
-                if (it.isNotEmpty()) {
-                    activeMealsAdapter.setMealsList(it)
-                } else {
-                    ownActiveMeals.isVisible = false
-                }
+                activeMealsAdapter.setMealsList(it)
             }
 
             viewModel.singleEvent.observeValue(this) {
@@ -100,6 +103,10 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
                 }
             }
 
+            viewModel.someOrderOffers.observeValue(this) {
+                showDialog(SomeOrderOffersSheet.newInstance(it), TAG)
+            }
+
             helpStatusTv.setDebounceOnClickListener {
                 viewModel.onHelpClicked(BUTTON_HELP_STATUS)
             }
@@ -114,8 +121,18 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        viewModel.onStopCatchOrders()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onStartCatchOrders()
+    }
+
     private fun initMealsRv() {
-        activeMealsAdapter = OrdersMealsAdapter(listOf(), true) {}
+        activeMealsAdapter = OrdersMealsAdapter(true)
         ownActiveMealsRv.adapter = activeMealsAdapter
         ownActiveMealsRv.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

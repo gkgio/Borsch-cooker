@@ -26,4 +26,13 @@
         <item quantity="many">%d отзывов</item>
         <item quantity="other">%d отзыв</item>
     </plurals>
+
+    <plurals name="order_messages">
+        <item quantity="zero">%d новых сообщений</item>
+        <item quantity="one">%d новое сообщение</item>
+        <item quantity="two">%d новых сообщения</item>
+        <item quantity="few">%d новых сообщения</item>
+        <item quantity="many">%d новых сообщений</item>
+        <item quantity="other">%d новое сообщение</item>
+    </plurals>
 </resources>

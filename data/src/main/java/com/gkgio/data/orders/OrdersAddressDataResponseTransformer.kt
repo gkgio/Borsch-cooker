@@ -5,26 +5,26 @@ import com.gkgio.domain.orders.OrdersAddressItemData
 import javax.inject.Inject
 
 class OrdersAddressDataResponseTransformer @Inject constructor() :
-    BaseTransformer<OrdersAddressDataResponse, OrdersAddressItemData> {
-    override fun transform(data: OrdersAddressDataResponse) = with(data) {
-        OrdersAddressItemData(
-            id,
-            area,
-            block,
-            city,
-            cityDistrict,
-            country,
-            flat,
-            floor,
-            house,
-            intercom,
-            region,
-            street,
-            ownerId,
-            ownerType,
-            createdAt,
-            updatedAt,
-            main
-        )
+        BaseTransformer<OrdersAddressDataResponse?, OrdersAddressItemData?> {
+    override fun transform(data: OrdersAddressDataResponse?) = with(data) {
+        if (this != null) OrdersAddressItemData(
+                id,
+                area,
+                block,
+                city,
+                cityDistrict,
+                country,
+                flat,
+                floor,
+                house,
+                intercom,
+                region,
+                street,
+                ownerId,
+                ownerType,
+                createdAt,
+                updatedAt,
+                main
+        ) else null
     }
 }

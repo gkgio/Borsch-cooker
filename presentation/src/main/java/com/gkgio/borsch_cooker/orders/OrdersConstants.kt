@@ -15,5 +15,9 @@ class OrdersConstants {
         const val ORDERS_STATUS_COOKING = "cooking"
         const val ORDERS_STATUS_CAN_PICKUP = "can_pickup"
         const val ORDERS_STATUS_DELIVERING = "delivering"
+
+        //DeliveryType
+        const val ORDERS_TAKE_DELIVERY = "delivery"
+        const val ORDERS_TAKE_PICKUP = "pickup"
     }
 }

@@ -3,6 +3,7 @@ package com.gkgio.borsch_cooker.utils
 import android.content.Context
 import android.content.pm.PackageManager
 import android.text.format.DateFormat
+import android.text.format.DateUtils
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
@@ -19,15 +20,15 @@ import java.util.*
  * @return dd month yyyy / dd month / СЕГОДНЯ
  */
 fun getDateInStandardFormat(
-    context: Context,
-    date: Date,
-    isClassicFormat: Boolean = true,
-    withTime: Boolean = false
+        context: Context,
+        date: Date,
+        isClassicFormat: Boolean = true,
+        withTime: Boolean = false
 ): String {
     val currentDate = DateTime.now().withTimeAtStartOfDay()
 
     val currentYear = SimpleDateFormat("yyyy", Locale("ru"))
-        .format(currentDate.toDate())
+            .format(currentDate.toDate())
     val checkingYear = DateFormat.format("yyyy", date) as String
 
     return if (date == currentDate.toDate() && !isClassicFormat) {
@@ -52,9 +53,9 @@ fun getDateInStandardFormat(
  */
 fun dateToUIStringMonthWord(context: Context, date: Date): String {
     return String.format(
-        "%s %s",
-        DateFormat.format("dd", date),
-        getMonthNameByMonthNumber(context, DateFormat.format("MM", date) as String)
+            "%s %s",
+            DateFormat.format("dd", date),
+            getMonthNameByMonthNumber(context, DateFormat.format("MM", date) as String)
     )
 }
 
@@ -63,10 +64,10 @@ fun dateToUIStringMonthWord(context: Context, date: Date): String {
  */
 fun dateToUIStringMonthWordAndTime(context: Context, date: Date): String {
     return String.format(
-        "%s %s - %s",
-        DateFormat.format("dd", date),
-        getMonthNameByMonthNumber(context, DateFormat.format("MM", date) as String),
-        DateFormat.format("HH:mm", date)
+            "%s %s - %s",
+            DateFormat.format("dd", date),
+            getMonthNameByMonthNumber(context, DateFormat.format("MM", date) as String),
+            DateFormat.format("HH:mm", date)
     )
 }
 
@@ -75,10 +76,10 @@ fun dateToUIStringMonthWordAndTime(context: Context, date: Date): String {
  */
 fun dateToUIStringMonthWordAndYear(context: Context, date: Date): String {
     return String.format(
-        "%s %s %s",
-        DateFormat.format("dd", date),
-        getMonthNameByMonthNumber(context, DateFormat.format("MM", date) as String),
-        DateFormat.format("yyyy", date)
+            "%s %s %s",
+            DateFormat.format("dd", date),
+            getMonthNameByMonthNumber(context, DateFormat.format("MM", date) as String),
+            DateFormat.format("yyyy", date)
     )
 }
 
@@ -87,12 +88,40 @@ fun dateToUIStringMonthWordAndYear(context: Context, date: Date): String {
  */
 fun dateToUIStringMonthWordAndYearAndTime(context: Context, date: Date): String {
     return String.format(
-        "%s %s %s - %s",
-        DateFormat.format("dd", date),
-        getMonthNameByMonthNumber(context, DateFormat.format("MM", date) as String),
-        DateFormat.format("yyyy", date),
-        DateFormat.format("HH:mm", date)
+            "%s %s %s - %s",
+            DateFormat.format("dd", date),
+            getMonthNameByMonthNumber(context, DateFormat.format("MM", date) as String),
+            DateFormat.format("yyyy", date),
+            DateFormat.format("HH:mm", date)
     )
+}
+
+/**
+ * @return hh:mm, Day | hh:mm, dd.MM
+ */
+fun dateToUIStringTimeAndDay(date: String): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.getDefault())
+    val parsedDate = dateFormat.parse(date)!!
+    return String.format(
+            "%s, %s",
+            DateFormat.format("HH:mm", parsedDate),
+            getDayOrDayAndMonthByDate(parsedDate)
+    )
+}
+
+/**
+ * @return dd.MM
+ */
+fun dateToUIStringDayAndMonth(date: String?): String {
+    return if (date != null) {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val parsedDate = dateFormat.parse(date)!!
+        String.format(
+                "%s",
+                DateFormat.format("dd.MM", parsedDate),
+                getDayOrDayAndMonthByDate(parsedDate)
+        )
+    } else ""
 }
 
 fun getMonthNameByMonthNumber(context: Context, monthNumber: String): String {
@@ -111,6 +140,14 @@ fun getMonthNameByMonthNumber(context: Context, monthNumber: String): String {
         "11" -> months[10].toUpperCase(Locale.getDefault())
         "12" -> months[11].toUpperCase(Locale.getDefault())
         else -> ""
+    }
+}
+
+fun getDayOrDayAndMonthByDate(date: Date): String {
+    return if (DateUtils.isToday(date.time)) {
+        "Сегодня"
+    } else {
+        String.format("%s", DateFormat.format("dd MMM", date))
     }
 }
 
@@ -138,18 +175,22 @@ fun getOrdersStatusNameByOrdersStatus(context: Context, ordersStatus: String): S
     }
 }
 
-fun convertValueToDecimal(value: String?): String =
-    String.format("%.1f", value?.toDouble())
+fun getOrderDeliveryUiTypeByType(context: Context, type: String): String =
+        if (type == OrdersConstants.ORDERS_TAKE_DELIVERY)
+            context.getString(R.string.order_delivery) else context.getString(R.string.order_pickup)
 
-fun getImageUrl(image: String): String =
-    "http://" + HostInterceptor.CONNECT_URL + ":3001" + image
+fun convertValueToDecimal(value: String?): String =
+        String.format("%.1f", value?.toDouble())
+
+fun getImageUrl(image: String?): String? =
+        "http://" + HostInterceptor.CONNECT_URL + ":3001" + image
 
 fun endlessJumpingViewAnimation(view: View) {
     val animation = TranslateAnimation(
-        TranslateAnimation.ABSOLUTE, 0f,
-        TranslateAnimation.ABSOLUTE, 0f,
-        TranslateAnimation.RELATIVE_TO_PARENT, -0.02f,
-        TranslateAnimation.RELATIVE_TO_PARENT, 0.02f
+            TranslateAnimation.ABSOLUTE, 0f,
+            TranslateAnimation.ABSOLUTE, 0f,
+            TranslateAnimation.RELATIVE_TO_PARENT, -0.02f,
+            TranslateAnimation.RELATIVE_TO_PARENT, 0.02f
     )
     animation.duration = 3000
     animation.repeatCount = -1

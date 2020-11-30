@@ -7,6 +7,7 @@ import com.gkgio.borsch_cooker.ext.applySchedulers
 import com.gkgio.borsch_cooker.ext.isNonInitialized
 import com.gkgio.borsch_cooker.ext.nonNullValue
 import com.gkgio.borsch_cooker.navigation.Screens
+import com.gkgio.borsch_cooker.utils.events.NeedUpdateOrders
 import com.gkgio.domain.orders.OrdersUseCase
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
@@ -15,15 +16,15 @@ import javax.inject.Inject
 class OrdersListViewModel @Inject constructor(
     private val loadOrdersUseCase: OrdersUseCase,
     private val ordersListItemUiTransformer: OrdersListItemUiTransformer,
-    baseScreensNavigator: BaseScreensNavigator,
-    private val router: Router
+    private val needUpdateOrders: NeedUpdateOrders,
+    private val router: Router,
+    baseScreensNavigator: BaseScreensNavigator
 ) : BaseViewModel(baseScreensNavigator) {
 
     val state = MutableLiveData<State>()
     private lateinit var ordersType: String
 
-    //for test start
-    var list = mutableListOf<OrdersListItemUi>()
+    //public
 
     fun init(ordersType: String) {
 
@@ -36,8 +37,15 @@ class OrdersListViewModel @Inject constructor(
             } else {
                 onLoadActiveOrders()
             }
+            initNeedUpdateOrders()
         }
     }
+
+    fun clickOrder(orderId: String) {
+        router.navigateTo(Screens.OrderDetailsScreen(orderId))
+    }
+
+    //private
 
     private fun onLoadActiveOrders() {
         loadOrdersUseCase
@@ -93,8 +101,18 @@ class OrdersListViewModel @Inject constructor(
             .addDisposable()
     }
 
-    fun clickOrder(orderId: String) {
-        router.navigateTo(Screens.OrderDetailsScreen(orderId))
+    private fun initNeedUpdateOrders() {
+        needUpdateOrders
+            .getEventResult()
+            .applySchedulers()
+            .subscribe {
+                if (ordersType == OrdersConstants.ORDERS_TYPE_ALL) {
+                    onLoadAllOrders()
+                } else {
+                    onLoadActiveOrders()
+                }
+            }
+            .addDisposable()
     }
 
     data class State(

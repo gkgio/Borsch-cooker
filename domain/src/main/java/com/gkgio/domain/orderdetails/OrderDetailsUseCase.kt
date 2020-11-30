@@ -6,6 +6,7 @@ import javax.inject.Inject
 
 interface OrderDetailsUseCase {
     fun loadOrderDetailsData(orderId: String): Single<OrdersItem>
+    fun changeOrderStatus(orderId: String, status: String): Single<OrdersItem>
 }
 
 class OrderDetailsUseCaseImpl @Inject constructor(
@@ -13,4 +14,7 @@ class OrderDetailsUseCaseImpl @Inject constructor(
 ) : OrderDetailsUseCase {
     override fun loadOrderDetailsData(orderId: String): Single<OrdersItem> =
         orderDetailsService.loadOrderDetailsData(orderId)
+
+    override fun changeOrderStatus(orderId: String, status: String): Single<OrdersItem> =
+        orderDetailsService.changeOrderStatus(orderId, status)
 }

@@ -6,6 +6,7 @@ import javax.inject.Inject
 interface OrdersUseCase {
     fun loadAllOrdersData(): Single<List<OrdersItem>>
     fun loadActiveOrdersData(): Single<List<OrdersItem>>
+    fun loadNewOrdersData(): Single<List<OrdersItem>>
 }
 
 class OrdersUseCaseImpl @Inject constructor(
@@ -16,4 +17,7 @@ class OrdersUseCaseImpl @Inject constructor(
 
     override fun loadActiveOrdersData(): Single<List<OrdersItem>> =
         ordersService.loadActiveOrdersData()
+
+    override fun loadNewOrdersData(): Single<List<OrdersItem>> =
+        ordersService.loadNewOrdersData()
 }
