@@ -36,8 +36,7 @@ class OrdersListAdapter(
                 val order = ordersList[position]
                 ordersId.text =
                         context.getString(R.string.orders_number, order.id)
-                ordersStatus.text =
-                        getOrdersStatusNameByOrdersStatus(context, order.status)
+                ordersStatus.text = order.statusUi
                 ordersSum.text = context.getString(R.string.orders_sum, order.price.toString())
                 ordersCreatedTime.text = dateToUIStringTimeAndDay(order.createdAt)
                 ordersDeliveryType.text =

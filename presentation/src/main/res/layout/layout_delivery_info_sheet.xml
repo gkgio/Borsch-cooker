@@ -20,30 +20,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        android:contentDescription="@string/order_offer_address"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_location" />
 
-        <ImageView
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="20dp"
-            app:srcCompat="@drawable/ic_location" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/tt_norms_bold"
+        android:text="@string/order_offer_address"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="12dp"
-            android:fontFamily="@font/tt_norms_bold"
-            android:text="@string/order_offer_address"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
-    </LinearLayout>
 
     <TextView
         android:id="@+id/addressDeliveryTv"
@@ -55,7 +56,7 @@
         android:fontFamily="@font/tt_norms_regular"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:text="Котельническая набережная, дом 7/2, офис 314, этаж 2" />
 
     <TextView

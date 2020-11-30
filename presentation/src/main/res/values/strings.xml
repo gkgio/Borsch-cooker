@@ -103,6 +103,10 @@
     <string name="order_offer_address">Адрес</string>
     <string name="order_offer_dishes">Блюда</string>
     <string name="order_offer_DETAILS">ДЕТАЛИ</string>
+    <string name="order_offer_client">Клиент</string>
+    <string name="order_offer_client_ok">У клиента отсутствуют\nнегативные отзывы</string>
+    <string name="order_offer_client_bad">ЧАСТО ОТМЕНЯЕТ ЗАКАЗЫ</string>
+    <string name="order_offer_pickup_description">Клиент заберет заказ\nпо указанному вами адресу</string>
 
     <string name="own_welcome">Добрый день, %s!</string>
     <string name="own_profile">Профиль</string>

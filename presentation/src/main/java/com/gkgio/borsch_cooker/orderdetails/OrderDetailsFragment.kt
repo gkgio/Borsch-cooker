@@ -10,7 +10,6 @@ import com.gkgio.borsch_cooker.ext.createViewModel
 import com.gkgio.borsch_cooker.ext.getQuantityText
 import com.gkgio.borsch_cooker.ext.observeValue
 import com.gkgio.borsch_cooker.ext.setDebounceOnClickListener
-import com.gkgio.borsch_cooker.orders.OrdersConstants
 import com.gkgio.borsch_cooker.orders.OrdersMealsAdapter
 import com.gkgio.borsch_cooker.utils.FragmentArgumentDelegate
 import kotlinx.android.synthetic.main.fragment_order_details.*
@@ -48,17 +47,8 @@ class OrderDetailsFragment : BaseFragment<OrderDetailsViewModel>(), OrderDetails
                     R.plurals.order_messages,
                     it.orderDetails?.unreadMessagesCount ?: 0
             )
-            orderDetailsDelivery.text =
-                    if (it.orderDetails?.type == OrdersConstants.ORDERS_TAKE_DELIVERY)
-                        getString(R.string.order_delivery) else getString(R.string.order_pickup)
-            changeStatusButton.text = when (it.orderDetails?.status) {
-                OrdersConstants.ORDERS_STATUS_COOKING -> getString(R.string.orders_status_cooking)
-                OrdersConstants.ORDERS_STATUS_CAN_PICKUP -> getString(R.string.orders_status_can_pickup)
-                OrdersConstants.ORDERS_STATUS_DELIVERING -> getString(R.string.orders_status_delivering)
-                OrdersConstants.ORDERS_STATUS_CANCELED -> getString(R.string.orders_status_canceled)
-                OrdersConstants.ORDERS_STATUS_ACCEPTED -> getString(R.string.orders_status_accepted)
-                else -> getString(R.string.orders_status_change)
-            }
+            orderDetailsDelivery.text = it.orderDetails?.typeUi
+            changeStatusButton.text = it.orderDetails?.statusUi
         }
 
         viewModel.status.observeValue(this) {

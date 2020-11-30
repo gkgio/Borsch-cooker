@@ -175,6 +175,10 @@ fun getOrdersStatusNameByOrdersStatus(context: Context, ordersStatus: String): S
     }
 }
 
+fun getOrderDeliveryUiTypeByType(context: Context, type: String): String =
+        if (type == OrdersConstants.ORDERS_TAKE_DELIVERY)
+            context.getString(R.string.order_delivery) else context.getString(R.string.order_pickup)
+
 fun convertValueToDecimal(value: String?): String =
         String.format("%.1f", value?.toDouble())
 
