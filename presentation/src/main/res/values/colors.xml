@@ -32,6 +32,8 @@
     <color name="grey_bg2">#f7f7f7</color>
     <color name="grey_bg3">#eaeaee</color>
     <color name="grey_bg4">#126C6C6C</color>
+    <color name="grey_bg5">#0AA3A3A3</color>
+    <color name="grey_dark_bg">#242425</color>
     <color name="green_text">#008c00</color>
     <color name="yellow_bg">#ffd647</color>
     <color name="red_text">#f94733</color>
@@ -45,6 +47,7 @@
     <color name="green_4">#0A04AA11</color>
     <color name="red">#e83131</color>
     <color name="red2">#e02020</color>
+    <color name="red3">#f95c39</color>
     <color name="red2_8">#14E02020</color>
     <color name="orange">#fa6400</color>
     <color name="orange_8">#14FA6400</color>

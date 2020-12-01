@@ -10,6 +10,7 @@ import com.gkgio.borsch_cooker.di.AppInjector
 import com.gkgio.borsch_cooker.ext.*
 import com.gkgio.borsch_cooker.orders.OrdersMealsAdapter
 import com.gkgio.borsch_cooker.orders.offer.some.SomeOrderOffersSheet
+import com.gkgio.borsch_cooker.subscription.SubscriptionSheet
 import com.gkgio.borsch_cooker.utils.DialogUtils
 import com.gkgio.borsch_cooker.utils.dateToUIStringDayAndMonth
 import kotlinx.android.synthetic.main.fragment_own.*
@@ -33,6 +34,7 @@ class OwnFragment : BaseFragment<OwnViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initMealsRv()
+        showDialog(SubscriptionSheet(), TAG)
         ownIsOnDuty.setDebounceOnClickListener {
             viewModel.setDutyStatus(ownIsOnDuty.isChecked)
         }

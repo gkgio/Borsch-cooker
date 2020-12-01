@@ -37,6 +37,7 @@ import com.gkgio.borsch_cooker.orders.offer.sheet.MealsSheetViewModel
 import com.gkgio.borsch_cooker.orders.offer.some.SomeOrderOffersViewModel
 import com.gkgio.borsch_cooker.profile.ProfileViewModel
 import com.gkgio.borsch_cooker.profile.address.FindAddressViewModel
+import com.gkgio.borsch_cooker.subscription.SubscriptionViewModel
 import com.gkgio.borsch_cooker.support.SupportViewModel
 import com.gkgio.borsch_cooker.support.chat.SupportChatViewModel
 import com.gkgio.domain.errorreporter.ErrorReporter
@@ -101,6 +102,7 @@ interface AppComponent {
     val orderChatViewModel: OrderChatViewModel
     val someOrderOffersViewModel: SomeOrderOffersViewModel
     val orderDetailsStatusViewModel: OrderDetailsStatusViewModel
+    val subscriptionViewModel: SubscriptionViewModel
 
     val context: Context
     val moshi: Moshi
